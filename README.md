@@ -21,9 +21,9 @@
 - 自分で撮った唐津くんちの写真をシェアしたいとき
 ​
 ## 設計書
-ER図 ![imakara](https://github.com/HinakoKobayashi/imakara/assets/144582159/7d8a2fca-5f57-4e35-9f66-f5f4906225be)
-テーブル定義書 https://docs.google.com/spreadsheets/d/1RDwzfWghQufA9yWK2ZGH-JSvXlq63nLi/edit?usp=sharing&ouid=115449956889991907032&rtpof=true&sd=true
-詳細設計書　https://docs.google.com/spreadsheets/d/1TfsrH0aIOb07t7c4gUQSzbCIM-dIV2wObDb-kW3qT2E/edit?usp=sharing
+- ER図 ![imakara](https://github.com/HinakoKobayashi/imakara/assets/144582159/7d8a2fca-5f57-4e35-9f66-f5f4906225be)
+- テーブル定義書 https://tinyurl.com/ymvkebvx
+- 詳細設計書　https://tinyurl.com/ylefmdzq
 ​
 ## 開発環境
 - OS：Linux(CentOS)

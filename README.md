@@ -21,7 +21,7 @@
 - 自分で撮った唐津くんちの写真をシェアしたいとき
 ​
 ## 設計書
-- ER図 ![imakara](https://github.com/HinakoKobayashi/imakara/assets/144582159/7d8a2fca-5f57-4e35-9f66-f5f4906225be)
+- ER図 ![imakara](https://github.com/HinakoKobayashi/imakara/assets/144582159/9d9388ff-1eab-4df6-b1b6-cad3f948b61a)
 - テーブル定義書 https://tinyurl.com/ymvkebvx
 - 詳細設計書　https://tinyurl.com/ylefmdzq
 ​

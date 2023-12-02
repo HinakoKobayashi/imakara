@@ -13,15 +13,16 @@
 ​
 ### ターゲットユーザ
 - 唐津くんちを見に来たが、詳しいことはよくわからない観光客
-- 唐津くんちの良さを広めたいと思っているファンや地元の人
+- 唐津くんちの良さを広めたいと思っているファンや、店の宣伝をしたい地元の人
 ​
 ### 主な利用シーン
-- 今どこに曳山がいるのかリアルタイムに把握したいとき
+- どの場所で曳山見物をするべきかわからないとき
 - 各種神事が行われるタイミングで、その成り立ちや意味を知りたいとき
 - 自分で撮った唐津くんちの写真をシェアしたいとき
+- お昼時などにどこのお店が開いているか知りたいとき
 ​
 ## 設計書
-- ER図 ![imakara](https://github.com/HinakoKobayashi/imakara/assets/144582159/9188e892-f6c2-4e24-a7e7-9ebf1ae7d958)
+- ER図 ![imakara](https://github.com/HinakoKobayashi/imakara/assets/144582159/6b4696e3-fe11-49a0-a6e9-96fdeb551a92)
 - テーブル定義書 https://tinyurl.com/ymvkebvx
 - 詳細設計書　https://tinyurl.com/ylefmdzq
 ​

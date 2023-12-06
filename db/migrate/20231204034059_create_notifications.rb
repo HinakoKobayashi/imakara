@@ -4,7 +4,7 @@ class CreateNotifications < ActiveRecord::Migration[6.1]
       t.integer :visitor_id
       t.integer :visited_id
       t.string :action
-      t.boolean :confirmed
+      t.boolean :confirmed, default: false
 
       t.timestamps
     end

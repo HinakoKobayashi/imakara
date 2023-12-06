@@ -1,0 +1,18 @@
+<div class="navbar">
+  <header class="header">
+      <div class="navtext-container">
+        <div class="navtext">Menu</div>
+      </div>
+      <input type="checkbox" class="menu-btn" id="menu-btn">
+      <label for="menu-btn" class="menu-icon"><span class="navicon"></span></label>
+      <ul class="menu">
+        <% if user_signed_in? %>
+          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'Post', posts_path %></li>
+          <li><%= link_to 'Users', users_path %></li>
+          <li><%#= link_to 'MyPage', user_path %></li>
+          <li><%= link_to 'LogOut', destroy_user_session_path, method: :delete %></li>
+        <% end %>
+      </ul>
+  </header>
+</div>

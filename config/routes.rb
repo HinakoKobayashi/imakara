@@ -1,38 +1,5 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-  end
-  namespace :admin do
-    get 'requests/index'
-    get 'requests/show'
-  end
-  namespace :admin do
-    get 'posts/index'
-    get 'posts/show'
-  end
-  namespace :user do
-    get 'notifications/index'
-  end
-  namespace :user do
-    get 'posts/new'
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/edit'
-  end
-  namespace :user do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-    get 'users/check'
-  end
-  namespace :user do
-    get 'requests/new'
-  end
-  namespace :user do
-    get 'homes/top'
-  end
+
   devise_for :admins, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
@@ -41,5 +8,34 @@ Rails.application.routes.draw do
   registrations: "user/registrations",
   sessions: 'user/sessions'
 }
+
+  get '/search' => 'searches#search'
+  get '/tag/search' => 'searches#tag_search'
+
+  namespace :admin do
+    root to: 'homes#top'
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :posts, only: [:index, :show, :destroy]
+    resources :requests, omly: [:index, :show]
+  end
+
+  scope module: :user do
+    root to: 'homes#top'
+    resources :users, only: [:index, :show, :edit, :update] do
+      # :idを使用した特定のデータに対するアクションのためmemberを使用
+      member do
+        get :favorites
+        get :check
+        patch :cancellation
+      end
+    end
+    resources :posts do
+      resource :favorite, only: [:create, :destroy]
+      resources :comments, only: [:create, :edit, :update, :destroy]
+      resources :notifications, only: [:index, :destroy]
+    end
+    resources :requests, only: [:new, :create]
+  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

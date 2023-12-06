@@ -20,10 +20,10 @@
       )
   end
 
-  Tag.create(tag_name: "開催日時")
-  Tag.create(tag_name: "周辺情報")
-  Tag.create(tag_name: "歴史")
-  Tag.create(tag_name: "見物スポット")
+ # Tag.create(tag_name: "開催日時")
+ # Tag.create(tag_name: "周辺情報")
+ # Tag.create(tag_name: "歴史")
+ # Tag.create(tag_name: "見物スポット")
 
   User.all.each do |user|
     rand(1..5).times do
@@ -31,7 +31,7 @@
         user_id: user.id,
         content: "#{rand(1..75)}〇〇祭り情報",
         prefecture_id: rand(1..48),
-        tag_id: rand(1..4),
+        post_status: [:published, :draft, :unpublished].sample,
         image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/no_image.jpg")), filename: "no_image.jpg")
         )
     end

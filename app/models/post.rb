@@ -9,9 +9,10 @@ class Post < ApplicationRecord
 
   enum post_status: { published: 0, draft: 1, unpublished: 2 }
 
-  validates :post_status, presence: true
+  #validates :post_status, presence: true
+  #validates :prefecture_id, presence: true
 
-  has_many_attached :image
+  has_one_attached :image
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/sample-author1.jpg')

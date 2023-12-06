@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_05_021322) do
+ActiveRecord::Schema.define(version: 2023_12_06_040613) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -66,14 +66,15 @@ ActiveRecord::Schema.define(version: 2023_12_05_021322) do
   create_table "notifications", force: :cascade do |t|
     t.integer "visitor_id"
     t.integer "visited_id"
-    t.string "action"
+    t.string "notifiable_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "confirmed"
+    t.integer "notifiable_id"
   end
 
   create_table "posts", force: :cascade do |t|
-    t.text "post"
+    t.text "content"
     t.integer "post_status"
     t.text "address"
     t.float "latitude"
@@ -97,11 +98,6 @@ ActiveRecord::Schema.define(version: 2023_12_05_021322) do
   end
 
   create_table "taggings", force: :cascade do |t|
-    t.string "taggable_type"
-    t.integer "taggable_id"
-    t.string "tagger_type"
-    t.integer "tagger_id"
-    t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

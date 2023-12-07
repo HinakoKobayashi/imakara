@@ -1,11 +1,9 @@
 <div class="container">
   <div class="row main-row">
     <div class="col-md-12 mx-auto">
-      <h4 class="row title">
-        <div class="col-md-6 offset-3">
-          新規ユーザー登録
-        </div>
-      </h4>
+      <div class="row title">
+        <h4 class="col-md-6 offset-3">新規ユーザー登録</h4>
+      </div>
 
       <%= form_with model: @user, url: user_registration_path do |f| %>
         <%= render "user/shared/error_messages", resource: resource %>

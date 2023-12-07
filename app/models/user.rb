@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :requests, dependent: :destroy
   has_many :notifications, as: :notifiable, dependent: :destroy
 
+  attribute :is_active, default: true
+
   has_one_attached :profile_image
   def get_profile_image
     unless profile_image.attached?

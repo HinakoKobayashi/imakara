@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   scope module: :user do
     root to: 'homes#top'
     resources :users, only: [:index, :show, :edit, :update] do
+      resources :notifications, only: [:index, :destroy]
       # :idを使用した特定のデータに対するアクションのためmemberを使用
       member do
         get :favorites
@@ -38,7 +39,6 @@ Rails.application.routes.draw do
     resources :posts do
       resource :favorite, only: [:create, :destroy]
       resources :comments, only: [:create, :edit, :update, :destroy]
-      resources :notifications, only: [:index, :destroy]
     end
     resources :requests, only: [:new, :create]
   end

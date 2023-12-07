@@ -1,8 +1,9 @@
 <div class="navbar">
+  <h1 class="main-title pt-2">Matsurication</h1>
   <header class="header">
     <div id="sp-menu">
-      <h2>Menu</h2>
-      <ul>
+      <h2 class="menu-title text-right mr-2">Menu</h2>
+      <ul class="text-center m-2">
         <% if admin_signed_in? %>
           <li><%= link_to 'Home', admin_root_path %></li>
           <li><%= link_to 'Post', admin_posts_path %></li>
@@ -34,8 +35,5 @@
         <span></span>
       </a>
     </div>
-
-    <script src="app/javascript/jquery.min.js"></script>
-    <script src="app/javascript/header.js"></script>
   </header>
 </div>

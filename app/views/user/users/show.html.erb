@@ -1,2 +1,20 @@
-<h1>User::Users#show</h1>
-<p>Find me in app/views/user/users/show.html.erb</p>
+<div class="container">
+  <div class="row main-row">
+    <div class="col-md-12 mx-auto">
+      <div class="row title">
+        <h4 class="col-md-6 offset-3">
+          <% if current_user != @user %>
+            マイページ
+          <% else %>
+            ユーザー情報
+          <% end %>
+
+          <div class="row">
+            <div class="col-2 offset-2">
+            <%= image_tag user.get_profile_image(200,200) %>
+            </div>
+          </div>
+
+
+        </h4>
+      </div>

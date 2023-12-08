@@ -1,0 +1,28 @@
+<div class="row title">
+  <h4 class="col-md-6 offset-3 mb-5">マイページ</h4>
+</div>
+
+<div class="row">
+  <div class="col-8 offset-3">
+    <div><%= image_tag user.get_profile_image(500,500) %></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-4 offset-3">
+     <div class="pt-4">ユーザー名</div>
+     <div class="pt-3">自己紹介</div>
+     <div class="pt-3">メールアドレス</div>
+  </div>
+  <div class="col-4 offset-1">
+    <div class="pt-4"><%= user.name %></div>
+    <div class="pt-3"><%= user.introduction %></div>
+    <div class="pt-3"><%= user.email %></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-8 offset-2 justify-content:center; d-flex">
+    <%= link_to "編集", edit_user_path(current_user), class: "btn btn-success mx-auto mt-3 mb-3" %>
+  <div>
+</div>

@@ -20,6 +20,8 @@ class User::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user), notice: "ユーザー情報を更新しました"
     else
+      @user = User.find(params[:id])
+      flash.now[:alert] = "ユーザー情報の編集に失敗しました"
       render 'edit'
     end
   end

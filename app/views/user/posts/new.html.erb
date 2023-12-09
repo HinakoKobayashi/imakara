@@ -1,2 +1,66 @@
-<h1>User::Posts#new</h1>
-<p>Find me in app/views/user/posts/new.html.erb</p>
+<div class="container">
+  <div class="row main-row">
+    <div class="col-12 mx-auto">
+      <div class="row">
+        <h4 class="col-md-6 offset-3 mb-5 title">投稿作成</h4>
+      </div>
+
+      <%= render "user/shared/error_messages", resource: @post %>
+
+      <div class="row">
+        <div class="col-md-6 offset-3">
+          <span><%= image_tag @user.get_profile_image(50, 50) %></span>
+          <span class="ml-5"><%= @user.name %></span>
+        </div>
+      </div>
+
+      <%= form_with model: @post, url: posts_path do |f| %>
+
+        <div class="form-row">
+          <div class="form-group col-md-6 offset-3 mt-5">
+            <label for="content">本文</label>
+            <%= f.text_field :content, autofocus: true, class: "form-control", style: "height: 100%;" %>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6 offset-3 mt-5">
+            <label for="image">添付画像</label>
+            <%= f.file_field :image, accept: "image/*" %>
+          </div>
+        </div>
+
+        <!--後日余裕あれば画像プレビュー機能実装-->
+
+        <div class="form-row">
+          <div class="form-group col-md-6 offset-3 mt-5">
+            <label for="prefecture">都道府県</label>
+            <%#= f.collection_select :prefecture_id, @prefecture, :id, :prefecture,
+             { prompt: "選択してください" }, { class: "form-controll w-100" } %>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6 offset-3 mt-5">
+            <label for="tag">タグを追加</label>
+            <%= f.text_field :tag, value: @post.taggings.join('、'), class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group row mt-3">
+          <div class="col-3 offset-3">
+            <%= link_to "cancell", posts_path, class: "btn btn-secondary" %>
+          </div>
+          <div class="col-1">
+            <!--下書き機能実装予定-->
+          </div>
+          <div class="col-1 offset-1">
+            <%= f.submit "投稿する", class: "btn btn-success" %>
+          </div>
+        </div>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>

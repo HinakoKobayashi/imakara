@@ -1,5 +1,5 @@
 class User::UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :show]
+  before_action :authenticate_user!, only: [:edit, :update, :check]
   before_action :ensure_correct_user, only: [:edit, :update, :check]
 
   def index

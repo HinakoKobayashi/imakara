@@ -19,7 +19,7 @@ class Admin::UsersController < ApplicationController
       redirect_to admin_user_path(@user), notice: "ユーザー情報を更新しました"
     else
       @user = User.find(params[:id])
-      flash.now[:alert] = "登録情報の編集に失敗しました"
+      flash.now[:alert] = "ユーザー情報の編集に失敗しました"
       render 'edit'
     end
   end

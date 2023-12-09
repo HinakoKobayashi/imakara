@@ -1,2 +1,37 @@
-<h1>User::Posts#show</h1>
-<p>Find me in app/views/user/posts/show.html.erb</p>
+<div class="container">
+  <div class="row main-row">
+    <div class="col-12 mx-auto">
+      <div class="row">
+        <h4 class="col-md-6 offset-3 mb-5 title">投稿詳細</h4>
+      </div>
+
+      <!--投稿内容-->
+      <div class="row">
+        <div class="col-md-2 offset-3">
+          <span><%= image_tag @user.get_profile_image(50, 50) %></span><br>
+          <span class="ml-5"><%= @user.name %></span>
+        </div>
+        <div class="col-md-7">
+          <div><%= @post.content %></div>
+          <div><%= image_tag @post.get_image(400,300) %></div>
+        </div>
+      </div>
+
+      <!--いいね-->
+
+      <!--コメント-->
+
+      <!--ログインユーザーの投稿であれば編集可能-->
+      <%= if @user = current_user %>
+        <div class="form-group row mt-3">
+          <div class="col-3 offset-3">
+            <%= link_to "編集", edit_post_path, class: "btn btn-success" %>
+          </div>
+        </div>
+      <%= end %>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>

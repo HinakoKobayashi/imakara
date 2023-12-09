@@ -1,2 +1,32 @@
-<h1>User::Posts#index</h1>
-<p>Find me in app/views/user/posts/index.html.erb</p>
+<div class="container">
+  <div class="row main-row">
+    <div class="col-12 mx-auto">
+      <div class="row">
+        <h4 class="col-md-6 offset-3 mb-5 title">投稿一覧</h4>
+      </div>
+      <div class="row">
+        <div class="col-md-6 offset-3">
+          <table class="table table-hover">
+            <!--投稿は新しい順に並べたい-->
+            <tbody>
+              <% if @posts.present? %>
+                <% @posts.each do |post| %>
+                  <tr onclick='window.location="<%= post_path(post) %>"' role="link">
+                    <td><%= image_tag post.user.get_profile_image(50,50) %></td>
+                    <td><%= post.user.name %></td>
+                    <td><%= post.content %></td>
+                    <td><%= image_tag post.get_image(200,200) %></td>
+                  </tr>
+                <% end %>
+              <% else %>
+                  <tr>
+                    <td colspan="4">投稿がありません。</td>
+                  </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

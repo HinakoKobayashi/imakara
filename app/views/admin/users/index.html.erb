@@ -1,2 +1,40 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<div class="container">
+ <div class="row main-row">
+   <div class="col-12">
+    <h2 class="col-5 title">ユーザー一覧</h2>
+
+    <table class="table table-hover">
+     <thead>
+     <tr>
+       <th>image</th>
+       <th>ユーザー名</th>
+       <th>自己紹介</th>
+       <th>メールアドレス</th>
+       <th>ステータス</th>
+     </tr>
+     </thead>
+
+     <% @users.each do |user| %>
+     <tr onclick='window.location="<%= admin_user_path(user) %>"' role="link">
+       <td><%= image_tag user.get_profile_image(50,50) %></td>
+       <td><%= user.name %></td>
+       <td><%= user.introduction %></td>
+       <td><%= user.email %></td>
+       <td>
+         <% if user.is_active == true %>
+         <span style="color: #1a8066;">有効</span>
+         <% else %>
+         <span class="text-danger">退会</span>
+         <% end %>
+       </td>
+     </tr>
+     <% end %>
+    </table>
+
+    <!--<div class="row mx-auto justify-content-center">-->
+    <!-- <%#= paginate @users,theme: 'page' %>-->
+    <!--</div>-->
+
+  </div>
+ </div>
+</div>

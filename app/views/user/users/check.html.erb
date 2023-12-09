@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row main-row">
     <div class="col-12 mx-auto">
-     <h3 class="p-3 text-center bg-secondary text-light title"><strong>本当に退会しますか？</strong></h3>
+     <h3 class="p-3 text-center title">本当に退会しますか？</h3>
       <div class="mt-5 text-center">
-        <h5>退会すると、会員登録情報や</h5>
-        <h5>これまでの購入履歴が見れなくなります。</h5>
-        <h5>退会する場合は、「退会する」をクリックしてください。</h5>
+        <p>退会すると、ご自身のユーザー情報や<br>
+           これまでの投稿データが見られなくなります。<br>
+           退会する場合は、「退会する」をクリックしてください。</p>
       </div>
       <div class="mt-5 text-center">
-        <%= link_to "退会しない",customers_path,class: "btn btn-primary mr-5" %>
-        <%= link_to "退会する",cancellation_customers_path,method: :patch,class: "btn btn-danger" %>
+        <%= link_to "退会しない", user_path(current_user), class: "btn btn-primary mr-5" %>
+        <%= link_to "退会する", cancellation_user_path, method: :patch,class: "btn btn-danger" %>
       </div>
     </div>
   </div>

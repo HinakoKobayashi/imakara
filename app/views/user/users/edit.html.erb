@@ -7,7 +7,7 @@
 
         <%= render "user/shared/error_messages", resource: @user %>
 
-        <%= form_with model: @user, url: edit_user_path, method: :patch do |f| %>
+        <%= form_with model: @user, url: user_path, method: :patch do |f| %>
 
           <div class="form-row">
             <div class="form-group col-4 offset-3">

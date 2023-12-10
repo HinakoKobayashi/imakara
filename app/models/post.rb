@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  
+  acts_as_taggable_on :tags, :skills
 
   belongs_to :user
   belongs_to :prefecture

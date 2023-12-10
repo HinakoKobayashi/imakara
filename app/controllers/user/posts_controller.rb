@@ -12,14 +12,17 @@ class User::PostsController < ApplicationController
   end
 
   def create
+    params[:post][:prefecture_id] = params[:post][:prefecture_id] .to_i
     @post = Post.new(post_params)
     @user = current_user
+    @post.user_id = current_user.id
     if @post.save
       flash[:notice] = "投稿を作成しました"
       @posts = Post.all
-      redirect_to user_posts_path
+      redirect_to posts_path
     else
       flash.now[:alert] = "投稿の作成に失敗しました"
+      logger.error("Failed to save post. Errors: #{@post.errors.full_messages}")
       render 'new'
     end
   end
@@ -27,6 +30,7 @@ class User::PostsController < ApplicationController
   def show
     @post = Post.with_attached_image.find(params[:id])
     @user = User.with_attached_profile_image.find(params[:id])
+    @tags = @post.tag_counts_on(:tags)
   end
 
   def edit
@@ -49,6 +53,6 @@ class User::PostsController < ApplicationController
   private
 
   def post_params
-     params.require(:post).permit(:user_id, :prefecture_id, :name, :content, :post_status, :address, :latitude, :longitude, :tag_id)
+     params.require(:post).permit(:prefecture_id, :tag_list, :content, :post_status, :address, :latitude, :longitude)
   end
 end

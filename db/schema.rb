@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 2023_12_10_084435) do
     t.string "context", limit: 128
     t.datetime "created_at"
     t.string "tenant", limit: 128
+    t.integer "post_id"
     t.index ["context"], name: "index_taggings_on_context"
     t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
     t.index ["tag_id"], name: "index_taggings_on_tag_id"

@@ -31,6 +31,7 @@
                         <p>登録されているタグはありません</p>
                       <% end %>
                     </td>
+                    <td><%= render "comments/counter", post: @post %></td>
                   </tr>
                 <% end %>
               <% else %>

@@ -44,6 +44,11 @@
       <!--いいね-->
 
       <!--コメント-->
+      <div class="row">
+         <%= render "comments/counter", post: @post %>
+         <%= render "comments/index", post: @post %>
+         <%= render "comments/form", post: @post, comment: @comment %>
+      </div>
 
       <!--ログインユーザーの投稿であれば編集可能-->
         <% if @user == current_user %>

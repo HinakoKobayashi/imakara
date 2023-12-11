@@ -39,6 +39,10 @@
       <!--いいね-->
 
       <!--コメント-->
+      <div class="row">
+         <%= render "comments/counter", post: @post %>
+         <%= render "comments/index", post: @post %>
+      </div>
 
         <div class="form-group row mt-3">
           <div class="col-3 offset-3">

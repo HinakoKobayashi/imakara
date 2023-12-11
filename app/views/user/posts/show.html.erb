@@ -17,6 +17,11 @@
         </div>
       </div>
 
+      <!--都道府県-->
+      <div class="row">
+        <%= @post.prefecture.name %>
+      </div>
+
       <!--タグ-->
       <div class="row tags">
         <div class="col-md-8 offset-3">
@@ -44,10 +49,16 @@
         <% if @user == current_user %>
           <div class="form-group row mt-3">
             <div class="col-3 offset-3">
-              <%= link_to "編集", edit_post_path, class: "btn btn-success" %>
+              <%= link_to "編集", edit_post_path(@post), class: "btn btn-success" %>
             </div>
           </div>
         <% end %>
+
+        <div class="form-group row mt-3">
+          <div class="col-3 offset-3">
+            <%= link_to "一覧へ戻る", posts_path, class: "btn btn-primary" %>
+          </div>
+        </div>
 
     </div>
   </div>

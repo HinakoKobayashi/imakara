@@ -4,6 +4,7 @@ class User::PostsController < ApplicationController
   def index
     @posts = Post.all
     @users = User.all
+    @tags = Post.tag_counts_on(:tags).most_used(20)
   end
 
   def new
@@ -29,20 +30,21 @@ class User::PostsController < ApplicationController
 
   def show
     @post = Post.with_attached_image.find(params[:id])
-    @user = User.with_attached_profile_image.find(params[:id])
+    @user = @post.user
+    @prefecture = @post.prefecture
     @tags = @post.tag_counts_on(:tags)
   end
 
   def edit
     @post = Post.with_attached_image.find(params[:id])
-    @user = User.with_attached_profile_image.find(params[:id])
+    @user = @post.user
   end
 
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      flash[:notice] = ""
-      redirect_to user_item_path(@post)
+      flash[:notice] = "投稿内容を更新しました"
+      redirect_to post_path(@post)
     else
       flash.now[:alert] = "投稿内容の更新に失敗しました"
       render 'edit'

@@ -43,7 +43,7 @@
         <div class="form-row">
           <div class="form-group col-md-6 offset-3 mt-5">
             <label for="tag_list">タグを追加</label>
-            <%= f.text_area :tag_list, value: @post.tag_list.join('、'),
+            <%= f.text_field :tag_list, value: @post.tag_list.join(','),
             class: "form-control", data: { role: "tagsinput" } %>
           </div>
         </div>

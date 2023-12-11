@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   acts_as_taggable_on :skills, :interests
 
   belongs_to :user
-  #belongs_to :prefecture
+  belongs_to :prefecture
 
   #has_many :taggings, dependent: :destroy
   #has_many :base_tags, through: :taggings, source: :tag

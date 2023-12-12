@@ -32,6 +32,7 @@ body {
   font-family: 'Kosugi Maru', sans-serif;
 }
 
+
 .main-row {
   margin-top: 50px;
   margin-bottom: 50px;
@@ -39,5 +40,21 @@ body {
 
 tr {
   cursor: pointer;
+}
+
+
+//cardのheader
+.card-header {
+  background-color: #dbd0e6;
+}
+
+.card-body {
+  background-color: #F9F3E9;
+}
+
+//cardのfooter
+.card-footer {
+  background-color: #dbd0e6;
+  height: 40px;
 }
 

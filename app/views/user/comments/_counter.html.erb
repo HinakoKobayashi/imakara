@@ -1,3 +1,6 @@
-<% if post %>
-  コメント数： <%= post.comments.count %>
-<% end %>
+<div class="d-flex align-items-center">
+  <% if post %>
+    <i class="fa-regular fa-comment"></i>
+    <span class="ml-1"><%= post.comments.count %></span>
+  <% end %>
+</div>

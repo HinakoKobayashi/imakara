@@ -4,17 +4,14 @@
       <tr>
         <td>
           <%= link_to user_path(comment.user) do %>
-            <%= image_tag comment.user.get_profile_image
-              (50,50) %><br>
+            <%= image_tag comment.user.get_profile_image(50,50) %><br>
             <%= comment.user.name %>
           <% end %>
         </td>
         <td><%= comment.comment %></td>
         <td>
           <% if comment.user == current_user %>
-            <%= link_to "Destroy", post_comment_path
-              (post, comment), method: :delete,
-               class: "btn btn-danger pull-right", remote: true %>
+            <%= link_to "Destroy", post_comment_path(post, comment), method: :delete, class: "btn btn-danger pull-right", remote: true %>
           <% end %>
         </td>
       </tr>

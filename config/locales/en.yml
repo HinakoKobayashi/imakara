@@ -31,3 +31,11 @@
 
 en:
   hello: "Hello world"
+
+  views:
+    title:
+      request_title: "Request Title"
+      request_body: "Request Body"
+    placeholder:
+      request_title: "Enter your request title here"
+      request_body: "Enter your request body here"

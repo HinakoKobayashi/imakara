@@ -1,0 +1,15 @@
+<% if post.favorited_by?(current_user) %>
+  <div class="d-flex align-items-center">
+    <%= link_to post_favorite_path(post), method: :delete, remote: true do %>
+      <i class="fa-solid fa-star" aria-hidden="true" style="color: #f8b500;"></i>
+      <span class="ml-1" style="color: #f8b500;"><%= post.favorites.count %></span>
+    <% end %>
+  </div>
+<% else %>
+  <div class="d-flex align-items-center">
+    <%= link_to post_favorite_path(post), method: :post, remote: true do %>
+      <i class="fa-solid fa-star" aria-hidden="true"  style="color: #9ea1a3;"></i>
+      <span class="ml-1" style="color: #9ea1a3;"><%= post.favorites.count %></span>
+    <% end %>
+  </div>
+<% end %>

@@ -2,9 +2,8 @@ class User::PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.all
+    @posts = Post.all.includes(:tags).order(created_at: :desc)
     @users = User.all
-    @tags = Post.tag_counts_on(:tags).most_used(20)
   end
 
   def new
@@ -23,7 +22,6 @@ class User::PostsController < ApplicationController
       redirect_to posts_path
     else
       flash.now[:alert] = "投稿の作成に失敗しました"
-      logger.error("Failed to save post. Errors: #{@post.errors.full_messages}")
       render 'new'
     end
   end
@@ -33,6 +31,8 @@ class User::PostsController < ApplicationController
     @user = @post.user
     @prefecture = @post.prefecture
     @tags = @post.tag_counts_on(:tags)
+    @comments = @post.comments.all
+    @comment = Comment.new
   end
 
   def edit

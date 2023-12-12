@@ -6,24 +6,7 @@
         福岡県福岡市博多区奈良屋町１丁目1</p>
       <p>☎️ 092-291-200</p>
     </div>
-
-    <div class="footer col-3 offset-1">
-      <p class="mt-2">お問い合わせフォーム</p>
-      <%= form_with model: @request, url: admin_requests_path, method: :post do |f| %>
-        <p>
-          <%= f.label :title, "題名" %>
-          <%= f.text_field :title, class: "form-controll" %>
-        </p>
-        <p>
-          <%= f.label :body, "本文" %>
-          <%= f.text_area :body, class: "form-controll" %>
-        </p>
-        <p>
-          <%= f.submit "送信", class: "btn btn-success" %>
-        </p>
-      <% end %>
-    </div>
-   </div>
+  </div>
 
     <div class="footer_btm">
       <div class="inner flex flex-j-ctr flex-a-ctr flex-sp-block">

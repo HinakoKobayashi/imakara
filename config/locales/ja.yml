@@ -16,6 +16,14 @@ ja:
         unconfirmed: "未確認"
         confirmed: "対応済み"
 
+  views:
+    title:
+      request_title: "タイトル"
+      request_body: "リクエスト内容"
+    placeholder:
+      request_title: "リクエストタイトルを入力してください"
+      request_body: "リクエスト内容を入力してください"
+
 
   activerecord:
     errors:

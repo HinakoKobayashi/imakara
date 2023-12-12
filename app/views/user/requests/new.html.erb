@@ -1,2 +1,22 @@
-<h1>User::Requests#new</h1>
-<p>Find me in app/views/user/requests/new.html.erb</p>
+
+<div class="modal" id="request" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= form_with model: @request, url: user_requests_path do |f| %>
+        <div class="modal-header">
+          <h5 class="modal-title">タイトル</h5>
+          <%= f.text_field :title, class: "form-control" %>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>本文</p>
+          <%= f.text_area :body, class: "form-control" %>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "保存", class: "btn btn-secondary", :data => { bs: "modal" } %>
+          <%= f.submit "送信", class: "btn btn-primary" %>
+        </div>
+      <#% end %>
+    </div>
+  </div>
+</div>

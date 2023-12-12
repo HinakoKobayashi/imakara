@@ -1,7 +1,8 @@
 class CreatePosts < ActiveRecord::Migration[6.1]
   def change
     create_table :posts do |t|
-      t.text :post
+      t.integer :prefecture_id
+      t.text :content
       t.integer :post_status, null: false, default: 0
       t.text :address
       # MySQLに切り替えるタイミングでデータ型をdoubleに変更

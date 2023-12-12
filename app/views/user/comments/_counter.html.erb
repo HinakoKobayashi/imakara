@@ -1,1 +1,3 @@
-コメント数： <%= post.comments.count %>
+<% if post %>
+  コメント数： <%= post.comments.count %>
+<% end %>

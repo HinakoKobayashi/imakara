@@ -1,0 +1,25 @@
+<%= form_with(model: request, remote: true) do |f| %>
+
+  <!--<div id="modal_customer_messages-error">-->
+  <!--  <%#= render 'layouts/error_messages', model: f.object %>-->
+  <!--</div>-->
+
+  <div class="set_center_outer">
+    <div class="set_center_inner">
+      <div class="field">
+        <%= f.label 'タイトル' %>
+        <%= f.text_field :title, placeholder: 'タイトルを入力' %>
+      </div>
+
+      <div class="field">
+        <%= f.label 'リクエスト内容' %>
+        <%= f.text_area :body, placeholder: 'リクエスト内容を入力' %>
+      </div>
+    </div>
+
+    <div class="modal_submit">
+      <%= f.submit "送信", class: "btn btn-primary" %>
+    </div>
+  </div>
+
+<% end %>

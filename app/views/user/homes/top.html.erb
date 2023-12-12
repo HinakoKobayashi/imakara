@@ -1,2 +1,22 @@
 <h1>User::Homes#top</h1>
-<p>Find me in app/views/user/homes/top.html.erb</p>
+<!-- Button trigger modal -->
+<div class="button_new">
+  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#requestModal" data-whatever="@request"><%= t('views.button.リクエスト') %></button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="requestModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+	  <div class="modal-content">
+	  <div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		  <span aria-hidden="true">×</span>
+		  </button>
+	  </div>
+		<div class="set_center_outer">
+		 <h3 class="page_title_ja">リクエスト</h3>
+		</div>
+		<%= render "modal_customer_form", request: @request %>
+ 	  </div>
+  </div>
+</div>

@@ -1,2 +1,36 @@
-<h1>Admin::Requests#index</h1>
-<p>Find me in app/views/admin/requests/index.html.erb</p>
+<div class="container">
+  <div class="row main-row">
+    <div class="col-12 mx-auto">
+      <div class="row">
+        <h4 class="col-md-12 mx-auto title">リクエスト一覧</h4>
+      </div>
+      <table>
+        <thead>
+          <% if @requests.present? %>
+            <% @requests.each do |request| %>
+            <tr>
+              <td>ユーザー</td>
+              <td>タイトル</td>
+              <td>リクエスト内容</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <% if request.user.present? %>
+                  <%= image_tag request.user.get_profile_image(50, 50) %>
+                  <%= request.user.name %>
+                <% else %>
+                  ユーザー情報なし
+                <% end %>
+              </td>
+              <td><%= request.title %></td>
+              <td><%= request.body %></td>
+            </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

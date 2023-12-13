@@ -28,7 +28,6 @@ Rails.application.routes.draw do
   scope module: :user do
     root to: 'homes#top'
     resources :users, only: [:index, :show, :edit, :update] do
-      resources :requests, only: [:new, :create]
       resources :notifications, only: [:index, :destroy]
       # :idを使用した特定のデータに対するアクションのためmemberを使用
       member do
@@ -41,6 +40,7 @@ Rails.application.routes.draw do
       resource :favorite, only: [:create, :destroy]
       resources :comments, only: [:create, :edit, :update, :destroy]
     end
+    resources :requests, only: [:new, :create]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

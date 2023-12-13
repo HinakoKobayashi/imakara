@@ -1,4 +1,4 @@
-<%= form_with model: [user, request], url: user_requests_path(user), remote: true do |f| %>
+<%= form_with model: request, url: requests_path, method: :post do |f| %>
 
   <!--<div id="modal_customer_messages-error">-->
   <!--  <%#= render 'layouts/error_messages', model: f.object %>-->

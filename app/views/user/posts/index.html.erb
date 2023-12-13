@@ -4,50 +4,34 @@
       <div class="row">
         <h4 class="col-md-6 mb-5 title">投稿一覧</h4>
       </div>
-      <div class="row row-cols-1 row-cols-md-3">
-        <% if @posts.present? %>
-          <% @posts.each do |post| %>
-            <!--<tr onclick='window.location="<%#= post_path(post) %>"' role="link">-->
-              <div class="col mb-4">
-                <div class="card">
-                  <div class="card-header">
-                    <%= link_to user_path(post.user) do %>
-                      <%= image_tag post.user.get_profile_image(50,50) %>
-                      <span class="ml-3"><%= post.user.name %></span>
-                    <% end %>
-                  </div>
-                  <%= link_to post_path(post) do %>
-                    <%= image_tag post.get_image(200, 100), class: "card-img-top" %>
-                    <div class="card-body">
-                      <p class="card-text">
-                        <%= post.content %>
-                      </p>
-                      <p>
-                        <%= post.prefecture.name %>
-                      </p>
-                      <p>
-                        <%= render "tag", post: post %>
-                      </p>
-                    </div>
-                    <div class="card-footer d-flex justify-content-between align-items-center">
-                      <small class="text-muted">
-                        <span id="favorite_btn_<%= post.id %>">
-                          <%= render "user/favorites/btn", post: post %>
-                        </span>
-                        <span>
-                          <%= render "user/comments/counter", post: post %>
-                        </span>
-                      </small>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-        <% else %>
-          <div class="col-md-4">
-            投稿がありません。
-          </div>
-        <% end %>
+      <div class="row">
+        <div class="col-md-9 mx-auto">
+          <table class="table table-hover">
+            <tbody>
+              <% if @posts.present? %>
+                <% @posts.each do |post| %>
+                  <tr onclick='window.location="<%= post_path(post) %>"' role="link">
+                    <td><%= image_tag post.user.get_profile_image(50,50) %></td>
+                    <td><%= post.user.name %></td>
+                    <td><%= post.content %></td>
+                    <td><%= image_tag post.get_image(200,200) %></td>
+                    <td>
+                      <%= render "tag", post: post %>
+                    </td>
+                    <td id="favorite_btn_<%= post.id %>">
+                      <%= render "user/favorites/btn", post: post %>
+                    </td>
+                    <td><%= render "user/comments/counter", post: post %></td>
+                  </tr>
+                <% end %>
+              <% else %>
+                  <tr>
+                    <td colspan="4">投稿がありません。</td>
+                  </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

@@ -1,6 +1,7 @@
 class Request < ApplicationRecord
-
-  belongs_to :user
+  
+  #barideなしリレーションかける
+  belongs_to :user, optional: true
 
   has_many :notifications, as: :notifiable, dependent: :destroy
 

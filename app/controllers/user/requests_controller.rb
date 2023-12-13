@@ -1,5 +1,5 @@
 class User::RequestsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :create
 
   def new
     @request = Request.new
@@ -8,8 +8,9 @@ class User::RequestsController < ApplicationController
 
   def create
     @request = Request.new(request_params)
-    @user = current_user
-    @request.user_id = current_user.id
+    if user_signed_in?
+      @request.user_id = current_user.id
+    end
     if @request.save
       flash[:notice] = "リクエストを送信しました"
       redirect_to root_path

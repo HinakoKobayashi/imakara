@@ -1,4 +1,4 @@
-<% if post.favorited_by?(current_user) %>
+<% if favorited_by?(current_user, post) %>
   <div class="d-flex align-items-center">
     <%= link_to post_favorite_path(post), method: :delete, remote: true do %>
       <i class="fa-solid fa-star" aria-hidden="true" style="color: #f8b500;"></i>

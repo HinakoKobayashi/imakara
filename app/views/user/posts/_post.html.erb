@@ -1,0 +1,8 @@
+<% @posts.each do |post| %>
+<!--写真をクリックしたときの実行アクション（showなのでpost_path(post.id)）とリクエスト形式（jsなのでremote: true） を指定-->
+  <%#= link_to post_path(post.id), remote: true do %>
+  <div class="post-thumbnail" data-post-id="<%= post.id %>">
+    <%= image_tag post.image.variant(resize: "400x300"), class: "post-image", id: "post-image" %>
+　</div>
+　<%# end %>
+<% end %>

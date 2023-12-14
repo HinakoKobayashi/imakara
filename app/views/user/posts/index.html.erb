@@ -22,6 +22,7 @@
                       <p class="card-text">
                         <%= post.content %>
                       </p>
+                  <% end %>
                       <p>
                         <%= post.prefecture.name %>
                       </p>
@@ -39,7 +40,6 @@
                         </span>
                       </small>
                     </div>
-                  <% end %>
                 </div>
               </div>
             <% end %>
@@ -51,4 +51,14 @@
       </div>
     </div>
   </div>
+  <!-- マスクでModalの周囲を薄暗くする -->
+  <div id="mask" class="hidden"></div>
+
+  <!-- Modal -->
+  <div id="modal" class="hidden">
+    <!-- モーダルの中身をここに表示する -->
+  </div>
+
+  <!-- 部分テンプレートを呼び出す -->
+  <%= render partial: "user/posts/post", locals: { post: @post } %>
 </div>

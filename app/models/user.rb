@@ -20,4 +20,21 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
+  GUEST_USER_EMAIL = "guest@example.com"
+
+  # guestメソッド
+  def self.guest
+    # データの検索と作成を自動的に判断して処理を行うRailsのメソッド
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+      # ランダムな文字列を生成するRubyのメソッド
+      user.password = SecureRandom.urlsafe_base64
+      # nameは"guestuser"に固定
+      user.name = "guestuser"
+    end
+  end
+
+  def guest_user?
+    email == GUEST_USER_EMAIL
+  end
+
 end

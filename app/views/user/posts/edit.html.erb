@@ -34,8 +34,7 @@
           <div class="form-row">
             <div class="form-group col-md-6 offset-3 mt-5">
               <label for="prefecture">都道府県</label>
-              <!--f.select(メソッド名, 要素(ハッシュ), オプション={}, イベント属性={})-->
-              <%= f.select(:prefecture_id, Prefecture.prefectures,{ prompt: "選択してください" }, { class: "form-control" }) %>
+              <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "選択してください" }, { class: "form-control" } %>
             </div>
           </div>
 

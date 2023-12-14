@@ -25,8 +25,8 @@ class User::UsersController < ApplicationController
       render 'edit'
     end
   end
-  
-  def favorites 
+
+  def favorites
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
@@ -34,6 +34,14 @@ class User::UsersController < ApplicationController
   end
 
   def check
+  end
+
+  def cancellation
+    @user = current_user
+    @user.update(is_active: false)
+    sign_out(@user)#退会と同時にサインアウトする
+    flash[:notice] = "退会が完了しました。"
+    redirect_to root_path
   end
 
   private

@@ -5,12 +5,18 @@
 
 ///post/indexページcardの投稿内容部分
 .card-body {
-  background-color: #F9F3E9;
+  background-color: #fffff9;
+}
+
+.card-text {
+  white-space: nowrap; /* 改行を無視する */
+  overflow: hidden; /* コンテンツがオーバーフローした場合に隠す */
+  text-overflow: ellipsis; /* オーバーフローしたテキストを省略記号で表示する */
 }
 
 //post/indexページcardのいいね・コメント数表示部分
 .card-footer {
-  background-color: #dbd0e6;
+  background-color: #fffff9;
   height: 40px;
 }
 

@@ -1,0 +1,90 @@
+<!-- Modal -->
+  <div class="modal fade" id="postModal<%= post.id %>" tabindex="-1" aria-labelledby="postModal<%= post.id %>Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="postModal<%= post.id %>Label">投稿詳細</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+             <div class="row">
+                <div class="col-md-10 mx-auto">
+                  <!--ユーザー情報-->
+                  <div class="row">
+                    <div class="col-md-10">
+                      <div>
+                        <%= image_tag post.user.get_profile_image(50, 50), class: "rounded-circle mb-2" %>
+                        <span><%= post.user.name %></span>
+                      </div>
+                    </div>
+                  </div>
+                  <!--投稿内容-->
+                  <div class="row">
+                    <div class="col-md-9">
+                      <div style="max-width: 400px; max-height: 300px; overflow: hidden;">
+                        <%= image_tag post.get_image(400, 300), class: "img-fluid rounded" %>
+                      </div>
+                      <div class="mt-1 mb-1"><%= post.content %></div>
+                    </div>
+                  </div>
+                  <!--都道府県-->
+                  <div class="row mt-2">
+                    <div class="col-md-5">
+                      <i class="fa-solid fa-location-dot"></i> <%= post.prefecture.name %>
+                    </div>
+                  </div>
+                  <!--タグ-->
+                  <div class="row mt-3">
+                    <div class="col-md-9">
+                      <div class="tags">
+                        <% if post.tags.present? %>
+                          <div class="d-flex flex-wrap">
+                            <% post.tags.each do |tag| %>
+                              <span class="badge mr-2 mb-2">
+                                <%= link_to "#{tag.name}(#{tag.taggings_count})", class: "text-white" %>
+                                <%#= link_to "#{tag.name}(#{tag.taggings_count})", tag_path(tag.name), class: "text-white" %>
+                              </span>
+                            <% end %>
+                          </div>
+                        <% else %>
+                          <p>登録されているタグはありません</p>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-md-10">
+                      <!--いいね-->
+                        <%= render "user/favorites/btn", post: post %>
+                      <!-- コメント数 -->
+                        <%= render "user/comments/counter", post: post, class: "ml-1" %>
+                    </div>
+                  </div>
+                  <!--コメントフォーム-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <%= render "user/comments/index", post: post %>
+                      <%= render "user/comments/form", post: post, comment: @comment %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <!--ログインユーザーの投稿であれば編集・削除可能-->
+                <div class="row mt-3">
+                  <% if post.user == current_user %>
+                    <div class="d-flex justify-content-between">
+                      <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+                      <%= link_to "編集", edit_post_path(post), class: "btn btn-success ml-2" %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -4,6 +4,7 @@ class User::PostsController < ApplicationController
   def index
     @posts = Post.all.includes(:tags).order(created_at: :desc)
     @users = User.all
+    @comment = Comment.new
   end
 
   def new
@@ -56,10 +57,16 @@ class User::PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    flash[:notice] = "投稿が削除されました"
+    redirect_to posts_path
+  end
 
   private
 
   def post_params
-     params.require(:post).permit(:prefecture_id, :tag_list, :content, :post_status, :address, :latitude, :longitude)
+     params.require(:post).permit(:image, :prefecture_id, :tag_list, :content, :post_status, :address, :latitude, :longitude)
   end
 end

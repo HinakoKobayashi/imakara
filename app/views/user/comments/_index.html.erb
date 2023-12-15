@@ -1,7 +1,7 @@
-<div class="comment-container ">
+<div id="comment_index" class="comment-container">
   <% post.comments.each do |comment| %>
     <div class="row comment" style="margin-bottom: 10px;">
-      <div class="user-info col-md-3">
+      <div class="user-info col-md-4">
         <%= link_to user_path(comment.user) do %>
           <%= image_tag comment.user.get_profile_image(50, 50), class: "rounded-circle mb-2 ml-1" %>
           <%= comment.user.name %>

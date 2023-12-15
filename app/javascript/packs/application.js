@@ -3,18 +3,14 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-//= require rails-ujs
-//= require_tree
-//= require "jquery"
-//= require "popper.js"
-//= require "bootstrap"
-//= require_self
-
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "../stylesheets/application";
+import "jquery"
+import "popper.js"
+import "bootstrap"
 import "./header.js";
 import "./post_show.js";
 

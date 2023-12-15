@@ -1,8 +1,32 @@
-<% @posts.each do |post| %>
-<!--写真をクリックしたときの実行アクション（showなのでpost_path(post.id)）とリクエスト形式（jsなのでremote: true） を指定-->
-  <%#= link_to post_path(post.id), remote: true do %>
-  <div class="post-thumbnail" data-post-id="<%= post.id %>">
-    <%= image_tag post.image.variant(resize: "400x300"), class: "post-image", id: "post-image" %>
-　</div>
-　<%# end %>
+<% if @posts.present? %>
+  <div class="col mb-4 d-flex">
+    <div class="card flex-grow-1">
+      <div class="card-header">
+        <%= link_to user_path(post.user) do %>
+          <%= image_tag post.user.get_profile_image(50,50) %>
+          <span class="ml-3"><%= post.user.name %></span>
+        <% end %>
+      </div>
+      <%= image_tag post.get_image(200, 200), class: "card-img-top", "data-toggle": "modal", "data-target": "#postModal#{post.id}" %>
+      <div class="card-body">
+        <p class="card-text"><%= post.content %></p>
+        <p><%= post.prefecture.name %></p>
+        <p><%= render "user/posts/tag", post: post %></p>
+      </div>
+      <div class="card-footer d-flex justify-content-between align-items-center">
+        <small class="text-muted">
+          <span id="favorite_btn_<%= post.id %>">
+            <%= render "user/favorites/btn", post: post %>
+          </span>
+          <span>
+            <%= render "user/comments/counter", post: post %>
+          </span>
+        </small>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="col-md-4">
+    投稿がありません。
+  </div>
 <% end %>

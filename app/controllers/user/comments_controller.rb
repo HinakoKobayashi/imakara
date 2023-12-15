@@ -1,4 +1,5 @@
 class User::CommentsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
 
   def create
     @post = Post.find(params[:post_id])
@@ -8,7 +9,8 @@ class User::CommentsController < ApplicationController
   end
 
   def destroy
-    Comment.find(params[:id]).destroy
+    comment = current_user.comments.find(params[:id])
+    comment.destroy if comment
   end
 
 

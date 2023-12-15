@@ -1,0 +1,47 @@
+<div class="container">
+  <!--投稿の検索結果-->
+  <div class="row main-row">
+    <div class="col-12 mx-auto">
+      <div class="row">
+        <h4 class="col-md-6 mb-5 title">投稿検索結果</h4>
+      </div>
+      <% if @posts.any? %>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+          <%= render partial: 'user/posts/post', collection: @posts %>
+        </div>
+      <% else %>
+         <p>投稿の検索結果が見つかりませんでした。</p>
+      <% end %>
+    </div>
+  </div>
+  <% @posts.each do |post| %>
+    <%= render 'user/posts/post_modal', post: post %>
+  <% end %>
+
+  <!--ユーザーの検索結果-->
+  <% if @keyword.present? && @search_type == 'keyword' %>
+    <div class="row main-row">
+      <div class="col-md-12 mx-auto">
+        <div class="row title">
+          <h4 class="col-md-6">ユーザー検索結果</h4>
+        </div>
+        <% if @users.any? %>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>image</th>
+                <th>ユーザー名</th>
+                <th>自己紹介</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: 'user/users/user', collection: @users %>
+            </tbody>
+          </table>
+        <% else %>
+          <p>ユーザーの検索結果が見つかりませんでした。</p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -10,7 +10,9 @@
       <%= image_tag post.get_image(200, 200), class: "card-img-top", "data-toggle": "modal", "data-target": "#postModal#{post.id}" %>
       <div class="card-body">
         <p class="card-text"><%= post.content %></p>
-        <p><%= post.prefecture.name %></p>
+        <p>
+          <%= link_to post.prefecture.name, search_path(keyword: post.prefecture.name) %>
+        </p>
         <p><%= render "user/posts/tag", post: post %></p>
       </div>
       <div class="card-footer d-flex justify-content-between align-items-center">

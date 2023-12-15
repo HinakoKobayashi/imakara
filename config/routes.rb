@@ -19,8 +19,8 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "user/sessions#guest_sign_in"
   end
 
-  get '/search' => 'searches#search'
-  get '/tag/search' => 'searches#tag_search'
+  get 'search', to: 'searches#index'
+  #get '/tag/search' => 'searches#tag_search'
 
   namespace :admin do
     root to: 'homes#top'

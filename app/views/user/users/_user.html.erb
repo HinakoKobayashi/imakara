@@ -1,0 +1,5 @@
+<tr onclick='window.location="<%= user_path(user) %>"' role="link">
+  <td><%= image_tag user.get_profile_image(50,50) %></td>
+  <td><%= user.name %></td>
+  <td><%= user.introduction %></td>
+</tr>

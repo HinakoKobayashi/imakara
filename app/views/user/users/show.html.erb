@@ -26,12 +26,10 @@
             </div>
 
             <div id="tab2" class="tab">
-              <p>tab2</p>
-              <%= render partial: 'user/users/user_posts', collection: @favorite_posts, as: :post %>
+              <%= render partial: 'user/users/user_posts', collection: @posts, as: :post %>
             </div>
 
             <div id="tab3" class="tab">
-              <p>tab3</p>
               <%= render 'user/users/user_favorites', favorite_posts: @favorite_posts %>
             </div>
           </div>

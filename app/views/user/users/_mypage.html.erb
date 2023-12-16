@@ -6,9 +6,9 @@
 
 <div class="row">
   <div class="col-md-4">
-     <div class="pt-4">ユーザー名</div>
-     <div class="pt-3">自己紹介</div>
-     <div class="pt-3">メールアドレス</div>
+    <div class="pt-4">ユーザー名</div>
+    <div class="pt-3">自己紹介</div>
+    <div class="pt-3">メールアドレス</div>
   </div>
   <div class="col-md-4">
     <div class="pt-4"><%= user.name %></div>
@@ -18,9 +18,9 @@
 </div>
 
 <% unless user.guest_user? %>
-<div class="row">
-  <div class="col-md-8 justify-content:center; d-flex">
+  <div class="row">
+    <div class="col-md-8 justify-content:center; d-flex">
       <%= link_to "編集", edit_user_path(current_user), class: "btn btn-outline-success fas fa-user-cog mx-auto mt-3 mb-3" %>
-  <div>
-</div>
+    </div>
+  </div>
 <% end %>

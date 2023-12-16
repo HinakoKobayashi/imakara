@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load", function() {
+$(document).on('turbolinks:load', function() {
   $('#tab-contents .tab[id != "tab1"]').hide();
 
   $('#tab-menu a').on('click', function(event) {
@@ -6,6 +6,7 @@ document.addEventListener("turbolinks:load", function() {
     $("#tab-menu .active").removeClass("active");
     $(this).addClass("active");
     $($(this).attr("href")).show();
+    $($(this).attr("href")).addClass("test");
     event.preventDefault();
   });
 });

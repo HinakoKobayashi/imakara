@@ -53,32 +53,33 @@ ActiveRecord::Schema.define(version: 2023_12_10_084435) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text "comment"
+    t.text "comment", null: false
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "post_id"
-    t.integer "user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "post_id"
-    t.integer "user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "visitor_id"
-    t.integer "visited_id"
-    t.string "notifiable_type"
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.string "notifiable_type", null: false
+    t.integer "notifiable_id", null: false
+    t.boolean "confirmed", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "confirmed", default: false
-    t.integer "notifiable_id"
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "prefecture_id"
+    t.integer "prefecture_id", null: false
+    t.integer "user_id", null: false
     t.text "content"
     t.integer "post_status", default: 0, null: false
     t.text "address"
@@ -86,7 +87,6 @@ ActiveRecord::Schema.define(version: 2023_12_10_084435) do
     t.float "longitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
   end
 
   create_table "prefectures", force: :cascade do |t|
@@ -96,12 +96,12 @@ ActiveRecord::Schema.define(version: 2023_12_10_084435) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
+    t.string "title", null: false
+    t.text "body", null: false
+    t.integer "confirmed"
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "confirmed"
-    t.integer "user_id"
   end
 
   create_table "taggings", force: :cascade do |t|

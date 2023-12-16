@@ -11,8 +11,6 @@ class User::UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts
     @favorite_posts = Post.includes(:user, :prefecture, :tags, :favorites, :comments).where(favorites: { user_id: @user.id })
-    logger.debug @posts.inspect
-    logger.debug @favorite_posts.inspect
   end
 
   def edit

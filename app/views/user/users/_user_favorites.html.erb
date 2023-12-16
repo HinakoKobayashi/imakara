@@ -1,15 +1,10 @@
-
-  <div class="row main-row">
-    <div class="col-12 mx-auto">
-      <div class="row">
-        <h4 class="col-md-6 mb-5 title">いいね一覧</h4>
-      </div>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
-        <%= render partial: 'user/posts/post', collection: @favorite_posts, as: :post %>
-      </div>
+<div class="row main-row">
+  <div class="col-12 mx-auto">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+      <%= render partial: 'user/posts/post', collection: @favorite_posts, as: :post %>
     </div>
   </div>
-  <% @favorite_posts.each do |post| %>
-    <%= render 'user/posts/post_modal', post: post %>
-  <% end %>
-
+</div>
+<% @favorite_posts.each do |post| %>
+  <%= render 'user/posts/post_modal', post: post %>
+<% end %>

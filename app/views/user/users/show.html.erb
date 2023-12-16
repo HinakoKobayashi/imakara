@@ -1,42 +1,39 @@
 <div class="container">
   <div class="row main-row">
     <div class="col-md-12 mx-auto">
-      <h1>
+      <h5>
         <% if current_user == @user %>
           マイページ
         <% else %>
           ユーザー詳細
         <% end %>
-      </h1>
-
-        <div class="wrap">
-          <ul id="tab-menu">
-            <li><a href="#tab1" class="active">ユーザー情報</a></li>
-            <li><a href="#tab2" class="">投稿</a></li>
-            <li><a href="#tab3" class="">いいね</a></li>
-          </ul>
-
-          <div id="tab-contents">
-            <div id="tab1" class="tab">
-              <% if current_user == @user %>
-                <%= render 'mypage', user: @user %>
-              <% else %>
-                <%= render 'user/users/user_info', user: @user %>
-              <% end %>
-            </div>
-
-            <div id="tab2" class="tab">
-              <p>tab2</p>
-              <%= render partial: 'user/users/user_posts', collection: @favorite_posts, as: :post %>
-            </div>
-
-            <div id="tab3" class="tab">
-              <p>tab3</p>
-              <%= render 'user/users/user_favorites', favorite_posts: @favorite_posts %>
-            </div>
-          </div>
+      </h5>
+      <div class='tabs mt-3'>
+        <div class='tab-buttons'>
+          <span class='content1'>ユーザー情報</span>
+          <span class='content2'>投稿</span>
+          <span class='content3'>いいね</span>
+          <div id='lamp' class='content1'></div>
         </div>
 
+        <div class='tab-content'>
+          <div class='content1'>
+            <% if current_user == @user %>
+              <%= render 'mypage', user: @user %>
+            <% else %>
+              <%= render 'user/users/user_info', user: @user %>
+            <% end %>
+          </div>
+
+          <div class='content2'>
+            <%= render 'user/users/user_posts', posts: @posts %>
+          </div>
+
+          <div class='content3'>
+            <%= render 'user/users/user_favorites', favorite_posts: @favorite_posts %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

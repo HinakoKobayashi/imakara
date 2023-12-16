@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+$primary: #2A6BB7;
+$secondary: #6C757D;
+$success: #93b881;
+$danger: #B1373C;
+$warning: #FFDB4F;
+$info: #83D4E4;
+$light: #F8F9FA;
+$dark: #41474A;
+
+@import 'typography';
+@import 'header';
+@import 'post';
+@import 'user';

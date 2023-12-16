@@ -1,6 +1,6 @@
 <% if @posts.present? %>
   <div class="col mb-4 d-flex">
-    <div class="card flex-grow-1">
+    <div class="card flex-grow-1 square-card">
       <div class="card-header">
         <%= link_to user_path(post.user) do %>
           <%= image_tag post.user.get_profile_image(50,50) %>

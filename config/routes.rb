@@ -35,7 +35,6 @@ Rails.application.routes.draw do
       resources :notifications, only: [:index, :destroy]
       # :idを使用した特定のデータに対するアクションのためmemberを使用
       member do
-        get :favorites
         get :check
         patch :cancellation
       end

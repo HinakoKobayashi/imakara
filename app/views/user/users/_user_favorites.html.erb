@@ -1,15 +1,15 @@
-<div class="container">
+
   <div class="row main-row">
     <div class="col-12 mx-auto">
       <div class="row">
-        <h4 class="col-md-6 mb-5 title">投稿一覧</h4>
+        <h4 class="col-md-6 mb-5 title">いいね一覧</h4>
       </div>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
-        <%= render partial: 'user/posts/post', collection: @posts %>
+        <%= render partial: 'user/posts/post', collection: @favorite_posts, as: :post %>
       </div>
     </div>
   </div>
-  <% @posts.each do |post| %>
+  <% @favorite_posts.each do |post| %>
     <%= render 'user/posts/post_modal', post: post %>
   <% end %>
-</div>
+

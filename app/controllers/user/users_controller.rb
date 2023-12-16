@@ -10,6 +10,9 @@ class User::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
+    @favorite_posts = Post.includes(:user, :prefecture, :tags, :favorites, :comments).where(favorites: { user_id: @user.id })
+    logger.debug @posts.inspect
+    logger.debug @favorite_posts.inspect
   end
 
   def edit
@@ -25,13 +28,6 @@ class User::UsersController < ApplicationController
       flash.now[:alert] = "ユーザー情報の編集に失敗しました"
       render 'edit'
     end
-  end
-
-  def favorites
-    @user = User.find(params[:id])
-    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorite_posts = Post.find(favorites)
-    @post = Post.find(params[:id])
   end
 
   def check

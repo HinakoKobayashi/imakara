@@ -4,13 +4,13 @@
   height: 300px; /* カードの高さを固定 */
 }
 
-// cardを正方形にする
+/*cardを正方形にする*/
 .square-card {
   height: 100%;  /* 高さを親要素に合わせる */
   width: 100%;   /* 幅を親要素に合わせる */
 }
 
-//post/indexページcardのユーザー情報部分
+/*post/indexページcardのユーザー情報部分*/
 .card-header {
   background-color: #dbd0e6;
 }
@@ -21,7 +21,7 @@
   object-fit: cover; /* 画像をカバーするように設定 */
 }
 
-//post/indexページcardの投稿内容部分
+/*post/indexページcardの投稿内容部分*/
 .card-body {
   flex-grow: 1; /* カードの内容によって高さが変わらないようにする */
   background-color: #fffff9;
@@ -33,13 +33,13 @@
   text-overflow: ellipsis; /* オーバーフローしたテキストを省略記号で表示する */
 }
 
-//post/indexページcardのいいね・コメント数表示部分
+/*post/indexページcardのいいね・コメント数表示部分*/
 .card-footer {
   background-color: #fffff9;
   height: 40px;
 }
 
-//post/indexのModal
+/*post/indexのModal*/
 
 .modal-dialog {
   margin: auto;
@@ -67,5 +67,9 @@
   }
   .card-img-top {
     height: auto; /* 小さいデバイスでは画像の高さも自動に */
+  }
+  .btn-md {
+    padding: .5rem 1rem; /* ボタンの内側の余白を調整 */
+    font-size: 1rem; /* ボタンのフォントサイズを調整 */
   }
 }

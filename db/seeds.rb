@@ -5,10 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-  Admin.create!(
+
+  admin = Admin.find_or_initialize_by(
     email: "admin@admin.com",
-    password: "000000"
   )
+  if admin.new_record?
+    admin.password = "000000"
+    admin.save!
+  end
 
   # Ruby のリテラル表現の一つ スペースで区切られた文字列の配列を簡潔に作成する
   prefectures = %w(
@@ -27,26 +31,38 @@
     Prefecture.create!(name: prefecture)
   end
 
+  # ActiveStorageの設定
   ActiveStorage::AnalyzeJob.queue_adapter = :inline
   ActiveStorage::PurgeJob.queue_adapter = :inline
+
+  # タグのリストを定義
+  tags = %w(夏祭り 花火 神輿 出店 初詣)
+
+  tags.each do |tag_name|
+    Tag.find_or_create_by(name: tag_name)
+  end
+
+  # タグのリストはseedファイルの外で定義し、acts_as_taggable_onの機能を使用
 
   5.times do |n|
     name = "FES太郎#{n + 1}号"
     email = "fes#{n + 1}@fes.com"
 
-    # 同じ名前またはメールアドレスのユーザーが存在しない場合にのみ作成
-    unless User.exists?(name: name, email: email)
-      user = User.create!(
-        name: name,
-        introduction: "fes#{n + 1}です。よろしくお願いします。",
-        email: email,
-        password: "000000",
-        profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/no_image.jpg")), filename: "no_image.jpg")
-      )
+    user = User.find_or_create_by!(name: name, email: email) do |u|
+    u.introduction = "fes#{n + 1}です。よろしくお願いします。"
+    u.password = "000000"
+    # 画像は後で関連付ける
+    end
 
-      tags = %w(夏祭り 花火 神輿 出店 初詣)
-      post = user.posts.create!(content: "#{n + 1}〇〇祭りに来ています", prefecture_id: rand(1..48))
+    post = user.posts.create!(content: "#{n + 1}〇〇祭りに来ています", prefecture_id: rand(1..48))
 
-      post.tags << Tag.where(name: tags.sample(rand(1..3)))
+    # ActsAsTaggableOnを使用してタグを追加
+    tag_list = %w(夏祭り 花火 神輿 出店 初詣).sample(rand(1..3)).join(', ')
+    post.tag_list = tag_list
+    post.save!
+
+    # プロファイル画像を関連付ける
+    unless user.profile_image.attached?
+      user.profile_image.attach(io: File.open(Rails.root.join("app/assets/images/no_image.jpg")), filename: "no_image.jpg")
     end
   end

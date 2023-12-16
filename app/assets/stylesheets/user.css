@@ -1,0 +1,54 @@
+.tabs {
+  width:100%;
+  margin:10px auto;
+  position:relative;
+}
+.tab-buttons span {
+  flex: 1;
+  color:#333;
+  background:#fffff9;
+  cursor:pointer;
+  border-bottom:2px solid #93b881;
+  display:block;
+  width:33.3%;
+  float:left;
+  text-align:center;
+  height:40px;
+  line-height:40px;
+}
+.tab-buttons span.active {
+  background: #93b881; /* アクティブなタブの背景色を緑色に設定 */
+  color: #fff; /* アクティブなタブのテキスト色を白色に設定（必要に応じて） */
+}
+.tab-content {
+  min-height: 700px;
+  border-bottom:3px solid #93b881;
+  padding:15px;
+  background:#fffff9;
+  display:block;
+  color:#333;
+}
+#lamp {
+  width:33.3%;
+  height:2px;
+  display:block;
+  position:absolute;
+  top:40px;
+  left: 0;
+  transition: all .3s ease-in;
+}
+#lamp.content2 {
+  left:33.3%;
+}
+#lamp.content3 {
+  left:66.6%;
+}
+#lamp.content1 {
+  left:0;
+}
+
+@media (max-width: 768px) {
+  .tab-content {
+    min-height: 300px; /* 小さいデバイスの場合の最小高さ */
+  }
+}

@@ -16,7 +16,7 @@ class Post < ApplicationRecord
 
   enum post_status: { published: 0, draft: 1, unpublished: 2 }
 
-  #validates :post_status, presence: true
+  validates :post_status, presence: true
   validates :prefecture_id, presence: true
 
   has_one_attached :image

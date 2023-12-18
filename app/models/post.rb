@@ -9,8 +9,6 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :prefecture
 
-  #has_many :taggings, dependent: :destroy
-  #has_many :base_tags, through: :taggings, source: :tag
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 

@@ -1,3 +1,83 @@
+/* トグル要素をテーブルとして表示することで、内部要素を水平に配置 */
+.toggle_switch {
+  display: table;
+}
+
+/* インプット要素を非表示に */
+.toggle_switch > input {
+  display: none;
+}
+
+/* トグルラベルのスタイル */
+.toggle_label {
+  display: block;
+  position: relative;
+  width: 3em;
+  height: 1.5em;
+  border-radius: 1.5em;
+  background-color: #ccc;
+  cursor: pointer; /* クリック可能なカーソルに */
+}
+
+/* トグルがオンのときの背景色 */
+.toggle_switch > input:checked + .toggle_label {
+  background-color: #83D4E4;
+}
+
+/* トグルボタンのデザイン */
+.toggle_label::before {
+  position: absolute;
+  top: 0.25em;
+  left: 0.25em;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: 0.3s; /* アニメーションの速さ */
+  content: ""; /* スイッチの背景 */
+}
+
+/* トグルがオンのときのボタン位置 */
+.toggle_switch > input:checked + .toggle_label::before {
+  left: calc(100% - 1.25em);
+}
+
+/*下書き保存*/
+.draft-btn {
+  background-color: #aaaab0; /* 背景色 */
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px; /* 角を丸くする */
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/*投稿*/
+.submit-btn {
+  background-color: #83D4E4;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px; /* 角を丸くする */
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.draft-btn, .submit-btn {
+  width: 150px; /* ボタンの幅を150ピクセルに設定 */
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px; /* 角を丸くする */
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/*投稿一覧card*/
 .card {
   display: flex;
   flex-direction: column;

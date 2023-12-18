@@ -2,7 +2,7 @@ class User::PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.all.includes(:tags).order(created_at: :desc)
+    @posts = Post.published.all.includes(:tags).order(created_at: :desc)
     @users = User.all
     @comment = Comment.new
   end
@@ -13,17 +13,23 @@ class User::PostsController < ApplicationController
   end
 
   def create
-    params[:post][:prefecture_id] = params[:post][:prefecture_id] .to_i
     @post = Post.new(post_params)
-    @user = current_user
-    @post.user_id = current_user.id
-    if @post.save
-      flash[:notice] = "投稿を作成しました"
-      @posts = Post.all
-      redirect_to posts_path
+    @post.user = current_user
+
+    if @post.published?
+      # 公開処理
+      if @post.save
+        redirect_to posts_path, notice: "投稿を公開しました！"
+      else
+        render :new, alert: "投稿の公開に失敗しました。"
+      end
     else
-      flash.now[:alert] = "投稿の作成に失敗しました"
-      render 'new'
+      # 下書き保存処理
+      if @post.save
+        redirect_to user_path(current_user), notice: "下書きを保存しました！"
+      else
+        render :new, alert: "下書きの保存に失敗しました。"
+      end
     end
   end
 
@@ -48,9 +54,24 @@ class User::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+
+    if params[:draft].present?
+      @post.draft!
+      notice_message = "下書きを保存しました"
+      redirect_path = user_path(current_user)
+    elsif params[:unpublished].present?
+      @post.unpublished!
+      notice_message = "非公開にしました"
+      redirect_path = user_path(current_user)
+    else
+      @post.published!
+      notice_message = "投稿内容を更新しました"
+      redirect_path = post_path(@post)
+    end
+
     if @post.update(post_params)
       flash[:notice] = "投稿内容を更新しました"
-      redirect_to post_path(@post)
+      redirect_to redirect_path, notice: notice_message
     else
       flash.now[:alert] = "投稿内容の更新に失敗しました"
       render 'edit'

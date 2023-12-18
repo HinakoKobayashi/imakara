@@ -19,3 +19,4 @@ ActiveStorage.start()
 
 import "./header.js";
 import "./user.js";
+import "./post_show.js";

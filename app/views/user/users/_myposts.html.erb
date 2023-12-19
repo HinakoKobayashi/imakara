@@ -9,6 +9,7 @@
           <div id='post-lamp' class='post-content1'></div>
         </div>
 
+        <!--ステータス別投稿タブ表示-->
         <div class='post-tab-content mt-2'>
           <!-- 公開済み投稿 -->
           <div class='post-content1'>
@@ -53,21 +54,21 @@
     </div>
   </div>
 </div>
-
-  <% if published_posts.present? %>
-    <% published_posts.each do |post| %>
-      <%= render 'user/posts/post_modal', post: post %>
-    <% end %>
+<!--モーダル表示-->
+<% if published_posts.present? %>
+  <% published_posts.each do |post| %>
+    <%= render 'user/posts/post_modal', post: post %>
   <% end %>
+<% end %>
 
-  <% if draft_posts.present? %>
-    <% draft_posts.each do |post| %>
-      <%= render 'user/posts/post_modal', post: post %>
-    <% end %>
+<% if draft_posts.present? %>
+  <% draft_posts.each do |post| %>
+    <%= render 'user/posts/post_modal', post: post %>
   <% end %>
+<% end %>
 
-  <% if unpublished_posts.present? %>
-    <% unpublished_posts.each do |post| %>
-      <%= render 'user/posts/post_modal', post: post %>
-    <% end %>
+<% if unpublished_posts.present? %>
+  <% unpublished_posts.each do |post| %>
+    <%= render 'user/posts/post_modal', post: post %>
   <% end %>
+<% end %>

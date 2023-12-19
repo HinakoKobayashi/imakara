@@ -32,7 +32,11 @@ Rails.application.routes.draw do
   scope module: :user do
     root to: 'homes#top'
     resources :users, only: [:index, :show, :edit, :update] do
-      resources :notifications, only: [:index, :destroy]
+      resources :notifications, only: [:index, :update] do
+        collection do
+          delete :mark_all_as_read
+        end
+      end
       # :idを使用した特定のデータに対するアクションのためmemberを使用
       member do
         get :check

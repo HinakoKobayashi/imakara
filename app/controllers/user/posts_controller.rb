@@ -54,7 +54,7 @@ class User::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-
+    
     if params[:draft].present?
       @post.draft!
       notice_message = "下書きを保存しました"
@@ -88,6 +88,6 @@ class User::PostsController < ApplicationController
   private
 
   def post_params
-     params.require(:post).permit(:image, :prefecture_id, :tag_list, :content, :post_status, :address, :latitude, :longitude)
+     params.require(:post).permit(:image, :prefecture_id, :tag_list, :content, :post_post_status, :address, :latitude, :longitude)
   end
 end

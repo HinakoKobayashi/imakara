@@ -7,4 +7,19 @@ class Comment < ApplicationRecord
 
   validates :comment, presence: true, length: { maximum: 300 }
 
+  after_create_commit :create_notification_comment
+
+  private
+
+  def create_notification_comment
+    # 自分自身の投稿へのコメントでなければ通知を生成
+    return if self.user_id == self.commentable.user_id
+
+    Notification.create(
+      visitor_id: self.user_id,
+      visited_id: self.commentable.user_id,
+      notifiable: self
+    ) if self.commentable
+  end
+
 end

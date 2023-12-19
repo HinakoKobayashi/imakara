@@ -1,4 +1,4 @@
-<div id="comment_counter" class="d-flex align-items-center">
+<div class="comment_counter_<%= post.id %> d-flex align-items-center">
   <% if post %>
     <i class="fa-regular fa-comment" style="color: #9ea1a3;"></i>
     <span class="ml-1" style="color: #9ea1a3;"><%= post.comments.count %></span>

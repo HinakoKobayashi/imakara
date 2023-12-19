@@ -7,6 +7,7 @@
 
       <%= render "user/shared/error_messages", resource: @post %>
 
+      <!--投稿ユーザー情報-->
       <div class="row justify-content-center">
         <div class="col-md-6">
           <% if @user %>
@@ -20,6 +21,7 @@
 
       <%= form_with model: @post, url: posts_path, local: true do |f| %>
 
+        <!--本文入力-->
         <div class="form-row justify-content-center">
           <div class="form-group col-md-6 mt-5">
             <label for="content">本文</label>
@@ -27,6 +29,7 @@
           </div>
         </div>
 
+        <!--画像選択-->
         <div class="form-row justify-content-center">
           <div class="form-group col-md-6 mt-5">
             <label for="image">添付画像</label>
@@ -36,6 +39,7 @@
 
         <!--後日余裕あれば画像プレビュー機能実装-->
 
+        <!--都道府県選択-->
         <div class="form-row justify-content-center">
           <div class="form-group col-md-6 mt-5">
             <label for="prefecture">都道府県</label>
@@ -43,6 +47,7 @@
           </div>
         </div>
 
+        <!--タグ追加-->
         <div class="form-row justify-content-center">
           <div class="form-group col-md-6 mt-5">
             <label for="tag_list">タグを追加</label>
@@ -50,18 +55,18 @@
           </div>
         </div>
 
-        <div class="form-group row mt-3 justify-content-around">
+        <div class="form-row mt-3 justify-content-center">
           <!-- キャンセルボタン -->
-          <div class="col-6 col-md-3">
-            <%= link_to "cancel", posts_path, class: "btn btn-secondary btn-md d-block mx-md-0" %>
+          <div class="col-auto cancel-btn">
+            <%= link_to "cancel", posts_path, class: "btn btn-md" %>
           </div>
-          <!-- 下書き・投稿ボタン -->
-          <div class="col-6 col-md-3 d-none d-md-block">
-            <%= f.submit '下書き保存', name: 'post[post_status]', value: 'draft', class: 'btn btn-secondary' %>
+          <!-- 下書き保存ボタン -->
+          <div class="col-auto draft-btn">
+            <%= f.submit t('enums.post.post_status.draft'), name: 'post[post_status]', value: 'draft', class: 'btn' %>
           </div>
           <!-- 投稿するボタン -->
-          <div class="col-6 col-md-3 mt-3 mt-md-0">
-            <%= f.submit '投稿する', name: 'post[post_status]', value: 'published', class: 'btn btn-primary' %>
+          <div class="col-auto submit-btn">
+            <%= f.submit t('enums.post.post_status.published'), name: 'post[post_status]', value: 'published', class: 'btn' %>
           </div>
         </div>
 

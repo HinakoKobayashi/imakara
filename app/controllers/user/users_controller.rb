@@ -10,6 +10,9 @@ class User::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
+    @published_posts = @user.posts.published
+    @draft_posts = @user.posts.draft
+    @unpublished_posts = @user.posts.unpublished
     @favorite_posts = Post.includes(:user, :prefecture, :tags, :favorites, :comments).where(favorites: { user_id: @user.id })
   end
 
@@ -34,7 +37,7 @@ class User::UsersController < ApplicationController
   def cancellation
     @user = current_user
     @user.update(is_active: false)
-    sign_out(@user)#退会と同時にサインアウトする
+    sign_out(@user)
     flash[:notice] = "退会が完了しました。"
     redirect_to root_path
   end
@@ -55,7 +58,7 @@ class User::UsersController < ApplicationController
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.guest_user?
-      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィールを編集できません"
     end
   end
 

@@ -1,0 +1,73 @@
+<div class="row main-row">
+  <div class="col-12 mx-auto">
+    <div class="row">
+      <div class='post-tabs mt-3'>
+        <div class='post-tab-buttons'>
+          <span class='post-content1 post-active'>投稿</span>
+          <span class='post-content2'>下書き</span>
+          <span class='post-content3'>非公開</span>
+          <div id='post-lamp' class='post-content1'></div>
+        </div>
+
+        <div class='post-tab-content mt-2'>
+          <!-- 公開済み投稿 -->
+          <div class='post-content1'>
+            <% if published_posts.present? %>
+              <div class="row">
+                <%= render partial: 'user/posts/post', collection: published_posts, as: :post %>
+              </div>
+            <% else %>
+              <div class="col-md-12">
+                公開中の投稿がありません
+              </div>
+            <% end %>
+          </div>
+
+          <!-- 下書き投稿 -->
+          <div class='post-content2' style="display: none;">
+            <% if draft_posts.present? %>
+              <div class="row">
+                <%= render partial: 'user/posts/post', collection: draft_posts, as: :post %>
+              </div>
+            <% else %>
+              <div class="col-md-4">
+                下書きの投稿がありません。
+              </div>
+            <% end %>
+          </div>
+
+          <!-- 非公開投稿 -->
+          <div class='post-content3' style="display: none;">
+            <% if unpublished_posts.present? %>
+              <div class="row">
+                <%= render partial: 'user/posts/post', collection: unpublished_posts, as: :post %>
+              </div>
+            <% else %>
+              <div class="col-md-4">
+                非公開の投稿がありません。
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <% if published_posts.present? %>
+    <% published_posts.each do |post| %>
+      <%= render 'user/posts/post_modal', post: post %>
+    <% end %>
+  <% end %>
+
+  <% if draft_posts.present? %>
+    <% draft_posts.each do |post| %>
+      <%= render 'user/posts/post_modal', post: post %>
+    <% end %>
+  <% end %>
+
+  <% if unpublished_posts.present? %>
+    <% unpublished_posts.each do |post| %>
+      <%= render 'user/posts/post_modal', post: post %>
+    <% end %>
+  <% end %>

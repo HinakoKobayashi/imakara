@@ -42,40 +42,36 @@
   left: calc(100% - 1.25em);
 }
 
-/*下書き保存*/
-.draft-btn {
-  background-color: #aaaab0; /* 背景色 */
-  border: none;
+/*新規投稿画面ボタン*/
+.cancel-btn,
+.draft-btn,
+.submit-btn {
   color: white;
-  padding: 10px 15px;
   border-radius: 10px; /* 角を丸くする */
   font-size: 14px;
+  border: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: 100px; /* 希望の幅に設定 */
+}
+
+/*キャンセルボタン*/
+.cancel-btn {
+  background-color: #6C757D;
+  margin-right: 5px;
+}
+
+/*下書き保存*/
+.draft-btn {
+  background-color: #83D4E4;
+  margin-right: 5px;
 }
 
 /*投稿*/
 .submit-btn {
-  background-color: #83D4E4;
-  border: none;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 10px; /* 角を丸くする */
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  background-color: #92B880;
 }
 
-.draft-btn, .submit-btn {
-  width: 150px; /* ボタンの幅を150ピクセルに設定 */
-  color: white;
-  padding: 10px 15px;
-  border-radius: 10px; /* 角を丸くする */
-  font-size: 14px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
 
 /*投稿一覧card*/
 .card {
@@ -122,6 +118,7 @@
 /*post/indexのModal*/
 
 .modal-dialog {
+  max-width: 90%;
   margin: auto;
   display: flex;
   justify-content: center;
@@ -129,7 +126,22 @@
   min-height: calc(100% - 1rem);
 }
 
+.modal .img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.modal .img-container img {
+  width: 100%; /* 親コンテナの幅に合わせてスケール */
+  max-width: 600px;
+  height: 400px;
+  object-fit: contain;  /* 画像がコンテナに合わせて表示されるように */
+}
+
 .modal-content {
+  max-width: 100%; /* モーダルの最大幅を調整 */
   overflow: hidden; /* コンテンツがオーバーフローした場合に隠す */
   border-radius: 0.3rem; /* 角丸のスタイリング */
 }
@@ -151,5 +163,56 @@
   .btn-md {
     padding: .5rem 1rem; /* ボタンの内側の余白を調整 */
     font-size: 1rem; /* ボタンのフォントサイズを調整 */
+  }
+}
+
+/* 小さなデバイス用のスタイル */
+@media (max-width: 576px) {
+  .modal-dialog {
+    width: 95%; /* 小さい画面に合わせてモーダルの幅を調整 */
+    margin: 10px auto; /* 小さい画面でのモーダルのマージンを調整 */
+  }
+
+  .modal .img-container img {
+    max-width: none; /* 小さいデバイスでは幅を100%に */
+    height: auto;
+  }
+}
+
+/* 中くらいのデバイス用のスタイル */
+@media (min-width: 577px) and (max-width: 768px) {
+  .modal .img-container img {
+    max-width: 100%; /* 幅は100%に */
+    height: auto; /* アスペクト比を維持 */
+  }
+}
+
+/* 大きなデバイス用のスタイル */
+@media (min-width: 769px) {
+  .modal .img-container img {
+    max-width: 800px; /* 大きなディスプレイでは最大幅を800pxに */
+    max-height: 600px; /* 最大高さを600pxに */
+  }
+}
+
+/*新規投稿画面ボタン幅固定*/
+@media (min-width: 992px) { /* 大画面デバイス向け */
+  .responsive-btn {
+    width: 32%; /* 3つのボタンが等間隔になるように設定 */
+    margin: 0 1%; /* 左右のマージン */
+  }
+}
+
+@media (max-width: 991px) { /* タブレットサイズ向け */
+  .responsive-btn {
+    width: 32%;
+    margin: 0 1%; /* 左右のマージン */
+  }
+}
+
+@media (max-width: 767px) { /* スマートフォンサイズ向け */
+  .responsive-btn {
+    width: 32%; /* 1つのボタンが全幅を占めるように設定 */
+    margin: 10px 0; /* 上下のマージン */
   }
 }

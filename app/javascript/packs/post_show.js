@@ -1,6 +1,6 @@
 // いいね・コメント非同期
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.favorite-action').forEach(button => {
+  document.querySelectorAll('.favorite-action___xxxx').forEach(button => {
     button.addEventListener('click', function(e) {
       e.preventDefault();
       var postId = this.dataset.postId;

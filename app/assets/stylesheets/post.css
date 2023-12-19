@@ -118,6 +118,7 @@
 /*post/indexのModal*/
 
 .modal-dialog {
+  max-width: 90%;
   margin: auto;
   display: flex;
   justify-content: center;
@@ -125,7 +126,22 @@
   min-height: calc(100% - 1rem);
 }
 
+.modal .img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.modal .img-container img {
+  width: 100%; /* 親コンテナの幅に合わせてスケール */
+  max-width: 600px;
+  height: 400px;
+  object-fit: contain;  /* 画像がコンテナに合わせて表示されるように */
+}
+
 .modal-content {
+  max-width: 100%; /* モーダルの最大幅を調整 */
   overflow: hidden; /* コンテンツがオーバーフローした場合に隠す */
   border-radius: 0.3rem; /* 角丸のスタイリング */
 }
@@ -147,6 +163,35 @@
   .btn-md {
     padding: .5rem 1rem; /* ボタンの内側の余白を調整 */
     font-size: 1rem; /* ボタンのフォントサイズを調整 */
+  }
+}
+
+/* 小さなデバイス用のスタイル */
+@media (max-width: 576px) {
+  .modal-dialog {
+    width: 95%; /* 小さい画面に合わせてモーダルの幅を調整 */
+    margin: 10px auto; /* 小さい画面でのモーダルのマージンを調整 */
+  }
+
+  .modal .img-container img {
+    max-width: none; /* 小さいデバイスでは幅を100%に */
+    height: auto;
+  }
+}
+
+/* 中くらいのデバイス用のスタイル */
+@media (min-width: 577px) and (max-width: 768px) {
+  .modal .img-container img {
+    max-width: 100%; /* 幅は100%に */
+    height: auto; /* アスペクト比を維持 */
+  }
+}
+
+/* 大きなデバイス用のスタイル */
+@media (min-width: 769px) {
+  .modal .img-container img {
+    max-width: 800px; /* 大きなディスプレイでは最大幅を800pxに */
+    max-height: 600px; /* 最大高さを600pxに */
   }
 }
 

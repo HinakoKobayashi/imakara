@@ -9,6 +9,7 @@ class User::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts
     @published_posts = @user.posts.published
     @draft_posts = @user.posts.draft
     @unpublished_posts = @user.posts.unpublished

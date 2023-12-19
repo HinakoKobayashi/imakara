@@ -70,11 +70,11 @@ class User::PostsController < ApplicationController
       # 公開処理
       @post.published! if @post.can_published?
       notice_message = "投稿を公開しました"
-      redirect_path = post_path(@post)
+      redirect_path = posts_path
     else
       # デフォルトの更新処理
       notice_message = "投稿内容を更新しました"
-      redirect_path = post_path(@post)
+      redirect_path = posts_path
     end
 
     if @post.update(post_params)

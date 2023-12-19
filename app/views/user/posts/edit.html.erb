@@ -47,15 +47,26 @@
           </div>
         </div>
 
-        <div class="form-group row mt-3">
-          <div class="col-3 offset-3">
+        <div class="form-group row mt-3 justify-content-center">
+          <div class="col-2">
             <%= link_to "cancel", posts_path, class: "btn btn-secondary" %>
           </div>
-          <div class="col-1">
-            <!--下書き機能実装予定-->
-          </div>
-          <div class="col-1 offset-1">
-            <%= f.submit "更新", class: "btn btn-primary" %>
+          <% if @post.post_status == 'draft' %>
+            <div class="col-4">
+              <%= f.submit "投稿を公開", :name => 'published_draft', class:'mr-5 btn btn-sm btn-warning' %>
+              <%= f.submit "下書きを更新", :name => 'update_draft', class:'mr-5 btn btn-sm btn-outline-secondary' %>
+            </div>
+          <% elsif @post.post_status == 'unpublished' %>
+            <div class="col-2">
+              <%= f.submit "投稿を公開", :name => 'update_post', class:'btn btn-sm btn-warning text-light' %>
+            </div>
+          <% else %>
+            <div class="col-2">
+              <%= f.submit "投稿更新", name: 'update_post', class: 'btn btn-sm btn-warning text-light' %>
+            </div>
+          <% end %>
+          <div class="col-2">
+            <u><%= link_to "投稿を削除", post_path(@post), method: :delete, data: {confirm: "この投稿を削除しますか？"}, class:'text-danger' %></u>
           </div>
         </div>
 

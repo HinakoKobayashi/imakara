@@ -1,3 +1,4 @@
+// いいね・コメント非同期
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.favorite-action').forEach(button => {
     button.addEventListener('click', function(e) {

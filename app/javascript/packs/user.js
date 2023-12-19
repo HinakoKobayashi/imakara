@@ -1,18 +1,34 @@
 $(document).on('turbolinks:load', function () {
-  // ページロード時にユーザー情報タブをアクティブにする
-  $('.tab-buttons span').removeClass('active');
-  $('.tab-buttons .content1').addClass('active');
-  // タブのコンテンツを非表示にし、最初のコンテンツだけ表示する
-  $('.tab-content > div').hide();
-  $('.tab-content > div:first').show();
 
-  // タブのボタンがクリックされた時の動作
-  $('.tab-buttons span').click(function() {
-    // 全てのタブコンテンツを非表示にし、クリックされたタブに関連するコンテンツを表示
-    var index = $(this).index();
-    $('.tab-content > div').hide();
-    $('.tab-content > div').eq(index).fadeIn(800);
-    $('.tab-buttons span').removeClass('active'); // 他のすべてのタブから.activeを削除
-    $(this).addClass('active'); // クリックされたタブに.activeを追加
+  // メインタブの初期化
+  $('.main-tab-content > div').hide(); // すべてのメインタブコンテンツを非表示に
+  $('.main-tab-content > div:first').show(); // 最初のメインタブコンテンツのみ表示
+  $('.main-tab-buttons span').removeClass('active'); // すべてのタブからactiveクラスを削除
+  $('.main-tab-buttons .content1').addClass('active'); // 最初のタブにactiveクラスを追加
+
+  // メインタブのクリックイベント
+  $('.main-tab-buttons span').click(function() {
+    var index = $('.main-tab-buttons span').index(this);
+    $('.main-tab-content > div').hide(); // すべてのコンテンツを非表示に
+    $('.main-tab-content > div').eq(index).fadeIn(800); // 選択されたコンテンツを表示
+    $('.main-tab-buttons span').removeClass('active'); // 他のすべてのタブからactiveクラスを削除
+    $(this).addClass('active'); // 選択されたタブにactiveクラスを追加
   });
+
+  // マイページのサブタブの初期化
+  if ($('.my-page').length) {
+    $('.post-tab-content > div').hide(); // すべてのサブタブコンテンツを非表示に
+    $('.post-tab-content > div:first').show(); // 最初のサブタブコンテンツのみ表示
+    $('.post-tab-buttons span').removeClass('active'); // すべてのサブタブからactiveクラスを削除
+    $('.post-tab-buttons .post-content1').addClass('active'); // 最初のサブタブにactiveクラスを追加
+
+    // サブタブのクリックイベント
+    $('.post-tab-buttons span').click(function() {
+      var index = $('.post-tab-buttons span').index(this);
+      $('.post-tab-content > div').hide(); // すべてのコンテンツを非表示に
+      $('.post-tab-content > div').eq(index).fadeIn(800); // 選択されたコンテンツを表示
+      $('.post-tab-buttons span').removeClass('active'); // 他のすべてのタブからactiveクラスを削除
+      $(this).addClass('active'); // 選択されたタブにactiveクラスを追加
+    });
+  }
 });

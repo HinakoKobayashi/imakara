@@ -5,7 +5,13 @@
         <h4 class="col-md-6 mb-5 title">投稿一覧</h4>
       </div>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
-        <%= render partial: 'user/posts/post', collection: @posts %>
+        <% if @posts.present? %>
+          <%= render partial: 'user/posts/post', collection: @posts %>
+        <% else %>
+          <div class="col-md-4">
+            投稿がありません。
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

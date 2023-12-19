@@ -54,17 +54,25 @@ class User::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    
-    if params[:draft].present?
-      @post.draft!
+
+    case params[:post][:post_status]
+    when 'draft'
+      # 下書き保存処理
+      @post.draft! if @post.can_draft?
       notice_message = "下書きを保存しました"
       redirect_path = user_path(current_user)
-    elsif params[:unpublished].present?
-      @post.unpublished!
+    when 'unpublished'
+      # 非公開処理
+      @post.unpublished! if @post.can_unpublished?
       notice_message = "非公開にしました"
       redirect_path = user_path(current_user)
+    when 'published'
+      # 公開処理
+      @post.published! if @post.can_published?
+      notice_message = "投稿を公開しました"
+      redirect_path = post_path(@post)
     else
-      @post.published!
+      # デフォルトの更新処理
       notice_message = "投稿内容を更新しました"
       redirect_path = post_path(@post)
     end
@@ -88,6 +96,6 @@ class User::PostsController < ApplicationController
   private
 
   def post_params
-     params.require(:post).permit(:image, :prefecture_id, :tag_list, :content, :post_post_status, :address, :latitude, :longitude)
+     params.require(:post).permit(:image, :prefecture_id, :tag_list, :content, :post_status, :address, :latitude, :longitude)
   end
 end

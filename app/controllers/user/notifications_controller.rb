@@ -4,7 +4,7 @@ class User::NotificationsController < ApplicationController
   # 通知一覧
   def index
     # 現在ログインしているユーザーが受け取った未読の通知を全て取得
-    @notifications = current_user.visited.unread.order(created_at: :desc)
+    @notifications = current_user.received_notifications.unread.order(created_at: :desc)
     # リクエストのフォーマットに応じて異なるレスポンスを返す
     respond_to do |format|
       # ページの一部を動的に更新
@@ -25,7 +25,7 @@ class User::NotificationsController < ApplicationController
 
   # 未読を既読に更新
   def update
-    @notification = current_user.visited_notifications.find_by(id: params[:id])
+    @notification = current_user.received_notifications.find_by(id: params[:id])
     if @notification.update(unread: false)
       respond_to do |format|
         format.turbo_stream do

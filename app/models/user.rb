@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :requests, dependent: :destroy
   has_many :notifications, as: :notifiable, dependent: :destroy
+  has_many :received_notifications, class_name: 'Notification', foreign_key: 'recipient_id'
 
   has_one_attached :profile_image
 

@@ -1,22 +1,87 @@
-<h1>User::Homes#top</h1>
-<!-- Button trigger modal -->
-<div class="button_new">
-  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#requestModal" data-whatever="@request"><%= t('views.button.リクエスト') %></button>
-</div>
+<div class="container">
+  <div class="row main-row">
+    <div class="col-12 mx-auto">
+	    <!--メインビジュアル-->
+			<div class="main-visual">
+			  <div class="main-visual-content">
+		        <p class="main-visual-text">
+		          Matsurication
+		        </p>
+		      </div>
+			</div>
+	    <!--サイト紹介-->
+			<div class="about-row about mt-4">
+			  <div class="about-title">
+			  	Matsuricationってなに？
+			  </div>
+			  <div class="about-text mt-3">
+			  	<span class="custom-line-height">
+			  	  「きれい」「かっこいい」「楽しい」
+			  	</span>
+			  	<span class="custom-line-height">
+			  		お祭りを見て感じることはさまざま。
+			  	</span>
+				<span class="custom-line-height">
+				  でも、目の前で起きていることの<br>
+				  意味を知る機会は案外少ないもの。
+				</span>
+				<span class="custom-line-height">
+					受け継いできた営みの意味や成り立ちを、<br>
+					もっと知りたい。知ってほしい。
+				</span>
+		        <span>
+		        	それを叶えるのがMatsuricationです。
+		        </span>
+			  </div>
+			</div>
 
-<!-- Modal -->
-<div class="modal fade" id="requestModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-	  <div class="modal-content">
-	  <div class="modal-header">
-		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		  <span aria-hidden="true">×</span>
-		  </button>
+	    <!--メニュー-->
+	    <div class="menu-row">
+	    	<%= link_to posts_path, class: "menu-block red" do %>
+		      <h3>みんなの投稿</h3>
+		      <p>お祭りの見どころや周辺情報をチェック！</p>
+		    <% end %>
+		    <%= link_to search_path, class: "menu-block orange" do %>
+		      <h3>県名・タグ検索</h3>
+		      <p>気になる都道府県やタグをクリック！</p>
+		    <% end %>
+		    <%= link_to users_path, class: "menu-block blue" do %>
+		      <h3>Matsuriユーザー</h3>
+		      <p>日本全国にユーザーがいます！</p>
+		    <% end %>
+		  </div>
+		  <div class="menu-row">
+		  	<%= link_to user_path(current_user), class: "menu-block green" do %>
+		      <h3>マイページ</h3>
+		      <p>あなたのユーザー情報を確認・編集！</p>
+	      <% end %>
+	      <%= link_to user_notifications_path(current_user), class: "menu-block red" do %>
+		      <h3>通知</h3>
+		      <p>投稿への反応をチェック！</p>
+	      <% end %>
+	      <!-- Button trigger modal -->
+	      <button type="button" class="menu-block orange button_new" data-toggle="modal" data-target="#requestModal">
+	        <h3>リクエスト</h3>
+	        <p>お問い合わせはこちらへ！</p>
+	      </button>
+	    </div>
+
+			<!-- Modal -->
+			<div class="modal fade" id="requestModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+				  <div class="modal-content">
+				  <div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true">×</span>
+					  </button>
+				  </div>
+					<div class="set_center_outer">
+					 <h3 class="page_title_ja">リクエスト</h3>
+					</div>
+					<%= render "user/homes/modal_request_form", request: @request, user: @user %>
+			 	  </div>
+			  </div>
+			</div>
 	  </div>
-		<div class="set_center_outer">
-		 <h3 class="page_title_ja">リクエスト</h3>
-		</div>
-		<%= render "user/homes/modal_request_form", request: @request, user: @user %>
- 	  </div>
   </div>
 </div>

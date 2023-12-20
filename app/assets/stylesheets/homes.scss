@@ -1,0 +1,97 @@
+// Place all the styles related to the user/homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.main-visual {
+  width: 100%; /* 横幅いっぱい */
+  height: 700px; /* 高さ300px */
+  background-image: image-url('main-visual.jpeg');
+  background-size: cover; /* 縦横比を維持したまま背景領域を埋め尽くす */
+  background-position: center; /* 背景画像を中央に配置 */
+}
+
+.main-visual-text {
+  color: #fff;
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.75),
+                 -1px -1px 0px rgba(255,255,255,0.75);
+  text-align: center; /* テキストを中央に配置 */
+  font-size: 50px; /* フォントサイズを36pxに設定 */
+  display: block; /* ブロックレベル要素として扱い */
+  margin: 0; /* 上下の余白をなくす */
+  line-height: 700px; /* 親要素の高さに合わせて中央に配置 */
+}
+
+.about-row {
+  display: flex;
+  align-items: center; /* 子要素を垂直方向に中央揃えに */
+  justify-content: center; /* 子要素を水平方向に中央揃えに */
+}
+
+.about-title, .about-text {
+  text-align: center; /* テキストを中央揃えに設定 */
+  font-size: 1.5rem; /* フォントサイズを1.5remに設定 */
+  line-height: 1.6; /* 行間を調整 */
+  display: flex; /* Flexboxを使用 */
+  flex-direction: column; /* 子要素を縦に並べる */
+  justify-content: center; /* 子要素を垂直方向の中央に配置 */
+  align-items: center; /* 子要素を水平方向の中央に配置 */
+  height: 100%; /* 親要素の高さに合わせる */
+}
+
+.about-title {
+  font-weight: bold; /* テキストを太字に設定 */
+}
+
+.about-text {
+  font-size: 1rem;
+}
+
+.custom-line-height {
+  display: block; /* spanをブロック要素として表示 */
+  margin-bottom: 20px; /* 下部のマージンを20pxに設定 */
+}
+
+.menu-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px; /* ブロック間のスペース */
+  padding: 20px; /* コンテナのパディング */
+}
+
+.menu-block {
+  background-color: #f2f2f2; /* デフォルトの背景色 */
+  color: #333; /* テキストの色 */
+  padding: 20px; /* ブロック内のパディング */
+  border-radius: 8px; /* 角を丸める */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 影をつける */
+  transition: transform 0.3s ease-in-out; /* ホバー時のアニメーション効果 */
+}
+
+.menu-block h3 {
+  margin-top: 0;
+  color: #fff; /* タイトルのテキストの色 */
+}
+
+.menu-block p {
+  color: #fff; /* パラグラフのテキストの色 */
+}
+
+/* カラーバリエーション */
+.orange { background-color: #FFDB4F; }
+.green { background-color: #92B880; }
+.blue { background-color: #83D4E4; }
+.red { background-color: #2A6BB7; }
+/* 他の色もこのように追加 */
+
+.menu-block:hover {
+  transform: translateY(-10px); /* ホバー時に少し上に動かす */
+}
+
+.menu-block,
+.menu-block:hover,
+.menu-block:visited,
+.menu-block:active {
+  text-decoration: none; /* リンクの下線を削除 */
+  color: inherit; /* リンクの色を.menu-blockの色に合わせる */
+}

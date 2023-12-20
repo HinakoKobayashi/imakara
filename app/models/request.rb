@@ -16,7 +16,7 @@ class Request < ApplicationRecord
   def create_request_notification
     admin_user_id = AdminUser.first.id
 
-    Notification.create(
+    Notification.create!(
       visitor_id: self.user_id,
       visited_id: admin_user_id,
       notifiable: self

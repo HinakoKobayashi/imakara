@@ -8,8 +8,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :requests, dependent: :destroy
-  has_many :notifications, as: :notifiable, dependent: :destroy
-  has_many :received_notifications, class_name: 'Notification', foreign_key: 'recipient_id'
+  has_many :sent_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :received_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
   has_one_attached :profile_image
 

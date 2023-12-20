@@ -13,13 +13,13 @@ class Comment < ApplicationRecord
 
   def create_notification_comment
     # 自分自身の投稿へのコメントでなければ通知を生成
-    return if self.user_id == self.commentable.user_id
+    return if self.user_id == self.post.user_id
 
-    Notification.create(
+    Notification.create!(
       visitor_id: self.user_id,
-      visited_id: self.commentable.user_id,
+      visited_id: self.post.user_id,
       notifiable: self
-    ) if self.commentable
+    )
   end
 
 end

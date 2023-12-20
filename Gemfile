@@ -59,6 +59,7 @@ gem 'devise'
 gem 'kaminari'
 gem 'enum_help'
 gem 'acts-as-taggable-on', '~> 9.0'
+gem 'turbo-rails'
 
 gem 'dotenv-rails'
 group :production do

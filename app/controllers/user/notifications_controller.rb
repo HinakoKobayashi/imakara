@@ -1,4 +1,4 @@
-class NotificationsController < ApplicationController
+class User::NotificationsController < ApplicationController
   before_action :authenticate_user!
 
   # 通知一覧

@@ -1,2 +1,11 @@
 <h1>User::Notifications#index</h1>
 <p>Find me in app/views/user/notifications/index.html.erb</p>
+<% @notifications.each do |notification| %>
+  <div class="notification">
+    <p><%= generate_notification_message(notification) %></p>
+    <p><%= get_notifiable_name(notification) %></p>
+    <% if image_url = get_notifiable_image_url(notification, 300, 300) %>
+      <img src="<%= image_url %>" alt="関連画像">
+    <% end %>
+  </div>
+<% end %>

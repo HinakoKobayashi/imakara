@@ -58,24 +58,44 @@ class User::PostsController < ApplicationController
     case params[:post][:post_status]
     when 'draft'
       # 下書き保存処理
-      @post.draft! if @post.can_draft?
-      notice_message = "下書きを保存しました"
-      redirect_path = user_path(current_user)
+      if @post.update(post_params)
+        flash[:notice] = "下書きを保存しました"
+        redirect_to user_path(current_user)
+      else
+        flash.now[:alert] = "下書きの保存に失敗しました"
+        render 'edit'
+      end
     when 'unpublished'
       # 非公開処理
-      @post.unpublished! if @post.can_unpublished?
-      notice_message = "非公開にしました"
-      redirect_path = user_path(current_user)
+      if @post.update(post_params)
+        @post.unpublished! if @post.can_unpublished?
+        flash[:notice] = "非公開にしました"
+        redirect_to user_path(current_user)
+      else
+        flash.now[:alert] = "非公開の設定に失敗しました"
+        render 'edit'
+      end
     when 'published'
       # 公開処理
-      @post.published! if @post.can_published?
-      notice_message = "投稿を公開しました"
-      redirect_path = posts_path
+      if @post.update(post_params)
+        @post.published! if @post.can_published?
+        flash[:notice] = "投稿を公開しました"
+        redirect_to posts_path
+      else
+        flash.now[:alert] = "投稿の公開に失敗しました"
+        render 'edit'
+      end
     else
       # デフォルトの更新処理
-      notice_message = "投稿内容を更新しました"
-      redirect_path = posts_path
+      if @post.update(post_params)
+        flash[:notice] = "投稿内容を更新しました"
+        redirect_to posts_path
+      else
+        flash.now[:alert] = "投稿内容の更新に失敗しました"
+        render 'edit'
+      end
     end
+
 
     if @post.update(post_params)
       flash[:notice] = "投稿内容を更新しました"

@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function () {
   $('.main-tab-content > div').hide(); // すべてのメインタブコンテンツを非表示に
   $('.main-tab-content > div:first').show(); // 最初のメインタブコンテンツのみ表示
   $('.main-tab-buttons span').removeClass('active'); // すべてのタブからactiveクラスを削除
-  $('.main-tab-buttons .content1').addClass('active'); // 最初のタブにactiveクラスを追加
+  $('.main-tab-buttons .main-content1').addClass('main-active'); // 最初のタブにactiveクラスを追加
 
   // メインタブのクリックイベント
   $('.main-tab-buttons span').click(function() {
@@ -23,7 +23,7 @@ $(document).on('turbolinks:load', function () {
   $('.post-tab-content > div').hide(); // すべてのサブタブコンテンツを非表示に
   $('.post-tab-content > div:first').show(); // 最初のサブタブコンテンツのみ表示
   $('.post-tab-buttons span').removeClass('active'); // すべてのサブタブからactiveクラスを削除
-  $('.post-tab-buttons .post-content1').addClass('active'); // 最初のサブタブにactiveクラスを追加
+  $('.post-tab-buttons .post-content1').addClass('post-active'); // 最初のサブタブにactiveクラスを追加
 
   // サブタブのクリックイベント
   $('.post-tab-buttons span').click(function() {

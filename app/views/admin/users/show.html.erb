@@ -2,24 +2,24 @@
   <div class="row main-row">
     <div class="col-md-12 mx-auto">
       <h5>ユーザー詳細</h5>
-      <div class='tabs mt-3'>
-        <div class='tab-buttons'>
-          <span class='content1'>ユーザー情報</span>
-          <span class='content2'>投稿</span>
-          <span class='content3'>いいね</span>
-          <div id='lamp' class='content1'></div>
+      <div class='main-tabs mt-3'>
+        <div class='main-tab-buttons'>
+          <span class='main-content1'>ユーザー情報</span>
+          <span class='main-content2'>投稿</span>
+          <span class='main-content3'>いいね</span>
+          <div id='lamp' class='main-content1'></div>
         </div>
 
-        <div class='tab-content'>
-          <div class='content1'>
-              <%= render 'user/users/mypage', user: @user %>
+        <div class='main-tab-content'>
+          <div class='main-content1'>
+            <%= render 'user/users/mypage', user: @user %>
           </div>
 
-          <div class='content2'>
+          <div class='main-content2'>
             <%= render 'user/users/user_posts', posts: @posts %>
           </div>
 
-          <div class='content3'>
+          <div class='main-content3' style="display: none;">
             <%= render 'user/users/user_favorites', favorite_posts: @favorite_posts %>
           </div>
         </div>

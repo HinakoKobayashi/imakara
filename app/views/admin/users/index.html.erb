@@ -11,22 +11,24 @@
          <th>自己紹介</th>
          <th>メールアドレス</th>
          <th>ステータス</th>
+         <th></th>
        </tr>
      </thead>
 
      <% @users.each do |user| %>
      <tr onclick='window.location="<%= admin_user_path(user) %>"' role="link">
-       <td><%= image_tag user.get_profile_image(50,50) %></td>
-       <td><%= user.name %></td>
-       <td><%= user.introduction %></td>
-       <td><%= user.email %></td>
-       <td>
+       <td class="table-cell-middle"><%= image_tag user.get_profile_image(50,50), class: "img-fluid rounded-circle" %></td>
+       <td class="table-cell-middle"><%= user.name %></td>
+       <td class="table-cell-middle"><%= user.introduction %></td>
+       <td class="table-cell-middle"><%= user.email %></td>
+       <td class="table-cell-middle">
          <% if user.is_active == true %>
          <span style="color: #1a8066;">有効</span>
          <% else %>
          <span class="text-danger">退会</span>
          <% end %>
        </td>
+       <td><%= link_to "編集", edit_admin_user_path(user), class: "btn btn-outline-success mt-3 mb-3" %></td>
      </tr>
      <% end %>
     </table>

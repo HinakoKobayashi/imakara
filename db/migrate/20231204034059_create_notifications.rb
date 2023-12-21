@@ -5,7 +5,7 @@ class CreateNotifications < ActiveRecord::Migration[6.1]
       t.integer :visited_id, null: false
       t.string :notifiable_type, null: false
       t.integer :notifiable_id, null: false
-      t.boolean :confirmed, null: false, default: false
+      t.boolean :status, null: false, default: false
 
       t.timestamps
     end

@@ -6,16 +6,6 @@ ja:
         draft: "下書き"
         unpublished: "非公開"
 
-    notification:
-      confirmed:
-        unread: "未読"
-        read: "既読"
-
-    request:
-      confirmed:
-        unread: "未確認"
-        read: "対応済み"
-
   views:
     title:
       request_title: "タイトル"
@@ -24,13 +14,6 @@ ja:
       request_title: "リクエストタイトルを入力してください"
       request_body: "リクエスト内容を入力してください"
 
-    notifications:
-      message:
-        comment: "%{sender}が<strong>%{notifiable_name}</strong>にコメントしました"
-        favorite: "%{sender}が<strong>%{notifiable_name}</strong>にいいね！しました"
-        request: "%{sender}からリクエストが届きました"
-      default_message: "新規通知がありました"
-      default_notifiable_name: "対象"
 
 
   activerecord:

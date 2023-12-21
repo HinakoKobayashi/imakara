@@ -1,2 +1,38 @@
-<h1>Admin::Notifications#index</h1>
-<p>Find me in app/views/admin/notifications/index.html.erb</p>
+<div class="notification-container">
+  <div class="row main-row">
+    <div class="col-12 mx-auto">
+      <h5>管理者用通知一覧</h5>
+      <% if @notifications.any? %>
+        <div class="mb-3 text-right">
+          <%= link_to '全て既読にする', mark_all_as_read_admin_notifications_path, method: :patch, class: 'btn btn-primary' %>
+        </div>
+        <ul class="notification-list">
+          <% @notifications.each do |notification| %>
+            <li class="<%= 'notification-item' + (notification.unread? ? ' unread' : '') %>">
+              <div class="notification-content">
+                <%= render_notification(notification) %>
+                <p class="notification-text"><%= notification_content_preview(notification) %></p>
+              </div>
+              <% if notification_image_url(notification).present? %>
+                <div class="notification-image">
+                  <img src="<%= notification_image_url(notification) %>" alt="Notification image">
+                </div>
+              <% end %>
+              <% if notification.unread? %>
+                <div class="notification-action">
+                  <%= link_to '既読にする', admin_notification_path(notification), method: :patch, class: 'btn btn-outline-secondary btn-sm' %>
+                </div>
+              <% else %>
+                <div class="notification-action hidden">
+                  <!-- 非表示のボタン（スペース維持用） -->
+                </div>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-center">通知はありません。</p>
+      <% end %>
+    </div>
+  </div>
+</div>

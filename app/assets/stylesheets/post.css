@@ -86,11 +86,6 @@
   width: 100%;   /* 幅を親要素に合わせる */
 }
 
-/*post/indexページcardのユーザー情報部分*/
-.card-header {
-  background-color: #dbd0e6;
-}
-
 .card-img-top {
   width: 100%; /* 幅をカード全体に */
   height: 200px; /* 画像の高さを固定 */
@@ -141,7 +136,7 @@
 }
 
 .modal-content {
-  max-width: 100%; /* モーダルの最大幅を調整 */
+  max-width: 70%; /* モーダルの最大幅を調整 */
   overflow: hidden; /* コンテンツがオーバーフローした場合に隠す */
   border-radius: 0.3rem; /* 角丸のスタイリング */
 }

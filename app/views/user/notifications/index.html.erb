@@ -1,16 +1,46 @@
-<h1>通知一覧</h1>
-<% if @notifications.any? %>
-  <div class="list-group">
-    <% @notifications.each do |notification| %>
-      <div class="notification">
-        <p><%= generate_notification_message(notification) %></p>
-        <p><%= get_notifiable_name(notification) %></p>
-        <% if image_url = get_notifiable_image_url(notification, 300, 300) %>
-          <img src="<%= image_url %>" alt="関連画像">
-        <% end %>
-      </div>
-    <% end %>
+<div class="notification-container">
+  <div class="row main-row">
+    <div class="col-12 mx-auto">
+      <h5>通知一覧</h5>
+      <% if @notifications.any? %>
+        <!--全通知既読用ボタン-->
+        <div class="mb-3 text-right">
+          <%= link_to '全て既読にする', mark_all_as_read_notifications_path, method: :patch, class: 'btn btn-primary' %>
+        </div>
+        <!--通知一覧-->
+        <ul class="notification-list">
+          <% @notifications.each do |notification| %>
+            <li class="<%= 'notification-item' + (notification.unread? ? ' unread' : '') %>">
+              <div class="notification-content">
+                <%= render_notification(notification) %>
+                <p class="notification-text"><%= notification_content_preview(notification) %></p>
+              </div>
+              <!--通知対象 post が持つ image 表示-->
+              <% if notification.notifiable_type.in?(['Comment', 'Favorite']) && notification.notifiable.post.image.attached? %>
+                <div class="notification-image">
+                  <img src="<%= notification_image_url(notification) %>" alt="Notification image">
+                </div>
+              <% elsif notification.notifiable_type == 'Post' && notification.notifiable.image.attached? %>
+                <div class="notification-image">
+                  <img src="<%= notification_image_url(notification) %>" alt="Notification image">
+                </div>
+              <% end %>
+              <!--既読にするボタン-->
+              <% if notification.unread? %>
+                <div class="notification-action">
+                  <%= link_to '既読にする', notification_path(notification), method: :patch, class: 'btn btn-outline-secondary btn-sm' %>
+                </div>
+              <% else %>
+                <div class="notification-action hidden">
+                  <!-- ボタン非表示時のスペース確保用 -->
+                </div>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-center">通知はありません。</p>
+      <% end %>
+    </div>
   </div>
-<% else %>
-  <p>通知はありません。</p>
-<% end %>
+</div>

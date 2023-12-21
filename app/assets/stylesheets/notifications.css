@@ -1,0 +1,80 @@
+/* Notification Countainer Styles */
+.notification-container {
+  max-width: 600px; /* コンテナの最大幅 */
+  margin: auto; /* 中央揃え */
+}
+
+/* Notifications List Styles */
+.notifications-list {
+  margin-top: 20px;
+}
+
+.notification-list {
+  list-style-type: none; /* リストの左端の「・」を無しに */
+  padding: 0;
+  margin: 0;
+}
+
+/* Notification Item Styles */
+.notification-item {
+  display: flex; /* Flexboxの使用 */
+  align-items: center; /* アイテムを中央揃えに */
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  padding: 10px; /* 内側の余白 */
+}
+
+.notification-item.unread {
+  background-color: #f9f9f9;
+  border-left: 4px solid #007bff;
+}
+
+/* Notification Body and Content Styles */
+.notification-body {
+  padding: 12px;
+}
+
+.notification-content {
+  flex-grow: 1;
+  word-wrap: break-word; /* 長い単語でも折り返す */
+  max-width: 70%; /* コンテンツの最大幅を設定 */
+  margin-right: 20px; /* コンテンツと画像の間隔 */
+}
+
+.notification-text {
+  color: #95949a;
+  margin-top: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 長すぎるテキストを省略記号で表示 */
+  white-space: nowrap; /* 折り返しをしない */
+  max-width: 100%; /* テキストの最大幅を設定 */
+}
+
+/* Notification Image Styles */
+.notification-image {
+  flex-shrink: 0; /* 画像が縮小されないようにする */
+  margin-left: 10px; /* 画像とコンテンツの間隔 */
+  margin-right: 20px; /* 画像とボタンの間隔 */
+}
+
+.notification-image img {
+  width: 80px; /* 画像の幅を固定 */
+  height: 80px; /* 画像の高さを固定 */
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Notification Action Button Styles */
+.notification-action {
+  width: 100px; /* ボタンの幅を固定 */
+  text-align: center;
+  margin-left: auto; /* ボタンとコンテンツの間の余白 */
+  order: 2; /* Flexboxの順序指定でボタンを右端に */
+}
+
+.notification-action.hidden {
+  visibility: hidden; /* ボタンが消えてもスペースを維持 */
+}

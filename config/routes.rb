@@ -27,16 +27,16 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     resources :posts, only: [:index, :show, :destroy]
     resources :requests, omly: [:index, :show]
+    resources :notifications, only: [:index, :update] do
+    collection do
+      patch :mark_all_as_read
+    end
+  end
   end
 
   scope module: :user do
     root to: 'homes#top'
     resources :users, only: [:index, :show, :edit, :update] do
-      resources :notifications, only: [:index, :update] do
-        collection do
-          delete :mark_all_as_read
-        end
-      end
       # :idを使用した特定のデータに対するアクションのためmemberを使用
       member do
         get :check
@@ -46,6 +46,11 @@ Rails.application.routes.draw do
     resources :posts do
       resource :favorite, only: [:create, :destroy]
       resources :comments, only: [:create, :edit, :update, :destroy]
+    end
+    resources :notifications, only: [:index, :update] do
+      collection do
+        patch :mark_all_as_read
+      end
     end
     resources :requests, only: [:new, :create]
   end

@@ -53,6 +53,11 @@
   max-width: 100%; /* テキストの最大幅を設定 */
 }
 
+.notification-date {
+  color: #95949a;
+  font-size: 0.8em;
+}
+
 /* Notification Image Styles */
 .notification-image {
   flex-shrink: 0; /* 画像が縮小されないようにする */

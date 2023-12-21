@@ -4,8 +4,10 @@ class User::NotificationsController < ApplicationController
 
   # 通知一覧
   def index
-    # 現在ログインしているユーザーが受け取った通知を全て取得
-    @notifications = current_user.received_notifications.order(created_at: :desc)
+    # ユーザーが受け取ったComment と Favorite に関する通知を全て取得
+    @notifications = current_user.received_notifications
+                                 .where(notifiable_type: ['Comment', 'Favorite'])
+                                 .order(created_at: :desc)
   end
 
   # 未読を既読に更新

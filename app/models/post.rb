@@ -14,18 +14,20 @@ class Post < ApplicationRecord
 
   enum post_status: { published: 0, draft: 1, unpublished: 2 }
 
+  scope :published, -> { where(post_status: 'published') }
+
   validates :post_status, presence: true
   validates :prefecture_id, presence: true
 
   has_one_attached :image
-  
+
   # 画像なしの投稿を許可
   # def get_image(width, height)
   #   return nil unless image.attached?
 
   #   image.variant(resize_to_limit: [width, height]).processed
   # end
-  
+
   def get_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

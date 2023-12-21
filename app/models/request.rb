@@ -10,8 +10,8 @@ class Request < ApplicationRecord
   private
 
   def create_request_notification
-    admin_user = User.find_by(email: 'admin@admin.com') # 管理者のメールアドレス
-    return unless admin_user
+    admin_user = Admin.find_by(email: 'admin@admin.com') # 管理者のメールアドレス
+    # return unless admin_user
 
     Notification.create!(
       visitor_id: self.user_id,

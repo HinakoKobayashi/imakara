@@ -109,6 +109,13 @@
   max-width: 100%;
 }
 
+/* admin 側ユーザー一覧 */
+.table.table-hover td.table-cell-middle,
+.table.table-hover th.table-cell-middle {
+  vertical-align: middle;
+}
+
+
 
 @media (max-width: 768px) {
   .tab-content {

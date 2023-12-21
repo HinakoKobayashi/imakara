@@ -46,6 +46,9 @@ Rails.application.routes.draw do
     resources :posts do
       resource :favorite, only: [:create, :destroy]
       resources :comments, only: [:create, :edit, :update, :destroy]
+      member do
+        patch :update_draft
+      end
     end
     resources :notifications, only: [:index, :update] do
       collection do

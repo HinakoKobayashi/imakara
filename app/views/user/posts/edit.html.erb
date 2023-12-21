@@ -54,7 +54,7 @@
           <% if @post.post_status == 'draft' %>
             <div class="col-4">
               <%= f.submit "投稿を公開", :name => 'published_draft', class:'mr-5 btn btn-sm btn-warning' %>
-              <%= f.submit "下書きを更新", :name => 'update_draft', class:'mr-5 btn btn-sm btn-outline-secondary' %>
+              <%= link_to "下書きを更新", update_draft_post_path(@post), method: :patch, class: "btn btn-primary", data: { confirm: "下書きを更新しますか？" } %>
             </div>
           <% elsif @post.post_status == 'unpublished' %>
             <div class="col-2">

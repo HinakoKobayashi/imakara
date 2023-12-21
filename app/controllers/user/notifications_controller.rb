@@ -1,10 +1,11 @@
 class User::NotificationsController < ApplicationController
   before_action :authenticate_user!
+  helper :notifications
 
   # 通知一覧
   def index
-    # 現在ログインしているユーザーが受け取った未読の通知を全て取得
-    @notifications = current_user.received_notifications.unread.order(created_at: :desc)
+    # 現在ログインしているユーザーが受け取った通知を全て取得
+    @notifications = current_user.received_notifications.order(created_at: :desc)
   end
 
   # 未読を既読に更新
@@ -14,18 +15,17 @@ class User::NotificationsController < ApplicationController
     # 検索した通知が実際に存在するかどうかをチェック
     if @notification
       # 通知が存在する場合にその状態を「既読」に更新
-      @notification.read!
-      redirect_to notifications_path, notice: 'Notification marked as read.'
+      @notification.mark_as_read
+      redirect_to notifications_path, notice: '通知を既読にしました'
     # 通知が見つからない場合に通知リストの表示をクリア
     else
-      redirect_to notifications_path, alert: 'Notification not found.'
+      redirect_to notifications_path, alert: '通知はありません'
     end
   end
 
   # 全通知を既読にする
   def mark_all_as_read
-    @notifications = current_user.received_notifications.unread
-    # 取得した全ての未読通知を既読（unread: false）に一括更新
-    @notifications.update_all(unread: false)
+    current_user.received_notifications.where(status: false).update_all(status: true)
+    redirect_to notifications_path, notice: '全ての通知を既読にしました'
   end
 end

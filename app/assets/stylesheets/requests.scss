@@ -1,0 +1,45 @@
+// Place all the styles related to the user/requests controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.request-modal {
+  .modal-content {
+    background-color: #fff; /* 背景色 */
+    border-radius: 5px; /* 角丸のサイズ */
+  }
+
+  .modal-header {
+    border-bottom: 1px solid #e9ecef; /* ヘッダー下の境界線 */
+  }
+
+  .modal-title {
+    color: #495057; /* タイトルの色 */
+    font-weight: bold; /* タイトルの太字 */
+  }
+
+  .modal-body {
+    padding: 20px; /* モーダルボディの余白 */
+  }
+
+  .modal-footer {
+    border-top: 1px solid #e9ecef; /* フッター上の境界線 */
+    padding: 12px; /* フッターの余白 */
+  }
+
+  .close {
+    color: #495057; /* 閉じるボタンの色 */
+    opacity: 0.7; /* 閉じるボタンの透明度 */
+  }
+
+  .close:hover {
+    opacity: 1; /* 閉じるボタンの透明度（ホバー時） */
+  }
+
+  .btn-primary {
+    background-color: #007bff; /* 送信ボタンの背景色 */
+    border-color: #007bff; /* 送信ボタンの境界線色 */
+  }
+
+  .btn-secondary {
+    background-color: #6c757d; /* 閉じるボタンの背景 */
+  }
+}

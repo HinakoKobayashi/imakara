@@ -51,14 +51,23 @@
 		    <% end %>
 		  </div>
 		  <div class="menu-row">
-		  	<%= link_to user_path(current_user), class: "menu-block green" do %>
-		      <h3>マイページ</h3>
-		      <p>あなたのユーザー情報を確認・編集！</p>
-	      <% end %>
-	      <%= link_to user_notifications_path(current_user), class: "menu-block red" do %>
-		      <h3>通知</h3>
-		      <p>投稿への反応をチェック！</p>
-	      <% end %>
+		  	<% if user_signed_in? %>
+				  <%= link_to user_path(current_user), class: "menu-block green" do %>
+				    <h3>マイページ</h3>
+				    <p>あなたのユーザー情報を確認・編集！</p>
+				  <% end %>
+				  <%= link_to notifications_path, class: "menu-block red" do %>
+				    <h3>通知</h3>
+				    <p>投稿への反応をチェック！</p>
+				  <% end %>
+				<% else %>
+				  <%= link_to new_user_registration_path, class: "menu-block green" do %>
+				    <h3 class="your-class">新規登録</h3>
+				  <% end %>
+				  <%= link_to new_user_session_path, class: "menu-block green" do %>
+				    <h3 class="your-class">ログイン</h3>
+				  <% end %>
+				<% end %>
 	      <!-- Button trigger modal -->
 	      <button type="button" class="menu-block orange button_new" data-toggle="modal" data-target="#requestModal">
 	        <h3>リクエスト</h3>

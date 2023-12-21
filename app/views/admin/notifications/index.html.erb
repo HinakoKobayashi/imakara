@@ -1,2 +1,17 @@
-<h1>Admin::Notifications#index</h1>
-<p>Find me in app/views/admin/notifications/index.html.erb</p>
+<h1>管理者通知一覧</h1>
+
+<% if @notifications.any? %>
+  <ul class="list-group">
+    <% @notifications.each do |notification| %>
+      <li class="list-group-item <%= 'list-group-item-warning' if notification.unread? %>">
+        <%= render_notification(notification) %>
+        <% unless notification.read? %>
+          <%= link_to '既読にする', admin_notification_path(notification), method: :patch, class: 'btn btn-primary btn-sm' %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <%= paginate @notifications %>
+<% else %>
+  <p>通知はありません。</p>
+<% end %>

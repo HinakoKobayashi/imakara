@@ -1,11 +1,13 @@
 <div class="notification-container">
   <div class="row main-row">
     <div class="col-12 mx-auto">
-      <h1>通知一覧</h1>
+      <h5>通知一覧</h5>
       <% if @notifications.any? %>
+        <!--全通知既読用ボタン-->
         <div class="mb-3 text-right">
           <%= link_to '全て既読にする', mark_all_as_read_notifications_path, method: :patch, class: 'btn btn-primary' %>
         </div>
+        <!--通知一覧-->
         <ul class="notification-list">
           <% @notifications.each do |notification| %>
             <li class="<%= 'notification-item' + (notification.unread? ? ' unread' : '') %>">
@@ -13,6 +15,7 @@
                 <%= render_notification(notification) %>
                 <p class="notification-text"><%= notification_content_preview(notification) %></p>
               </div>
+              <!--通知対象 post が持つ image 表示-->
               <% if notification.notifiable_type.in?(['Comment', 'Favorite']) && notification.notifiable.post.image.attached? %>
                 <div class="notification-image">
                   <img src="<%= notification_image_url(notification) %>" alt="Notification image">
@@ -22,13 +25,14 @@
                   <img src="<%= notification_image_url(notification) %>" alt="Notification image">
                 </div>
               <% end %>
+              <!--既読にするボタン-->
               <% if notification.unread? %>
                 <div class="notification-action">
                   <%= link_to '既読にする', notification_path(notification), method: :patch, class: 'btn btn-outline-secondary btn-sm' %>
                 </div>
               <% else %>
                 <div class="notification-action hidden">
-                  <!-- 非表示のボタン（スペース維持用） -->
+                  <!-- ボタン非表示時のスペース確保用 -->
                 </div>
               <% end %>
             </li>

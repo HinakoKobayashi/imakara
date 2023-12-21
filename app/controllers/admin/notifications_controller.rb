@@ -12,7 +12,7 @@ class Admin::NotificationsController < ApplicationController
   def update
     @notification = Notification.find_by(id: params[:id], notifiable_type: 'Request')
     if @notification
-      @notification.read!
+      @notification.mark_as_read
       redirect_to admin_notifications_path, notice: '通知を既読にしました'
     else
       redirect_to admin_notifications_path, alert: '通知はありません'
@@ -21,10 +21,7 @@ class Admin::NotificationsController < ApplicationController
 
   # 全通知を既読にする
   def mark_all_as_read
-    # 大量の通知を一度に既読にする際のパフォーマンスを考慮したバッチ処理
-    Notification.where(notifiable_type: 'Request', status: false).find_each(batch_size: 100) do |notification|
-    notification.update(status: true)
-    end
+    Notification.where(status: false).update_all(status: true)
     redirect_to admin_notifications_path, notice: '全ての通知を既読にしました'
   end
 end

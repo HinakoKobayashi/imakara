@@ -13,7 +13,13 @@
             <li class="<%= 'notification-item' + (notification.unread? ? ' unread' : '') %>">
               <div class="notification-content">
                 <%= render_notification(notification) %>
-                <p class="notification-text"><%= notification_content_preview(notification) %></p>
+                <p class="notification-text">
+                  <%= notification_content_preview(notification) %>
+                </p>
+                <!-- 日付の表示 -->
+                <p class="notification-date">
+                  <%= notification.created_at.strftime("%Y年%m月%d日 %H:%M") %>
+                </p>
               </div>
               <!--通知対象 post が持つ image 表示-->
               <% if notification.notifiable_type.in?(['Comment', 'Favorite']) && notification.notifiable.post.image.attached? %>

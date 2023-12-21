@@ -13,15 +13,15 @@ class Admin::NotificationsController < ApplicationController
     @notification = Notification.find_by(id: params[:id], notifiable_type: 'Request')
     if @notification
       @notification.mark_as_read
-      redirect_to admin_notifications_path, notice: '通知を既読にしました'
+      redirect_to admin_notifications_path, notice: 'リクエストを対応済みにしました'
     else
-      redirect_to admin_notifications_path, alert: '通知はありません'
+      redirect_to admin_notifications_path, alert: 'リクエストはありません'
     end
   end
 
   # 全通知を既読にする
   def mark_all_as_read
     Notification.where(status: false).update_all(status: true)
-    redirect_to admin_notifications_path, notice: '全ての通知を既読にしました'
+    redirect_to admin_notifications_path, notice: '全てのリクエストを対応済みにしました'
   end
 end

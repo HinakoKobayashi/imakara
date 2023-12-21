@@ -1,12 +1,19 @@
 module NotificationsHelper
   # 通知の詳細をレンダリングするヘルパーメソッド
   def render_notification(notification)
-    sender = notification.sender.name
+    # sender を User オブジェクトとして取得
+    user = User.find_by(name: notification.sender) || User.find_by(id: notification.sender)
+
     # 管理者専用の通知表示
     if notification.admin_specific?
       case notification.notifiable_type
       when 'Request'
-        "新しいリクエストが届きました: #{notification.notifiable.title}"
+        if user
+          link_to(user.name, user_path(user)) + "からのリクエスト\n\n タイトル: #{notification.notifiable.title} \n 本文: #{notification.notifiable.body}"
+        else
+          # \n で改行、\n\n で1行空ける
+          "未知のユーザーからのリクエスト\n\n タイトル: #{notification.notifiable.title} \n 本文: #{notification.notifiable.body}"
+        end
       else
         "新しい通知があります"
       end
@@ -14,9 +21,17 @@ module NotificationsHelper
     else
       case notification.notifiable_type
       when 'Comment'
-        "#{sender}がコメントしました: #{notification.notifiable.comment}"
+        if user
+          link_to(user.name, user_path(user)) + "がコメントしました: #{notification.notifiable.comment}"
+        else
+          "未知のユーザーがコメントしました: #{notification.notifiable.comment}"
+        end
       when 'Favorite'
-        "#{sender}があなたの投稿をいいねしました"
+        if user
+          link_to(user.name, user_path(user)) + "があなたの投稿をいいねしました"
+        else
+          "未知のユーザーがあなたの投稿をいいねしました"
+        end
       else
         "新しい通知があります"
       end

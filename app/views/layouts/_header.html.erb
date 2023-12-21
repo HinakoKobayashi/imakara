@@ -14,8 +14,7 @@
           <li><%= link_to 'Home', admin_root_path %></li>
           <li><%= link_to 'Post', admin_posts_path %></li>
           <li><%= link_to 'User', admin_users_path %></li>
-          <li><%= link_to 'Request', admin_requests_path %></li>
-          <li><%= link_to 'Notification', admin_notifications_path %></li>
+          <li><%= link_to 'Request', admin_notifications_path %></li>
           <li><%= link_to 'Log Out', destroy_admin_session_path, method: :delete %></li>
         <% elsif user_signed_in? %>
           <li><%= link_to 'Home', root_path %></li>

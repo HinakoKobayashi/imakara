@@ -56,17 +56,21 @@
         </div>
 
         <div class="form-row mt-3 justify-content-center">
-          <!-- キャンセルボタン -->
+          <!--キャンセルボタン-->
           <div class="col-auto cancel-btn">
-            <%= link_to "cancel", posts_path, class: "btn btn-md" %>
+            <%= link_to "戻る", request.referer || posts_path, class: "btn btn-secondary" %>
           </div>
           <!-- 下書き保存ボタン -->
           <div class="col-auto draft-btn">
-            <%= f.submit t('enums.post.post_status.draft'), name: 'post[post_status]', value: 'draft', class: 'btn' %>
+            <%= f.submit "下書きに保存", name: 'post[post_status]', value: 'draft', class: 'btn btn-md btn-info' %>
+          </div>
+          <!-- 非公開保存ボタン -->
+          <div class="col-auto unpublicized-btn">
+            <%= f.submit "非公開に保存", name: 'post[post_status]', value: 'unpublicized', class: 'btn btn-md btn-warning' %>
           </div>
           <!-- 投稿するボタン -->
           <div class="col-auto submit-btn">
-            <%= f.submit t('enums.post.post_status.published'), name: 'post[post_status]', value: 'published', class: 'btn' %>
+            <%= f.submit "投稿を公開", name: 'post[post_status]', value: 'publicized', class: 'btn btn-md btn-success' %>
           </div>
         </div>
 

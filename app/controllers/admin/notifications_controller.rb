@@ -5,7 +5,9 @@ class Admin::NotificationsController < ApplicationController
   # 通知一覧
   def index
     # リクエストに関する通知のみを取得
-    @notifications = Notification.where(notifiable_type: 'Request').order(created_at: :desc)
+    @notifications = Notification.where(notifiable_type: 'Request')
+                                 .order(created_at: :desc)
+                                 .page(params[:page]).per(10)
   end
 
   # 通知を既読に更新
@@ -21,7 +23,8 @@ class Admin::NotificationsController < ApplicationController
 
   # 全通知を既読にする
   def mark_all_as_read
-    Notification.where(status: false).update_all(status: true)
+    Notification.where(status: false)
+                .update_all(status: true)
     redirect_to admin_notifications_path, notice: '全てのリクエストを対応済みにしました'
   end
 end

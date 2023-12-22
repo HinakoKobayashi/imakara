@@ -14,8 +14,12 @@
         <% end %>
       </div>
     </div>
+
   </div>
   <% @posts.each do |post| %>
     <%= render 'user/posts/post_modal', post: post %>
   <% end %>
+  <div class="row d-flex justify-content-center">
+    <%= paginate @posts, theme: 'pagination' %>
+  </div>
 </div>

@@ -12,12 +12,16 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  enum post_status: { published: 0, draft: 1, unpublished: 2 }
+  enum post_status: { publicized: 0, draft: 1, unpublicized: 2 }
 
-  scope :published, -> { where(post_status: 'published') }
-
-  validates :post_status, presence: true
-  validates :prefecture_id, presence: true
+  # 下書きの際は条件を満たしていなくても保存できるようにバリデーション設定
+  with_options presence: true, on: :publicized do
+    validates :content, length: { maximum: 400 }
+    validates :image
+    validates :tag_list
+    validates :post_status
+    validates :prefecture_id
+  end
 
   has_one_attached :image
 

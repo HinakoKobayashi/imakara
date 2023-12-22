@@ -62,9 +62,14 @@ module NotificationsHelper
 
     case notification.notifiable_type
     when 'Comment', 'Favorite'
-      content = notification.notifiable.post.content
-      # 表示する文字数を指定
-      content.truncate(100)
+      if notification.notifiable.respond_to?(:post) && notification.notifiable.post
+        content = notification.notifiable.post.content
+        # 表示する文字数を指定
+        content.truncate(100)
+      else
+      # 関連する Post が存在しない場合の処理
+      '関連する投稿が見つかりません。'
+      end
     else
       ''
     end

@@ -2,21 +2,21 @@
 document.addEventListener('turbolinks:load', function() {
   document.querySelectorAll('input[name="post_filter"]').forEach(function(filter) {
     filter.addEventListener('change', function() {
-      var postsPublished = document.getElementById('posts_published');
+      var postsPublicized = document.getElementById('posts_publicized');
       var postsDraft = document.getElementById('posts_draft');
-      var postsUnpublished = document.getElementById('posts_unpublished');
+      var postsUnpublicized = document.getElementById('posts_unpublicized');
 
-      if(postsPublished && postsDraft && postsUnpublished) {
-        postsPublished.style.display = 'none';
+      if(postsPublicized && postsDraft && postsUnpublicized) {
+        postsPublicized.style.display = 'none';
         postsDraft.style.display = 'none';
-        postsUnpublished.style.display = 'none';
+        postsUnpublicized.style.display = 'none';
 
-        if (document.getElementById('filter_published').checked) {
-          postsPublished.style.display = 'block';
+        if (document.getElementById('filter_publicized').checked) {
+          postsPublicized.style.display = 'block';
         } else if (document.getElementById('filter_draft').checked) {
           postsDraft.style.display = 'block';
-        } else if (document.getElementById('filter_unpublished').checked) {
-          postsUnpublished.style.display = 'block';
+        } else if (document.getElementById('filter_unpublicized').checked) {
+          postsUnpublicized.style.display = 'block';
         }
       }
     });

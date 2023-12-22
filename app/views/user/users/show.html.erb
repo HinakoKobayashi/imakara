@@ -27,7 +27,7 @@
 
           <div class='main-content2'>
             <% if current_user == @user %>
-              <%= render 'user/users/myposts', published_posts: @published_posts, draft_posts: @draft_posts, unpublished_posts: @unpublished_posts %>
+              <%= render 'user/users/myposts', publicized_posts: @publicized_posts, draft_posts: @draft_posts, unpublicized_posts: @unpublicized_posts %>
             <% else %>
               <%= render 'user/users/user_posts', posts: @posts %>
             <% end %>

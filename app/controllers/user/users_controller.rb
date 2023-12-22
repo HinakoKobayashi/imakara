@@ -4,15 +4,15 @@ class User::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(10)
   end
 
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
-    @published_posts = @user.posts.published
+    @publicized_posts = @user.posts.publicized
     @draft_posts = @user.posts.draft
-    @unpublished_posts = @user.posts.unpublished
+    @unpublicized_posts = @user.posts.unpublicized
     @favorite_posts = Post.includes(:user, :prefecture, :tags, :favorites, :comments).where(favorites: { user_id: @user.id })
   end
 

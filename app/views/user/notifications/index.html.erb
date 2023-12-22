@@ -22,7 +22,8 @@
                 </p>
               </div>
               <!--通知対象 post が持つ image 表示-->
-              <% if notification.notifiable_type.in?(['Comment', 'Favorite']) && notification.notifiable.post.image.attached? %>
+              <!--エラー防止のため、Rubyの安全ナビゲーション演算子 &. を使用して、nil の可能性を持つメソッドを呼び出す-->
+              <% if notification.notifiable_type.in?(['Comment', 'Favorite']) && notification.notifiable&.post&.image&.attached? %>
                 <div class="notification-image">
                   <img src="<%= notification_image_url(notification) %>" alt="Notification image">
                 </div>
@@ -48,5 +49,8 @@
         <p class="text-center">通知はありません。</p>
       <% end %>
     </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <%= paginate @notifications, theme: 'pagination' %>
   </div>
 </div>

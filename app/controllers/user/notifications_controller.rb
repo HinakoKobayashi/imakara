@@ -8,6 +8,7 @@ class User::NotificationsController < ApplicationController
     @notifications = current_user.received_notifications
                                  .where(notifiable_type: ['Comment', 'Favorite'])
                                  .order(created_at: :desc)
+                                 .page(params[:page]).per(10)
   end
 
   # 未読を既読に更新

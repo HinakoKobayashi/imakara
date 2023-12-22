@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2023_12_10_084435) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "prefecture_id", null: false
+    t.integer "prefecture_id"
     t.integer "user_id", null: false
     t.text "content"
     t.integer "post_status", default: 0, null: false

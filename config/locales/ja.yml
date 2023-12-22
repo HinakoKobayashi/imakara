@@ -1,10 +1,13 @@
 ja:
-  enums:
-    post:
-      post_status:
-        published: "公開"
-        draft: "下書き"
-        unpublished: "非公開"
+  activerecord:
+    enums:
+      post:
+        post_status:
+          draft: "下書き"
+          publicized: "公開"
+          unpublicized: "非公開"
+          update: "更新"
+
 
   views:
     title:

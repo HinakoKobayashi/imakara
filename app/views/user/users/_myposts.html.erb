@@ -13,9 +13,9 @@
         <div class='post-tab-content mt-2'>
           <!-- 公開済み投稿 -->
           <div class='post-content1'>
-            <% if published_posts.present? %>
+            <% if publicized_posts.present? %>
               <div class="row">
-                <%= render partial: 'user/posts/post', collection: published_posts, as: :post %>
+                <%= render partial: 'user/posts/post', collection: publicized_posts, as: :post %>
               </div>
             <% else %>
               <div class="col-md-12">
@@ -39,9 +39,9 @@
 
           <!-- 非公開投稿 -->
           <div class='post-content3' style="display: none;">
-            <% if unpublished_posts.present? %>
+            <% if unpublicized_posts.present? %>
               <div class="row">
-                <%= render partial: 'user/posts/post', collection: unpublished_posts, as: :post %>
+                <%= render partial: 'user/posts/post', collection: unpublicized_posts, as: :post %>
               </div>
             <% else %>
               <div class="col-md-4">
@@ -55,8 +55,8 @@
   </div>
 </div>
 <!--モーダル表示-->
-<% if published_posts.present? %>
-  <% published_posts.each do |post| %>
+<% if publicized_posts.present? %>
+  <% publicized_posts.each do |post| %>
     <%= render 'user/posts/post_modal', post: post %>
   <% end %>
 <% end %>
@@ -67,8 +67,8 @@
   <% end %>
 <% end %>
 
-<% if unpublished_posts.present? %>
-  <% unpublished_posts.each do |post| %>
+<% if unpublicized_posts.present? %>
+  <% unpublicized_posts.each do |post| %>
     <%= render 'user/posts/post_modal', post: post %>
   <% end %>
 <% end %>

@@ -95,3 +95,20 @@
   text-decoration: none; /* リンクの下線を削除 */
   color: inherit; /* リンクの色を.menu-blockの色に合わせる */
 }
+
+/* モーダルのサイズを調整 */
+.request-modal-dialog {
+  width: 80%;  /* 幅を狭める（例: 80%に設定）*/
+  max-width: 600px;  /* 最大幅も設定する */
+  margin: 30px auto;  /* 上下のマージンを調整 */
+}
+
+
+.form-field {
+  width: 100%; /* 入力フィールドを同じ幅にする */
+  margin-bottom: 15px; /* フィールド間の余白を設定 */
+}
+
+.form-field .form-control {
+  width: 100%; /* 内部の入力要素も同じ幅にする */
+}

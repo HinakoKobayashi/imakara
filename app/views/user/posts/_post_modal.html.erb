@@ -33,11 +33,13 @@
                 </div>
               </div>
               <!-- 都道府県 -->
-              <div class="row mb-2">
-                <div class="col-md-12">
-                  <i class="fa-solid fa-location-dot"></i> <%= post.prefecture.name %>
+              <% if post.prefecture %>
+                <div class="row mb-2">
+                  <div class="col-md-12">
+                    <i class="fa-solid fa-location-dot"></i> <%= post.prefecture.name %>
+                  </div>
                 </div>
-              </div>
+              <% end %>
               <!-- タグ -->
               <div class="row mb-2">
                 <div class="col-md-12">

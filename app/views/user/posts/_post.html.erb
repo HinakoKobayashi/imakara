@@ -12,10 +12,12 @@
     <div class="card-body">
       <p class="card-text"><%= post.content %></p>
       <!-- 都道府県 -->
-      <p>
-        <i class="fa-solid fa-location-dot"></i>
-        <%= link_to post.prefecture.name, search_path(keyword: post.prefecture.name) %>
-      </p>
+      <% if post.prefecture %>
+        <p>
+          <i class="fa-solid fa-location-dot"></i>
+          <%= link_to post.prefecture.name, search_path(keyword: post.prefecture.name) %>
+        </p>
+      <% end %>
       <!-- タグ -->
       <p><%= render "user/posts/tag", post: post %></p>
     </div>

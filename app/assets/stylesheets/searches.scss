@@ -1,3 +1,32 @@
 // Place all the styles related to the searches controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.search_container {
+  box-sizing: border-box;
+}
+
+.search_container .input_text {
+  border: 1px solid #999;
+  padding: 3px 5px;
+  border-radius: 20px;
+  height: 2.0em;
+  width: 245px;
+  overflow: hidden;
+  background-color: #F9F3E9;
+}
+
+.search_container .input_text:focus {
+  outline: 0;
+}
+
+.search_container .input_submit {
+  cursor: pointer;
+  font-size: 1.3em;
+  border: none;
+  background: none;
+  color: #a59564;
+  outline: none;
+  display: inline-block;
+  vertical-align: middle;
+}

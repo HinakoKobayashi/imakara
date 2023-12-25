@@ -1,14 +1,11 @@
 ja:
-  activerecord:
-    enums:
-      post:
-        post_status:
-          draft: "下書き"
-          publicized: "公開"
-          unpublicized: "非公開"
-          update: "更新"
-
-
+  enums:
+    post:
+      post_status:
+        draft: "下書き"
+        publicized: "公開"
+        unpublicized: "非公開"
+        edit: "更新"
   views:
     title:
       request_title: "タイトル"
@@ -16,10 +13,10 @@ ja:
     placeholder:
       request_title: "リクエストタイトルを入力してください"
       request_body: "リクエスト内容を入力してください"
-
-
-
   activerecord:
+    attributes:
+      post:
+        prefecture: "都道府県"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -39,7 +36,7 @@ ja:
           attributes:
             content:
               blank: "本文を入力してください"
-            prefecture_id:
+            prefecture:
               blank: "都道府県を選択してください"
             tag_id:
               blank: "タグを追加してください"
@@ -147,8 +144,8 @@ ja:
       not_an_integer: は整数で入力してください
       odd: は奇数にしてください
       other_than: は%{count}以外の値にしてください
-      present: は入力しないでください
-      required: を入力してください
+      present: "%{attribute}は入力しないでください"
+      required: "%{attribute}を入力してください"
       taken: "入力されたメールアドレスはすでに存在します"
       too_long: は%{count}文字以内で入力してください
       too_short: は%{count}文字以上で入力してください

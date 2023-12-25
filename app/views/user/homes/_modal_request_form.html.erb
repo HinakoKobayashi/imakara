@@ -1,8 +1,8 @@
 <%= form_with model: request, url: requests_path do |f| %>
 
-  <!--<div id="modal_customer_messages-error">-->
-  <!--  <%#= render 'layouts/error_messages', model: f.object %>-->
-  <!--</div>-->
+  <div id="modal_customer_messages-error">
+    <%= render 'layouts/error_messages', obj: f.object %>
+  </div>
 
   <div class="set_center_outer">
     <div class="set_center_inner">

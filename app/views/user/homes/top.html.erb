@@ -1,15 +1,20 @@
 <div class="container">
   <div class="row main-row">
     <div class="col-12 mx-auto">
+    	<!-- 'はじめての方へ' リンク -->
+    	<div class="main-visual-link">
+	    	<% unless user_signed_in? %>
+	        <a href="#about-section" class="d-flex justify-content-center">はじめての方へ</a>
+	      <% end %>
+      </div>
+
 	    <!--メインビジュアル-->
 			<div class="main-visual">
 			  <div class="main-visual-content">
-		        <p class="main-visual-text">
-		          Matsurication
-		        </p>
-		        <!-- 'はじめての方へ' リンク -->
-                <a href="#about-section" class="main-visual-link">はじめての方へ</a>
-		      </div>
+	        <p class="main-visual-text">
+	          Matsurication
+	        </p>
+		    </div>
 			</div>
 
 		<!--サイト紹介-->
@@ -46,18 +51,18 @@
 		      <h3>みんなの投稿</h3>
 		      <p>お祭りの見どころや周辺情報をチェック！</p>
 		    <% end %>
-		    <%= link_to search_path, class: "menu-block orange" do %>
-		      <h3>県名・タグ検索</h3>
-		      <p>気になる都道府県やタグをクリック！</p>
+		    <%= link_to search_path, class: "menu-block brown" do %>
+		      <h3>検索</h3>
+		      <p>気になるワードで投稿を検索！</p>
 		    <% end %>
-		    <%= link_to users_path, class: "menu-block blue" do %>
+		    <%= link_to users_path, class: "menu-block red" do %>
 		      <h3>Matsuriユーザー</h3>
 		      <p>日本全国にユーザーがいます！</p>
 		    <% end %>
 		  </div>
 		  <div class="menu-row">
 		  	<% if user_signed_in? %>
-				  <%= link_to user_path(current_user), class: "menu-block green" do %>
+				  <%= link_to user_path(current_user), class: "menu-block brown" do %>
 				    <h3>マイページ</h3>
 				    <p>あなたのユーザー情報を確認・編集！</p>
 				  <% end %>
@@ -66,15 +71,17 @@
 				    <p>投稿への反応をチェック！</p>
 				  <% end %>
 				<% else %>
-				  <%= link_to new_user_registration_path, class: "menu-block green" do %>
+				  <%= link_to new_user_registration_path, class: "menu-block brown" do %>
 				    <h3 class="your-class">新規登録</h3>
+				    <p>ユーザー登録がお済みでない方はこちら</p>
 				  <% end %>
-				  <%= link_to new_user_session_path, class: "menu-block green" do %>
+				  <%= link_to new_user_session_path, class: "menu-block red" do %>
 				    <h3 class="your-class">ログイン</h3>
+				    <p>アカウントをお持ちの方はこちら</p>
 				  <% end %>
 				<% end %>
 	      <!-- Button trigger modal -->
-	      <button type="button" class="menu-block orange button_new" data-toggle="modal" data-target="#requestModal">
+	      <button type="button" class="menu-block brown button_new" data-toggle="modal" data-target="#requestModal">
 	        <h3>リクエスト</h3>
 	        <p>お問い合わせはこちらへ！</p>
 	      </button>

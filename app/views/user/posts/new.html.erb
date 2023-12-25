@@ -57,20 +57,23 @@
 
         <div class="form-row mt-3 justify-content-center">
           <!--キャンセルボタン-->
-          <div class="col-auto cancel-btn">
-            <%= link_to "戻る", request.referer || posts_path, class: "btn btn-secondary" %>
+          <div class="col-auto">
+            <%= link_to "戻る", request.referer || posts_path, class: "btn btn-md btn-secondary" %>
           </div>
           <!-- 下書き保存ボタン -->
-          <div class="col-auto draft-btn">
-            <%= f.submit "下書きに保存", name: 'post[post_status]', value: 'draft', class: 'btn btn-md btn-info' %>
+          <div class="col-auto">
+            <%= f.hidden_field :post_status, value: 'draft' %>
+            <%= f.submit Post.post_statuses_i18n[:draft], class: 'btn btn-md btn-info' %>
           </div>
           <!-- 非公開保存ボタン -->
-          <div class="col-auto unpublicized-btn">
-            <%= f.submit "非公開に保存", name: 'post[post_status]', value: 'unpublicized', class: 'btn btn-md btn-warning' %>
+          <div class="col-auto">
+            <%= f.hidden_field :post_status, value: 'unpublicized' %>
+            <%= f.submit Post.post_statuses_i18n[:unpublicized], class: 'btn btn-md btn-warning' %>
           </div>
           <!-- 投稿するボタン -->
-          <div class="col-auto submit-btn">
-            <%= f.submit "投稿を公開", name: 'post[post_status]', value: 'publicized', class: 'btn btn-md btn-success' %>
+          <div class="col-auto">
+            <%= f.hidden_field :post_status, value: 'publicized' %>
+            <%= f.submit Post.post_statuses_i18n[:publicized], class: 'btn btn-md btn-success' %>
           </div>
         </div>
 

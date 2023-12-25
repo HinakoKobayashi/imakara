@@ -7,12 +7,13 @@ class Post < ApplicationRecord
   acts_as_taggable_on :skills, :interests
 
   belongs_to :user
-  belongs_to :prefecture
+  # prefectureモデルに従属するが、例外的に空欄を許可
+  belongs_to :prefecture, optional: true
 
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  enum post_status: { publicized: 0, draft: 1, unpublicized: 2 }
+  enum post_status: { publicized: 0, draft: 1, unpublicized: 2, edit: 3 }
 
   # 下書きの際は条件を満たしていなくても保存できるようにバリデーション設定
   with_options presence: true, on: :publicized do
@@ -24,13 +25,6 @@ class Post < ApplicationRecord
   end
 
   has_one_attached :image
-
-  # 画像なしの投稿を許可
-  # def get_image(width, height)
-  #   return nil unless image.attached?
-
-  #   image.variant(resize_to_limit: [width, height]).processed
-  # end
 
   def get_image(width, height)
     unless image.attached?

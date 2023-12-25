@@ -7,11 +7,13 @@ class Request < ApplicationRecord
 
   after_create_commit :create_request_notification
 
+  validates :title, presence: true
+  validates :body, presence: true
+
   private
 
   def create_request_notification
     admin_user = Admin.find_by(email: 'admin@admin.com') # 管理者のメールアドレス
-    # return unless admin_user
 
     Notification.create!(
       visitor_id: self.user_id,

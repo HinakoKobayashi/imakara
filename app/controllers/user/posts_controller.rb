@@ -8,7 +8,7 @@ class User::PostsController < ApplicationController
     @comment = Comment.new
   end
 
-  def create
+  def new
     @post = Post.new
     @user = current_user
   end

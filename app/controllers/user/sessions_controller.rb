@@ -18,9 +18,9 @@ class User::SessionsController < Devise::SessionsController
 
   def guest_sign_in
     # guestメソッドはモデルで定義
-    user = User.guest
+    user = User.guest_user
     sign_in user
-    redirect_to user_path(user), notice: "ゲストユーザーでログインしました。"
+    redirect_to root_path, notice: "ゲストユーザーでログインしました。"
   end
 
 

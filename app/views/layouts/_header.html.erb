@@ -11,25 +11,122 @@
       <h2 class="menu-title text-right mr-2">Menu</h2>
       <ul class="text-center m-2">
         <% if admin_signed_in? %>
-          <li><%= link_to 'Home', admin_root_path %></li>
-          <li><%= link_to 'Post', admin_posts_path %></li>
-          <li><%= link_to 'User', admin_users_path %></li>
-          <li><%= link_to 'Request', admin_notifications_path %></li>
-          <li><%= link_to 'Log Out', destroy_admin_session_path, method: :delete %></li>
+          <li>
+            <%= link_to admin_root_path do %>
+              <i class="fa-solid fa-house menu-icon"></i>
+              <span class="menu-text">Home</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_posts_path do %>
+              <i class="fa-solid fa-newspaper menu-icon"></i>
+              <span class="menu-text">Posts</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_users_path do %>
+              <i class="fa-solid fa-users menu-icon"></i>
+              <span class="menu-text">Users</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_notifications_path do %>
+              <div class="notification-icon">
+                <i class="fa-solid fa-bell menu-icon"></i>
+                <% if unread_notifications.any? %>
+                  <i class="notification-circle"></i>
+                  <span class="notification-count"><%= unread_notifications.count %></span>
+                <% end %>
+              </div>
+              <span class="menu-text">Request</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_admin_session_path, method: :delete do %>
+              <i class="fa-solid fa-right-from-bracket menu-icon"></i>
+              <span class="menu-text">Log Out</span>
+            <% end %>
+          </li>
         <% elsif user_signed_in? %>
-          <li><%= link_to 'Home', root_path %></li>
-          <li><%= link_to 'Post', posts_path %></li>
-          <li><%= link_to 'User', users_path %></li>
-          <li><%= link_to 'My Page', user_path(current_user) %></li>
-          <li><%= link_to 'Notification', notifications_path(current_user) %></li>
-          <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
+          <li>
+            <%= link_to root_path do %>
+              <i class="fa-solid fa-house menu-icon"></i>
+              <span class="menu-text">Home</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to posts_path do %>
+              <i class="fa-solid fa-newspaper menu-icon"></i>
+              <span class="menu-text">Posts</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to users_path do %>
+              <i class="fa-solid fa-users menu-icon"></i>
+              <span class="menu-text">Users</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to user_path(current_user) do %>
+              <i class="fa-solid fa-house-user menu-icon"></i>
+              <span class="menu-text">My Page</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to notifications_path(current_user) do %>
+              <div class="notification-icon">
+                <i class="fa-solid fa-bell menu-icon"></i>
+                <% if unread_notifications.any? %>
+                  <i class="notification-circle"></i>
+                  <span class="notification-count"><%= unread_notifications.count %></span>
+                <% end %>
+              </div>
+              <span class="request-text">Notification</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fa-solid fa-right-from-bracket menu-icon"></i>
+              <span class="menu-text">Log Out</span>
+            <% end %>
+          </li>
         <% else %>
-          <li><%= link_to 'Home', root_path %></li>
-          <li><%= link_to 'Post', posts_path %></li>
-          <li><%= link_to 'User', users_path %></li>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Log In', new_user_session_path %></li>
-          <li><%= link_to "Guest(閲覧)", users_guest_sign_in_path, method: :post %></li>
+          <li>
+            <%= link_to root_path do %>
+              <i class="fa-solid fa-house menu-icon"></i>
+              <span class="menu-text">Home</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to posts_path do %>
+              <i class="fa-solid fa-newspaper menu-icon"></i>
+              <span class="menu-text">Posts</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to users_path do %>
+              <i class="fa-solid fa-users menu-icon"></i>
+              <span class="menu-text">Users</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_registration_path do %>
+              <i class="fa-solid fa-user-plus menu-icon"></i>
+              <span class="menu-text">Sign Up</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path do %>
+              <i class="fa-solid fa-right-to-bracket menu-icon"></i>
+              <span class="menu-text">Log In</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to users_guest_sign_in_path, method: :post do %>
+              <i class="fa-solid fa-eye menu-icon"></i>
+              <span class="menu-text">Guest(体験)</span>
+            <% end %>
+          </li>
         <% end %>
       </ul>
     </div>

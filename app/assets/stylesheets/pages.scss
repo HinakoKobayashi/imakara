@@ -2,3 +2,44 @@
 //   display: flex;
 //   justify-content: center;
 // }
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+/* 各ページアイテム */
+.pagination .page-item {
+  margin: 0 5px;
+}
+
+/* リンク */
+.pagination .page-link {
+  color: #C36367;
+  background-color: #F9F3E9;
+  border-radius: 5px;
+  border: 1px solid #C36367;
+  padding: 5px 10px;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+/* アクティブなページ */
+.pagination .page-item.active .page-link {
+  background-color: #C36367;
+  color: white;
+}
+
+/* ホバー時のスタイル */
+.pagination .page-link:hover {
+  background-color: rgba(195, 99, 103, 0.5);
+  color: white;
+}
+
+/* アクティブなページリンクの青い枠線を取り除く */
+.pagination .page-item.active .page-link,
+.pagination .page-item.active .page-link:focus,
+.pagination .page-item.active .page-link:hover {
+  outline: none;
+  border-color: transparent; /* 枠線を透明に */
+}
+

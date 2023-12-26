@@ -1,8 +1,14 @@
 <% if post.present? %>
-  <%= form_with model: [post, comment || Comment.new], local: false do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントを送る", class: "w-100 comment_textarea_#{post.id}" %>
-    <div class="d-flex justify-content-end mt-2 mb-2">
-      <%= f.submit "送信", class: "btn btn-primary" %>
-    </div>
+  <% if user_signed_in? %>
+    <%= form_with model: [post, comment || Comment.new], local: false do |f| %>
+      <%= f.text_area :comment, rows: '5', placeholder: "コメントを送る", class: "w-100 comment_textarea_#{post.id}" %>
+      <div class="d-flex justify-content-end mt-2 mb-2">
+        <%= f.submit "送信", class: "btn btn-outline-primary" %>
+      </div>
+    <% end %>
+  <% else %>
+    <%= link_to new_user_session_path do %>
+      <p style="color: #9ea1a3;">ログインしてコメントを送りましょう！</p>
+    <% end %>
   <% end %>
 <% end %>

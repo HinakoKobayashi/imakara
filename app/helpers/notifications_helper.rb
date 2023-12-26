@@ -9,7 +9,7 @@ module NotificationsHelper
       case notification.notifiable_type
       when 'Request'
         if user
-          link_to(user.name, user_path(user)) + "からのリクエスト\n\n タイトル: #{notification.notifiable.title} \n 本文: #{notification.notifiable.body}"
+          link_to(user.name, admin_user_path(user)) + "からのリクエスト\n\n タイトル: #{notification.notifiable.title} \n 本文: #{notification.notifiable.body}"
         else
           # \n で改行、\n\n で1行空ける
           "未知のユーザーからのリクエスト\n\n タイトル: #{notification.notifiable.title} \n 本文: #{notification.notifiable.body}"
@@ -22,7 +22,7 @@ module NotificationsHelper
       case notification.notifiable_type
       when 'Comment'
         if user
-          link_to(user.name, user_path(user)) + "がコメントしました: #{notification.notifiable.comment}"
+          link_to(user.name, user_path(user)) + "がコメントしました: \n\n #{notification.notifiable.comment}"
         else
           "未知のユーザーがコメントしました: #{notification.notifiable.comment}"
         end

@@ -1,5 +1,5 @@
 class User::PostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, unless: :guest_user?, except: [:index]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -8,12 +8,14 @@ class User::PostsController < ApplicationController
     @comment = Comment.new
   end
 
-  def new
+  def create
     @post = Post.new
+    @user = current_user
   end
 
   def create
-    @post = current_user.posts.build(post_params)
+    @user = guest_user? ? User.guest_user : current_user
+    @post = @user.posts.build(post_params)
 
     if @post.save
       flash[:notice] = message_for_post_status(@post.post_status)
@@ -33,7 +35,7 @@ class User::PostsController < ApplicationController
     @comment = Comment.new
     respond_to do |format|
       format.html
-      # link_toメソッドをremote: trueに設定したのでリクエストはjs形式で行われる（詳しくは参照記事をご覧ください）
+      # link_toメソッドをremote: trueに設定したのでリクエストはjs形式で行われる
       format.js
     end
   end
@@ -61,6 +63,14 @@ class User::PostsController < ApplicationController
 
 
   private
+  # ゲストユーザーかどうかを判断
+  def guest_user?
+    user_signed_in? && current_user.guest_user?
+  end
+
+  def set_user
+    @user = current_user
+  end
 
   # フォームから送信されたパラメータに基づいて投稿ステータスを設定
   def set_post

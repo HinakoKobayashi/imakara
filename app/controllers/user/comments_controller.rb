@@ -1,16 +1,29 @@
 class User::CommentsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :authenticate_user!, unless: :guest_user?
 
   def create
     @post = Post.find(params[:post_id])
-    @comment = current_user.comments.new(comment_params)
+    @user = guest_user? ? User.guest_user : current_user
+    @comment = @user.comments.new(comment_params)
     @comment.post_id = @post.id
-    @comment.save
+    if @comment.save
+      respond_to do |format|
+        format.js
+      end
+    end
   end
 
   def destroy
-    comment = current_user.comments.find(params[:id])
-    comment.destroy if comment
+    @comment = Comment.find_by(id: params[:id])
+    if @comment
+      @post = @comment.post
+      @comment.destroy
+      respond_to do |format|
+        format.js
+      end
+    else
+      head :not_found
+    end
   end
 
 
@@ -18,6 +31,10 @@ class User::CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:comment)
+  end
+
+  def guest_user?
+    user_signed_in? && current_user.guest_user?
   end
 
 end

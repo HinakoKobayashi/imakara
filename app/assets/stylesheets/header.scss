@@ -35,16 +35,7 @@
 .menu-trigger span:nth-child(3) {
   bottom: 0;
 }
-.menu-trigger span:nth-child(3)::after {
-  content: "Menu";/*3つ目の要素のafterにMenu表示を指定*/
-  position: absolute;
-  top: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #C53D43;
-  font-size: 1rem;
-  text-transform: uppercase;
-}
+
 .menu-trigger.active span:nth-child(1) {
   -webkit-transform: translateY(20px) rotate(-45deg);
   transform: translateY(20px) rotate(-45deg);
@@ -58,15 +49,7 @@
   transform: translateY(-20px) rotate(45deg);
   background-color: #fff;
 }
-.menu-trigger.active span:nth-child(3)::after {
-  content: "Close";/*3つ目の要素のafterにClose表示を指定*/
-  position: absolute;
-  transform: translateX(-50%) translateY(5px)  rotate(-45deg);
-  bottom: 0; /* 下部に配置 */
-  left: 50%;
-  color: #fff;
-  font-size: 1rem;
-}
+
 /* ------------------------ */
 /* ------ spメニュー ------ */
 /* ------------------------ */
@@ -105,4 +88,52 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 8; /* メニューよりも下、ハンバーガーアイコンよりも下に配置 */
+}
+
+.notification-icon {
+  position: relative;
+  display: inline-block;
+}
+
+/* 通知アイコンサイズ調整 */
+.menu-icon {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+/* 通知件数 */
+.notification-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(25%, -25%);
+  color: #594e52;
+  font-size: 12px;
+  background: #a59564;
+  border-radius: 10px;
+  padding: 0 5px;
+}
+
+/* ホバー時の通知件数 */
+.notification-count:hover {
+  color: #655DFC;
+}
+
+/* 円マーク */
+.n-circle {
+  position: absolute;
+  color: #efa04c;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  font-size: 20px; /* 円マークのフォントサイズ */
+}
+
+/* 円マークのホバー時 */
+.n-circle:hover {
+  color: #f4c986;
+}
+
+.menu-text {
+  padding-left: 10px;
 }

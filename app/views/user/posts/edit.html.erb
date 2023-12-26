@@ -50,29 +50,29 @@
         <div class="form-group row mt-3 justify-content-center">
           <!--キャンセルボタン-->
           <div class="col-2">
-            <%= link_to "戻る", request.referer || posts_path, class: "btn btn-secondary" %>
+            <%= link_to "戻る", request.referer || posts_path, class: "btn btn-outline-secondary" %>
           </div>
           <% if @post.draft? %>
           <!--下書き post の場合-->
             <div class="col-4">
-              <%= f.submit t('helpers.submit.post.publicized'), name: 'post[post_status]', value: 'publicized', class: 'btn btn-warning' %>
-              <%= f.submit t('helpers.submit.post.draft'), name: 'post[post_status]', value: 'draft', class: "btn btn-info" %>
+              <%= f.submit t('helpers.submit.post.publicized'), name: 'post[post_status]', value: 'publicized', class: 'btn btn-outline-warning' %>
+              <%= f.submit t('helpers.submit.post.draft'), name: 'post[post_status]', value: 'draft', class: "btn btn-outline-info" %>
             </div>
           <% elsif @post.unpublicized? %>
           <!--非公開 post の場合-->
             <div class="col-4">
-              <%= f.submit t('helpers.submit.post.publicized'), name: 'post[post_status]', value: 'publicized', class: 'btn btn-warning' %>
+              <%= f.submit t('helpers.submit.post.publicized'), name: 'post[post_status]', value: 'publicized', class: 'btn btn-outline-warning' %>
             </div>
           <% else %>
           <!--公開 post の場合-->
             <div class="col-4">
-              <%= f.submit t('helpers.submit.post.update'), name: 'post[post_status]', value: 'publicized', class: 'btn btn-warning' %>
-              <%= f.submit t('helpers.submit.post.unpublicized'), name: 'post[post_status]', value: 'unpublicized', class: 'btn btn-light' %>
+              <%= f.submit t('helpers.submit.post.update'), name: 'post[post_status]', value: 'publicized', class: 'btn btn-outline-warning' %>
+              <%= f.submit t('helpers.submit.post.unpublicized'), name: 'post[post_status]', value: 'unpublicized', class: 'btn btn-outline-light' %>
             </div>
           <% end %>
           <!--削除ボタン-->
           <div class="col-2">
-            <u><%= link_to "削除", post_path(@post), method: :delete, data: {confirm: "この投稿を削除しますか？"}, class:'btn btn-danger' %></u>
+            <u><%= link_to "削除", post_path(@post), method: :delete, data: {confirm: "この投稿を削除しますか？"}, class:'btn btn-outline-danger' %></u>
           </div>
         </div>
 

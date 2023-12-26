@@ -10,74 +10,80 @@
       <!--投稿ユーザー情報-->
       <div class="row justify-content-center">
         <div class="col-md-6">
-          <% if @user %>
+          <% if user_signed_in? && @user.present? %>
+            <!-- ログイン済みのユーザー（ゲストユーザー含む）の場合の処理 -->
             <span><%= image_tag @user.get_profile_image(50, 50) %></span>
             <span class="ml-5"><%= @user.name %></span>
+
+            <!--投稿フォーム-->
+            <%= form_with model: @post, url: posts_path, local: true do |f| %>
+              <!--本文入力-->
+              <div class="form-row justify-content-center">
+                <div class="form-group col-md-6 mt-5">
+                  <label for="content">本文</label>
+                  <%= f.text_field :content, autofocus: true, class: "form-control", style: "height: 100%;" %>
+                </div>
+              </div>
+
+              <!--画像選択-->
+              <div class="form-row justify-content-center">
+                <div class="form-group col-md-6 mt-5">
+                  <label for="image">添付画像</label>
+                  <%= f.file_field :image, accept: "image/*" %>
+                </div>
+              </div>
+
+              <!--後日余裕あれば画像プレビュー機能実装-->
+
+              <!--都道府県選択-->
+              <div class="form-row justify-content-center">
+                <div class="form-group col-md-6 mt-5">
+                  <label for="prefecture">都道府県</label>
+                  <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "選択してください" }, { class: "form-control" } %>
+                </div>
+              </div>
+
+              <!--タグ追加-->
+              <div class="form-row justify-content-center">
+                <div class="form-group col-md-6 mt-5">
+                  <label for="tag_list">タグを追加</label>
+                  <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control", data: { role: "tagsinput" } %>
+                </div>
+              </div>
+
+              <div class="form-row mt-3 justify-content-center">
+                <!--キャンセルボタン-->
+                <div class="col-auto">
+                  <%= link_to "戻る", request.referer || posts_path, class: "btn btn-md btn-secondary" %>
+                </div>
+                <!-- 下書き保存ボタン -->
+                <div class="col-auto">
+                  <%= f.hidden_field :post_status, value: 'draft' %>
+                  <%= f.submit Post.post_statuses_i18n[:draft], class: 'btn btn-md btn-info' %>
+                </div>
+                <!-- 非公開保存ボタン -->
+                <div class="col-auto">
+                  <%= f.hidden_field :post_status, value: 'unpublicized' %>
+                  <%= f.submit Post.post_statuses_i18n[:unpublicized], class: 'btn btn-md btn-warning' %>
+                </div>
+                <!-- 投稿するボタン -->
+                <div class="col-auto">
+                  <%= f.hidden_field :post_status, value: 'publicized' %>
+                  <%= f.submit Post.post_statuses_i18n[:publicized], class: 'btn btn-md btn-success' %>
+                </div>
+              </div>
+            <% end %>
           <% else %>
-            投稿を作成できません
+            <!-- ログインしていないユーザーの場合の処理 -->
+            <script type="text/javascript">
+              window.location.href = "<%= posts_path %>"; // 投稿一覧画面にリダイレクト
+            </script>
           <% end %>
         </div>
       </div>
 
-      <%= form_with model: @post, url: posts_path, local: true do |f| %>
 
-        <!--本文入力-->
-        <div class="form-row justify-content-center">
-          <div class="form-group col-md-6 mt-5">
-            <label for="content">本文</label>
-            <%= f.text_field :content, autofocus: true, class: "form-control", style: "height: 100%;" %>
-          </div>
-        </div>
 
-        <!--画像選択-->
-        <div class="form-row justify-content-center">
-          <div class="form-group col-md-6 mt-5">
-            <label for="image">添付画像</label>
-            <%= f.file_field :image, accept: "image/*" %>
-          </div>
-        </div>
-
-        <!--後日余裕あれば画像プレビュー機能実装-->
-
-        <!--都道府県選択-->
-        <div class="form-row justify-content-center">
-          <div class="form-group col-md-6 mt-5">
-            <label for="prefecture">都道府県</label>
-            <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "選択してください" }, { class: "form-control" } %>
-          </div>
-        </div>
-
-        <!--タグ追加-->
-        <div class="form-row justify-content-center">
-          <div class="form-group col-md-6 mt-5">
-            <label for="tag_list">タグを追加</label>
-            <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control", data: { role: "tagsinput" } %>
-          </div>
-        </div>
-
-        <div class="form-row mt-3 justify-content-center">
-          <!--キャンセルボタン-->
-          <div class="col-auto">
-            <%= link_to "戻る", request.referer || posts_path, class: "btn btn-md btn-secondary" %>
-          </div>
-          <!-- 下書き保存ボタン -->
-          <div class="col-auto">
-            <%= f.hidden_field :post_status, value: 'draft' %>
-            <%= f.submit Post.post_statuses_i18n[:draft], class: 'btn btn-md btn-info' %>
-          </div>
-          <!-- 非公開保存ボタン -->
-          <div class="col-auto">
-            <%= f.hidden_field :post_status, value: 'unpublicized' %>
-            <%= f.submit Post.post_statuses_i18n[:unpublicized], class: 'btn btn-md btn-warning' %>
-          </div>
-          <!-- 投稿するボタン -->
-          <div class="col-auto">
-            <%= f.hidden_field :post_status, value: 'publicized' %>
-            <%= f.submit Post.post_statuses_i18n[:publicized], class: 'btn btn-md btn-success' %>
-          </div>
-        </div>
-
-      <% end %>
 
     </div>
   </div>

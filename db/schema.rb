@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 2023_12_10_084435) do
     t.string "name", null: false
     t.text "introduction"
     t.boolean "is_active", default: true
+    t.boolean "guest", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

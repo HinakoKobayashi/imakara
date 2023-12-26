@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :name, presence: true
+  validates :password, presence: true, length: { minimum: 6 }
+
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -14,17 +17,26 @@ class User < ApplicationRecord
   has_one_attached :profile_image
 
   def get_profile_image(width, height)
-    unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    if profile_image.attached?
+      profile_image.variant(resize_to_limit: [width, height]).processed
+    else
+      ActionController::Base.helpers.asset_path('no_image.jpg')
     end
-    profile_image.variant(resize_to_limit: [width, height]).processed
+  #   unless profile_image.attached?
+  #     file_path = Rails.root.join('app/assets/images/no_image.jpg')
+  #     return nil unless File.exist?(file_path)
+  #     profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+  #   end
+  #   profile_image.variant(resize_to_limit: [width, height]).processed
+  # rescue => e
+  #   Rails.logger.error "Failed to process image: #{e.message}"
+  #   nil
   end
 
   GUEST_USER_EMAIL = "guest@example.com"
 
   # guestメソッド
-  def self.guest
+  def self.guest_user
     # データの検索と作成を自動的に判断して処理を行うRailsのメソッド
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       # ランダムな文字列を生成するRubyのメソッド

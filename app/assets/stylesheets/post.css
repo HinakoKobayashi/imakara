@@ -38,7 +38,7 @@
 /*post/indexのModal*/
 
 .modal-dialog {
-  max-width: 90%;
+  max-width: 900px;
   margin: auto;
   display: flex;
   justify-content: center;
@@ -61,7 +61,6 @@
 }
 
 .modal-content {
-  max-width: 70%; /* モーダルの最大幅を調整 */
   overflow: hidden; /* コンテンツがオーバーフローした場合に隠す */
   border-radius: 0.3rem; /* 角丸のスタイリング */
 }

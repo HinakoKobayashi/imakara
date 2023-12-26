@@ -91,8 +91,10 @@ class User::PostsController < ApplicationController
       "非公開にしました"
     when 'publicized'
       "投稿を公開しました"
-    else
+    when 'edit'
       "投稿内容を更新しました"
+    else
+      "不明なステータスです"
     end
   end
 

@@ -19,91 +19,90 @@
 
 		<!--サイト紹介-->
 		  <div id="about-section">
-			<div class="about-row about mt-4">
-			  <div class="about-title">
-			  	Matsuricationってなに？
-			  </div>
-			  <div class="about-text mt-3">
-			  	<span class="custom-line-height">
-			  	  「きれい」「かっこいい」「楽しい」
-			  	</span>
-			  	<span class="custom-line-height">
-			  		お祭りを見て感じることはさまざま。
-			  	</span>
-				<span class="custom-line-height">
-				  でも、目の前で起きていることの<br>
-				  意味を知る機会は案外少ないもの。
-				</span>
-				<span class="custom-line-height">
-					受け継いできた営みの意味や成り立ちを、<br>
-					もっと知りたい。知ってほしい。
-				</span>
-		        <span>
-		        	それを叶えるのがMatsuricationです。
-		        </span>
-			  </div>
-			</div>
+				<div class="about-row about mt-4">
+				  <div class="about-title">
+				  	Matsuricationってなに？
+				  </div>
+				  <div class="about-text mt-3">
+				  	<span class="custom-line-height">
+				  	  「きれい」「かっこいい」「楽しい」
+				  	</span>
+				  	<span class="custom-line-height">
+				  		お祭りを見て感じることはさまざま。
+				  	</span>
+					<span class="custom-line-height">
+					  でも、目の前で起きていることの<br>
+					  意味を知る機会は案外少ないもの。
+					</span>
+					<span class="custom-line-height">
+						受け継いできた営みの意味や成り立ちを、<br>
+						もっと知りたい。知ってほしい。
+					</span>
+			        <span>
+			        	それを叶えるのがMatsuricationです。
+			        </span>
+				  </div>
+				</div>
 
-
-	    <!--メニュー-->
-	    <div class="menu-row">
-	    	<%= link_to posts_path, class: "menu-block red" do %>
-		      <h3>みんなの投稿</h3>
-		      <p>お祭りの見どころや周辺情報をチェック！</p>
-		    <% end %>
-		    <%= link_to search_path, class: "menu-block brown" do %>
-		      <h3>検索</h3>
-		      <p>気になるワードで投稿を検索！</p>
-		    <% end %>
-		    <%= link_to users_path, class: "menu-block red" do %>
-		      <h3>Matsuriユーザー</h3>
-		      <p>日本全国にユーザーがいます！</p>
-		    <% end %>
+		    <!--メニュー-->
+		    <div class="menu-row">
+		    	<%= link_to posts_path, class: "menu-block red" do %>
+			      <h3>みんなの投稿</h3>
+			      <p>お祭りの見どころや周辺情報をチェック！</p>
+			    <% end %>
+			    <%= link_to search_path, class: "menu-block brown" do %>
+			      <h3>検索</h3>
+			      <p>気になるワードで投稿を検索！</p>
+			    <% end %>
+			    <%= link_to users_path, class: "menu-block red" do %>
+			      <h3>Matsuriユーザー</h3>
+			      <p>日本全国にユーザーがいます！</p>
+			    <% end %>
+			  </div>
+			  <div class="menu-row">
+			  	<% if user_signed_in? %>
+					  <%= link_to user_path(current_user), class: "menu-block brown" do %>
+					    <h3>マイページ</h3>
+					    <p>あなたのユーザー情報を確認・編集！</p>
+					  <% end %>
+					  <%= link_to notifications_path, class: "menu-block red" do %>
+					    <h3>通知</h3>
+					    <p>投稿への反応をチェック！</p>
+					  <% end %>
+					  <!-- Button trigger modal -->
+			      <button type="button" class="menu-block brown button_new" data-toggle="modal" data-target="#requestModal">
+			        <h3>リクエスト</h3>
+			        <p>お問い合わせはこちらへ！</p>
+			      </button>
+					<% else %>
+					  <%= link_to new_user_registration_path, class: "menu-block brown" do %>
+					    <h3 class="your-class">新規登録</h3>
+					    <p>ユーザー登録がお済みでない方はこちら</p>
+					  <% end %>
+					  <%= link_to new_user_session_path, class: "menu-block red" do %>
+					    <h3 class="your-class">ログイン</h3>
+					    <p>アカウントをお持ちの方はこちら</p>
+					  <% end %>
+					<% end %>
+		    </div>
 		  </div>
-		  <div class="menu-row">
-		  	<% if user_signed_in? %>
-				  <%= link_to user_path(current_user), class: "menu-block brown" do %>
-				    <h3>マイページ</h3>
-				    <p>あなたのユーザー情報を確認・編集！</p>
-				  <% end %>
-				  <%= link_to notifications_path, class: "menu-block red" do %>
-				    <h3>通知</h3>
-				    <p>投稿への反応をチェック！</p>
-				  <% end %>
-				  <!-- Button trigger modal -->
-		      <button type="button" class="menu-block brown button_new" data-toggle="modal" data-target="#requestModal">
-		        <h3>リクエスト</h3>
-		        <p>お問い合わせはこちらへ！</p>
-		      </button>
-				<% else %>
-				  <%= link_to new_user_registration_path, class: "menu-block brown" do %>
-				    <h3 class="your-class">新規登録</h3>
-				    <p>ユーザー登録がお済みでない方はこちら</p>
-				  <% end %>
-				  <%= link_to new_user_session_path, class: "menu-block red" do %>
-				    <h3 class="your-class">ログイン</h3>
-				    <p>アカウントをお持ちの方はこちら</p>
-				  <% end %>
-				<% end %>
-	    </div>
-	  </div>
-
-			<!-- Modal -->
-			<div class="modal fade" id="requestModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			  <div class="request-modal-dialog">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h3 class="modal-title" id="exampleModalLabel">リクエスト</h3>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">×</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			        <%= render "user/homes/modal_request_form", request: @request, user: @user %>
-			      </div>
-			    </div>
-			  </div>
-			</div>
 	  </div>
   </div>
 </div>
+
+<!-- Modal -->
+		<div class="modal fade" id="requestModal" tabindex="-1" aria-labelledby="requestModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-width">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h3 class="modal-title" id="requestModalLabel">リクエスト</h3>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">×</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <%= render "user/homes/modal_request_form", request: @request, user: @user %>
+		      </div>
+		    </div>
+		  </div>
+		</div>

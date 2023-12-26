@@ -15,8 +15,8 @@ class User::RequestsController < ApplicationController
       flash[:notice] = "リクエストを送信しました"
       redirect_to root_path
     else
-      flash.now[:alert] = "リクエストの送信に失敗しました"
-      render 'new'
+      flash[:alert] = "リクエストの送信に失敗しました"
+      redirect_to root_path
     end
   end
 

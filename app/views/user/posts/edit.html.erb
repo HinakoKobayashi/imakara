@@ -49,35 +49,52 @@
 
         <div class="form-group row mt-3 justify-content-center">
           <!--キャンセルボタン-->
-          <div class="col-2">
-            <%= link_to "戻る", request.referer || posts_path, class: "btn btn-outline-secondary" %>
+          <div class="col-auto">
+            <%= link_to "戻る", request.referer || posts_path, class: "btn btn-secondary" %>
           </div>
           <% if @post.draft? %>
-          <!--下書き post の場合-->
-            <div class="col-4">
-              <%= f.submit t('helpers.submit.post.publicized'), name: 'post[post_status]', value: 'publicized', class: 'btn btn-outline-warning' %>
-              <%= f.submit t('helpers.submit.post.draft'), name: 'post[post_status]', value: 'draft', class: "btn btn-outline-info" %>
+            <!-- 下書き post の場合 -->
+            <div class="col-auto">
+              <%= form_with model: @post, url: post_path(@post), local: true, method: :patch do |f| %>
+                <%= f.hidden_field :post_status, value: 'draft' %>
+                <%= f.submit Post.post_statuses_i18n[:edit], class: 'btn btn-md btn-info' %>
+              <% end %>
+            </div>
+            <div class="col-auto">
+              <%= form_with model: @post, url: post_path(@post), local: true, method: :patch do |f| %>
+                <%= f.hidden_field :post_status, value: 'publicized' %>
+                <%= f.submit Post.post_statuses_i18n[:publicized], class: 'btn btn-md btn-success' %>
+              <% end %>
             </div>
           <% elsif @post.unpublicized? %>
-          <!--非公開 post の場合-->
-            <div class="col-4">
-              <%= f.submit t('helpers.submit.post.publicized'), name: 'post[post_status]', value: 'publicized', class: 'btn btn-outline-warning' %>
+            <!-- 非公開 post の場合 -->
+            <div class="col-auto">
+              <%= form_with model: @post, url: post_path(@post), local: true, method: :patch do |f| %>
+                <%= f.hidden_field :post_status, value: 'publicized' %>
+                <%= f.submit Post.post_statuses_i18n[:publicized], class: 'btn btn-md btn-success' %>
+              <% end %>
             </div>
           <% else %>
-          <!--公開 post の場合-->
-            <div class="col-4">
-              <%= f.submit t('helpers.submit.post.update'), name: 'post[post_status]', value: 'publicized', class: 'btn btn-outline-warning' %>
-              <%= f.submit t('helpers.submit.post.unpublicized'), name: 'post[post_status]', value: 'unpublicized', class: 'btn btn-outline-light' %>
+            <!-- 公開 post の場合 -->
+            <div class="col-auto">
+              <%= form_with model: @post, url: post_path(@post), local: true, method: :patch do |f| %>
+                <%= f.hidden_field :post_status, value: 'unpublicized' %>
+                <%= f.submit Post.post_statuses_i18n[:unpublicized], class: 'btn btn-md btn-warning' %>
+              <% end %>
+            </div>
+            <div class="col-auto">
+              <%= form_with model: @post, url: post_path(@post), local: true, method: :patch do |f| %>
+                <%= f.hidden_field :post_status, value: 'publicized' %>
+                <%= f.submit Post.post_statuses_i18n[:edit], class: 'btn btn-md btn-success' %>
+              <% end %>
             </div>
           <% end %>
           <!--削除ボタン-->
-          <div class="col-2">
-            <u><%= link_to "削除", post_path(@post), method: :delete, data: {confirm: "この投稿を削除しますか？"}, class:'btn btn-outline-danger' %></u>
+          <div class="col-auto">
+            <u><%= link_to "削除", post_path(@post), method: :delete, data: {confirm: "この投稿を削除しますか？"}, class:'btn btn-danger' %></u>
           </div>
         </div>
-
       <% end %>
-
     </div>
   </div>
 </div>

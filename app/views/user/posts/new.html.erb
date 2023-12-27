@@ -59,11 +59,11 @@
                 <%= f.hidden_field :action_type, value: '', id: 'post_action_type' %>
                 <!-- 下書き保存ボタン -->
                 <div class="col-auto">
-                  <%= f.submit '下書き', id: 'draft_btn' %>
+                  <%= f.submit '下書き', id: 'draft_btn', class: 'btn btn-md btn-info' %>
                 </div>
                 <!-- 投稿するボタン -->
                 <div class="col-auto">
-                  <%= f.submit '公開', id: 'publicized_btn' %>
+                  <%= f.submit '公開', id: 'publicized_btn', class: 'btn btn-md btn-success' %>
                 </div>
                 <script>
                   document.getElementById('publicized_btn').addEventListener('click', function(event) {

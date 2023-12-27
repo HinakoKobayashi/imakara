@@ -18,7 +18,11 @@ class User < ApplicationRecord
 
   def get_profile_image(width, height)
     if profile_image.attached?
-      profile_image.variant(resize_to_limit: [width, height]).processed
+      begin
+        profile_image.variant(resize_to_limit: [width, height]).processed
+      rescue ActiveStorage::InvariableError
+        ActionController::Base.helpers.asset_path('fallback_default.jpg')
+      end
     else
       ActionController::Base.helpers.asset_path('no_image.jpg')
     end

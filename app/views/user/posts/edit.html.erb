@@ -83,10 +83,8 @@
               <% end %>
             </div>
             <div class="col-auto">
-              <%= form_with model: @post, url: post_path(@post), local: true, method: :patch do |f| %>
-                <%= f.hidden_field :post_status, value: 'publicized' %>
-                <%= f.submit Post.post_statuses_i18n[:edit], class: 'btn btn-md btn-success' %>
-              <% end %>
+              <%= f.hidden_field :post_status, value: 'publicized' %>
+              <%= f.submit '更新', class: 'btn btn-md btn-success' %>
             </div>
           <% end %>
           <!--削除ボタン-->

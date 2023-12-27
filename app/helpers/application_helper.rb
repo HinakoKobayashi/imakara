@@ -13,4 +13,8 @@ module ApplicationHelper
       flash_type.to_s
     end
     end
+
+    def admin_signed_in?
+      current_user.is_a?(Admin)
+    end
 end

@@ -21,7 +21,7 @@ class User < ApplicationRecord
       begin
         profile_image.variant(resize_to_limit: [width, height]).processed
       rescue ActiveStorage::InvariableError
-        ActionController::Base.helpers.asset_path('fallback_default.jpg')
+        ActionController::Base.helpers.asset_path('animal_mark_hiyoko.png')
       end
     else
       ActionController::Base.helpers.asset_path('no_image.jpg')

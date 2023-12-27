@@ -5,7 +5,7 @@
       <% if @notifications.any? %>
         <!--全通知既読用ボタン-->
         <div class="mb-3 text-right">
-          <%= link_to '全て既読にする', mark_all_as_read_notifications_path, method: :patch, class: 'btn btn-primary' %>
+          <%= link_to '全て既読にする', mark_all_as_read_notifications_path, method: :patch, class: 'btn btn-outline-primary' %>
         </div>
         <!--通知一覧-->
         <ul class="notification-list">

@@ -56,27 +56,23 @@
                 <div class="col-auto">
                   <%= link_to "戻る", request.referer || posts_path, class: "btn btn-md btn-secondary" %>
                 </div>
+                <%= f.hidden_field :action_type, value: '', id: 'post_action_type' %>
                 <!-- 下書き保存ボタン -->
                 <div class="col-auto">
-                  <%= form_with model: @post, url: posts_path, local: true do |f| %>
-                    <%= f.hidden_field :post_status, value: 'draft' %>
-                    <%= f.submit Post.post_statuses_i18n[:draft], class: 'btn btn-md btn-info' %>
-                  <% end %>
-                </div>
-                <!-- 非公開保存ボタン -->
-                <div class="col-auto">
-                  <%= form_with model: @post, url: posts_path, local: true do |f| %>
-                    <%= f.hidden_field :post_status, value: 'unpublicized' %>
-                    <%= f.submit Post.post_statuses_i18n[:unpublicized], class: 'btn btn-md btn-warning' %>
-                  <% end %>
+                  <%= f.submit '下書き', id: 'draft_btn' %>
                 </div>
                 <!-- 投稿するボタン -->
                 <div class="col-auto">
-                  <%= form_with model: @post, url: posts_path, local: true do |f| %>
-                    <%= f.hidden_field :post_status, value: 'publicized' %>
-                    <%= f.submit Post.post_statuses_i18n[:publicized], class: 'btn btn-md btn-success' %>
-                  <% end %>
+                  <%= f.submit '公開', id: 'publicized_btn' %>
                 </div>
+                <script>
+                  document.getElementById('publicized_btn').addEventListener('click', function(event) {
+                      document.getElementById('post_action_type').value = 'publicized';
+                  });
+                  document.getElementById('draft_btn').addEventListener('click', function(event) {
+                      document.getElementById('post_action_type').value = 'draft';
+                  });
+                </script>
               </div>
             <% end %>
           <% end %>

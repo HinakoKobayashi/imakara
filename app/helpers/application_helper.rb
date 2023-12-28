@@ -14,7 +14,7 @@ module ApplicationHelper
     end
     end
 
-    def admin_signed_in?
-      current_user.is_a?(Admin)
-    end
+    #def admin_signed_in?
+    #  current_user.is_a?(Admin)
+    #end
 end

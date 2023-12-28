@@ -12,7 +12,7 @@
       </div>
       <div class="action-buttons">
         <% if admin_signed_in? %>
-          <%= link_to "削除", admin_post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, class: "btn btn-sm btn-outline-danger", remote: true %>
+          <%= link_to "削除", admin_post_comment_path(post, comment), method: :delete, class: "btn btn-sm btn-outline-danger", remote: true %>
         <% elsif comment.user == current_user %>
           <%= link_to "削除", post_comment_path(post, comment), method: :delete, class: "btn btn-sm btn-outline-danger", remote: true %>
         <% end %>

@@ -21,12 +21,13 @@
     <%= yield %>
     <% if user_signed_in? %>
       <div class="button">
-      	<%= link_to new_post_path, class: 'btn' do %>
+      	<%= link_to new_post_path, class: 'btn', 'data-toggle': 'modal', 'data-target': '#newPostModal' do %>
           <span class="button-text">投稿</span>
           <i class="fa-solid fa-pen-to-square"></i>
         <% end %>
       </div>
     <% end %>
+    <%= render 'user/posts/new_post_modal', user: current_user, post: Post.new %>
     <%= render 'layouts/footer' %>
   </body>
 </html>

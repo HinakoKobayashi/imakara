@@ -1,0 +1,67 @@
+<!-- 新規投稿モーダル -->
+<div class="modal fade" id="newPostModal" tabindex="-1" aria-labelledby="newPostModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!--投稿フォーム-->
+      <%= form_with model: post, url: posts_path, local: true do |f| %>
+        <div class="modal-header">
+          <h5 class="modal-title" id="newPostModalLabel">新規投稿作成</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <%= render "user/shared/error_messages", resource: post %>
+
+        <div class="modal-body">
+          <!--投稿ユーザー情報-->
+          <% if user_signed_in? && user.present? %>
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                <div class="user-info mb-3">
+                  <span><%= image_tag user.get_profile_image(50, 50), class: "rounded-circle" %></span>
+                  <span class="ml-3"><%= user.name %></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="content">本文</label>
+                  <%= f.text_field :content, autofocus: true, class: "form-control" %>
+                </div>
+
+                <div class="form-group">
+                  <label for="image">添付画像</label>
+                  <%= f.file_field :image, accept: "image/*" %>
+                </div>
+
+                <div class="form-group">
+                  <label for="prefecture">都道府県</label>
+                  <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "選択してください" }, { class: "form-control" } %>
+                </div>
+
+                <div class="form-group">
+                  <label for="tag_list">タグを追加</label>
+                  <%= f.text_field :tag_list, value: post.tag_list.join(','), class: "form-control", data: { role: "tagsinput" } %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="modal-footer">
+          <%= link_to "戻る", request.referer || posts_path, class: "btn btn-secondary" %>
+          <%= f.submit '下書き', id: 'draft_btn', class: 'btn btn-info' %>
+          <%= f.submit '公開', id: 'publicized_btn', class: 'btn btn-success' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('publicized_btn').addEventListener('click', function(event) {
+      document.getElementById('post_action_type').value = 'publicized';
+  });
+  document.getElementById('draft_btn').addEventListener('click', function(event) {
+      document.getElementById('post_action_type').value = 'draft';
+  });
+</script>

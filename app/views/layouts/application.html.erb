@@ -21,7 +21,7 @@
     <%= yield %>
     <% if user_signed_in? %>
       <div class="button">
-      	<%= link_to new_post_path, class: 'btn', 'data-toggle': 'modal', 'data-target': '#newPostModal' do %>
+      	<%= link_to new_post_path, class: "btn", "data-toggle": "modal", "data-target": "#newPostModal" do %>
           <span class="button-text">投稿</span>
           <i class="fa-solid fa-pen-to-square"></i>
         <% end %>

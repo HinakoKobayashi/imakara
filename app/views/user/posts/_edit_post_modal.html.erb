@@ -1,0 +1,77 @@
+<!-- 投稿編集モーダル -->
+<div class="modal fade" id="editPostModal<%= post.id %>" tabindex="-1" aria-labelledby="editPostModal<%= post.id %>Label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- 編集フォーム -->
+      <%= form_with model: post, url: post_path(post), local: true, method: :patch do |f| %>
+        <div class="modal-header">
+          <h5 class="modal-title" id="editPostModal<%= post.id %>Label">投稿編集</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <%= render "user/shared/error_messages", resource: post %>
+
+        <div class="modal-body">
+          <!--編集ユーザー情報-->
+          <div class="user-info mb-3">
+            <%= image_tag user.get_profile_image(50, 50), class: "rounded-circle" %>
+            <span class="ml-3"><%= user.name %></span>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :content, "本文" %>
+            <%= f.text_field :content, autofocus: true, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :image, "添付画像" %>
+            <%= f.file_field :image, accept: "image/*", class: "form-control-file" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :prefecture_id, "都道府県" %>
+            <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "選択してください" }, { class: "form-control" } %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :tag_list, "タグを追加" %>
+            <%= f.text_field :tag_list, value: post.tag_list.join(','), class: "form-control", data: { role: "tagsinput" } %>
+          </div>
+        </div>
+
+        <div class="modal-footer justify-content-between">
+          <%= link_to "戻る", request.referer || posts_path, class: "btn btn-secondary" %>
+          <%= f.hidden_field :post_status, value: '', id: 'post_status_field' %>
+          <% if post.draft? %>
+            <%= f.submit '下書き保存', id: 'draft_save_btn', class: 'btn btn-info' %>
+            <%= f.submit '投稿', id: 'draft_to_public_btn', class: 'btn btn-success' %>
+          <% elsif post.unpublicized? %>
+            <%= f.submit '投稿', id: 'unpub_to_public_btn', class: 'btn btn-success' %>
+          <% else %>
+            <%= f.submit '非公開', id: 'public_to_unpub_btn', class: 'btn btn-warning' %>
+            <%= f.submit '更新', class: 'btn btn-success' %>
+          <% end %>
+          <%= link_to "削除", post_path(post), method: :delete, data: {confirm: "この投稿を削除しますか？"}, class: 'btn btn-danger' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  document.getElementById('draft_save_btn').addEventListener('click', function(event) {
+    document.getElementById('post_status_field').value = 'draft';
+  });
+  document.getElementById('draft_to_public_btn').addEventListener('click', function(event) {
+    document.getElementById('post_status_field').value = 'publicized';
+  });
+  document.getElementById('unpub_to_public_btn').addEventListener('click', function(event) {
+    document.getElementById('post_status_field').value = 'publicized';
+  });
+  document.getElementById('public_to_unpub_btn').addEventListener('click', function(event) {
+    document.getElementById('post_status_field').value = 'unpublicized';
+  });
+</script>

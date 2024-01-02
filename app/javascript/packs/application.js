@@ -21,3 +21,4 @@ import "./header.js";
 import "./user.js";
 import "./user_posts.js";
 import "./post_status.js";
+import "./tag.js";

@@ -50,16 +50,16 @@ class User::PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if params[:post][:action_type].present?
-      @post.post_status = params[:post][:action_type]
+      @post.post_status = params[:post][:post_action_type]
     end
-
 
     if @post.update(post_params)
       flash[:notice] = message_for_post_status(@post.post_status)
       redirect_to appropriate_redirect_path_for(@post)
     else
       flash.now[:alert] = "投稿の更新に失敗しました"
-      render 'edit'
+      # redirect_to post_path(@post)
+      # render partial: 'user/posts/edit_post_modal', locals: { post: @post , user: current_user }
     end
   end
 

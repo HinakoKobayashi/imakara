@@ -43,9 +43,9 @@ ja:
         request:
           attributes:
             title:
-              balnk: "タイトルを入力してください"
+              blank: "タイトルを入力してください"
             body:
-              balnk: "本文を入力してください"
+              blank: "本文を入力してください"
 
 
   date:

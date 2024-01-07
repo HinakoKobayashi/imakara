@@ -41,37 +41,17 @@
           </div>
         </div>
 
-        <div class="modal-footer justify-content-between">
-          <%= link_to "戻る", request.referer || posts_path, class: "btn btn-secondary" %>
-          <%= f.hidden_field :post_status, value: '', id: 'post_status_field' %>
-          <% if post.draft? %>
-            <%= f.submit '下書き保存', id: 'draft_save_btn', class: 'btn btn-info' %>
-            <%= f.submit '投稿', id: 'draft_to_public_btn', class: 'btn btn-success' %>
-          <% elsif post.unpublicized? %>
-            <%= f.submit '投稿', id: 'unpub_to_public_btn', class: 'btn btn-success' %>
-          <% else %>
-            <%= f.submit '非公開', id: 'public_to_unpub_btn', class: 'btn btn-warning' %>
-            <%= f.submit '更新', class: 'btn btn-success' %>
-          <% end %>
+        <div class="modal-footer">
           <%= link_to "削除", post_path(post), method: :delete, data: {confirm: "この投稿を削除しますか？"}, class: 'btn btn-danger' %>
+          <% if post.draft? %>
+            <%= f.submit "下書き保存", class: 'btn btn-info' %>
+            <%= f.submit "投稿", class: 'btn btn-success' %>
+          <% else %>
+            <%= f.submit "非公開", class: 'btn btn-info' %>
+            <%= f.submit "更新", class: 'btn btn-success' %>
+          <% end %>
         </div>
       <% end %>
     </div>
   </div>
 </div>
-
-
-<script>
-  document.getElementById('draft_save_btn').addEventListener('click', function(event) {
-    document.getElementById('post_status_field').value = 'draft';
-  });
-  document.getElementById('draft_to_public_btn').addEventListener('click', function(event) {
-    document.getElementById('post_status_field').value = 'publicized';
-  });
-  document.getElementById('unpub_to_public_btn').addEventListener('click', function(event) {
-    document.getElementById('post_status_field').value = 'publicized';
-  });
-  document.getElementById('public_to_unpub_btn').addEventListener('click', function(event) {
-    document.getElementById('post_status_field').value = 'unpublicized';
-  });
-</script>

@@ -48,20 +48,10 @@
         </div>
 
         <div class="modal-footer">
-          <%= link_to "戻る", request.referer || posts_path, class: "btn btn-secondary" %>
-          <%= f.submit '下書き', id: 'draft_btn', class: 'btn btn-info' %>
-          <%= f.submit '公開', id: 'publicized_btn', class: 'btn btn-success' %>
+          <%= f.submit "下書き保存", class: 'btn btn-info' %>
+          <%= f.submit "公開", class: 'btn btn-success' %>
         </div>
       <% end %>
     </div>
   </div>
 </div>
-
-<script>
-  document.getElementById('publicized_btn').addEventListener('click', function(event) {
-      document.getElementById('post_action_type').value = 'publicized';
-  });
-  document.getElementById('draft_btn').addEventListener('click', function(event) {
-      document.getElementById('post_action_type').value = 'draft';
-  });
-</script>

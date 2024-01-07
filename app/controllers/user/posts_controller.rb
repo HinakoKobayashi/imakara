@@ -3,7 +3,7 @@ class User::PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.where(post_status: :publicized).includes(:tags).order(created_at: :desc).page(params[:page]).per(12)
+    @posts = Post.where(post_status: :publicized).includes(:tags).order(created_at: :desc).page(params[:page]).per(2)
     @users = User.all
     @comment = Comment.new
   end
@@ -16,10 +16,15 @@ class User::PostsController < ApplicationController
   def create
     @user = guest_user? ? User.guest_user : current_user
     @post = @user.posts.build(post_params)
-
-    @post.post_status = params[:post][:action_type] if params[:post][:action_type].present?
+    # 投稿ステータスを commit の値で分類
+    if params[:commit] == "公開"
+      @post.post_status = 0
+    else
+      @post.post_status = 1
+    end
+    # フラッシュメッセージとリダイレクト先を指定(後述メソッド使用)
     if @post.save
-      flash[:notice] = message_for_post_status(@post.post_status)
+      flash[:notice] = message_for_post_status(params[:commit])
       redirect_to appropriate_redirect_path_for(@post)
     else
       flash.now[:alert] = "投稿の作成に失敗しました"
@@ -48,18 +53,19 @@ class User::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-
-    if params[:post][:action_type].present?
-      @post.post_status = params[:post][:post_action_type]
+    # 投稿ステータスを commit の値で分類
+    if params[:commit] == "投稿"
+      @post.post_status = 0
+    else
+      @post.post_status = 1
     end
-
+    # フラッシュメッセージとリダイレクト先を指定(後述メソッド使用)
     if @post.update(post_params)
-      flash[:notice] = message_for_post_status(@post.post_status)
+      flash[:notice] = message_for_post_status(params[:commit])
       redirect_to appropriate_redirect_path_for(@post)
     else
       flash.now[:alert] = "投稿の更新に失敗しました"
-      # redirect_to post_path(@post)
-      # render partial: 'user/posts/edit_post_modal', locals: { post: @post , user: current_user }
+       redirect_to user_path(current_user)
     end
   end
 
@@ -93,13 +99,15 @@ class User::PostsController < ApplicationController
   # 処理成功後のフラッシュメッセージ設定
   def message_for_post_status(status)
     case status
-    when 'draft'
+    when "下書き保存"
       "下書きを保存しました"
-    when 'unpublicized'
+    when "非公開"
       "非公開にしました"
-    when 'publicized'
+    when "公開"
       "投稿を公開しました"
-    when 'edit'
+    when "投稿"
+      "下書きを公開しました"
+    when "更新"
       "投稿内容を更新しました"
     else
       "不明なステータスです"
@@ -107,7 +115,7 @@ class User::PostsController < ApplicationController
   end
 
   # Postのステータスが publicized の場合にのみ posts_path にリダイレクト
-  # それ以外の場合（draft, unpublicized）には user_path(current_user) にリダイレクト
+  # それ以外の場合（draft）には user_path(current_user) にリダイレクト
   def appropriate_redirect_path_for(post)
     post.publicized? ? posts_path : user_path(current_user)
   end

@@ -81,7 +81,7 @@
   color:#333;
 }
 #post-lamp {
-  width:33.3%;
+  width:50%;
   height:2px;
   display:block;
   position:absolute;
@@ -90,10 +90,7 @@
   transition: all .3s ease-in;
 }
 #post-lamp.post-content2 {
-  left:33.3%;
-}
-#post-lamp.post-content3 {
-  left:66.6%;
+  left:50%;
 }
 #post-lamp.post-content1 {
   left:0;

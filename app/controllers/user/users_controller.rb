@@ -10,9 +10,8 @@ class User::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
-    @publicized_posts = @user.posts.publicized
+    @publicized_posts = @user.posts.publicized.order(created_at: :desc)
     @draft_posts = @user.posts.draft
-    @unpublicized_posts = @user.posts.unpublicized
     @favorite_posts = Post.includes(:user, :prefecture, :tags, :favorites, :comments).where(favorites: { user_id: @user.id })
   end
 
@@ -38,7 +37,7 @@ class User::UsersController < ApplicationController
     @user = current_user
     @user.update(is_active: false)
     sign_out(@user)
-    flash[:notice] = "退会が完了しました。"
+    flash[:notice] = "退会が完了しました"
     redirect_to root_path
   end
 

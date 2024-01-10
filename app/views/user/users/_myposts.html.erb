@@ -5,7 +5,6 @@
         <div class='post-tab-buttons'>
           <span class='post-content1 post-active'>投稿</span>
           <span class='post-content2'>下書き</span>
-          <span class='post-content3'>非公開</span>
           <div id='post-lamp' class='post-content1'></div>
         </div>
 
@@ -37,18 +36,6 @@
             <% end %>
           </div>
 
-          <!-- 非公開投稿 -->
-          <div class='post-content3' style="display: none;">
-            <% if unpublicized_posts.present? %>
-              <div class="row">
-                <%= render partial: 'user/posts/post', collection: unpublicized_posts, as: :post %>
-              </div>
-            <% else %>
-              <div class="col-md-4">
-                非公開の投稿がありません。
-              </div>
-            <% end %>
-          </div>
         </div>
       </div>
     </div>

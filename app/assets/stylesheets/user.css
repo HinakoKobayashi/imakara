@@ -62,7 +62,7 @@
   cursor:pointer;
   border-bottom:2px solid #93b881;
   display:block;
-  width:33.3%;
+  width:50%;
   float:left;
   text-align:center;
   height:40px;
@@ -89,11 +89,11 @@
   left: 0;
   transition: all .3s ease-in;
 }
-#post-lamp.post-content2 {
-  left:50%;
-}
 #post-lamp.post-content1 {
-  left:0;
+  left: 0;
+}
+#post-lamp.post-content2 {
+  left: 50%;
 }
 
 .post-tab-content .row {

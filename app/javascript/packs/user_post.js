@@ -1,4 +1,3 @@
-// これは廃棄
 document.addEventListener('turbolinks:load', function() {
   document.querySelectorAll('input[name="post_filter"]').forEach(function(filter) {
     filter.addEventListener('change', function() {

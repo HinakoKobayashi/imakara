@@ -1,5 +1,5 @@
 <!-- 投稿編集モーダル -->
-<div class="modal fade" id="editPostModal<%= post.id %>" tabindex="-1" aria-labelledby="editPostModal<%= post.id %>Label" aria-hidden="true">
+<div class="modal fade edit-modal" id="editPostModal<%= post.id %>" tabindex="-1" aria-labelledby="editPostModal<%= post.id %>Label" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <!-- 編集フォーム -->
@@ -42,7 +42,6 @@
         </div>
 
         <div class="modal-footer">
-          <%= link_to "削除", post_path(post), method: :delete, data: {confirm: "この投稿を削除しますか？"}, class: 'btn btn-danger' %>
           <% if post.draft? %>
             <%= f.submit "下書き保存", class: 'btn btn-info' %>
             <%= f.submit "投稿", class: 'btn btn-success' %>

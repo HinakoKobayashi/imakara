@@ -75,7 +75,7 @@
             <div class="row">
               <div class="col-md-12 d-flex justify-content-between">
                 <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger" %>
-                <%= link_to "編集", edit_post_path(post), class: "btn btn-outline-success ml-2", "data-toggle": "modal", "data-target": "#editPostModal#{post.id}" %>
+                <%= link_to "編集", edit_post_path(post), class: "btn btn-outline-success ml-2 edit-post-button", "data-toggle": "modal", "data-target": "#editPostModal#{post.id}" %>
                 <%= render 'user/posts/edit_post_modal', user: current_user, post: post %>
               </div>
             </div>
@@ -85,3 +85,18 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 編集ボタンにイベントリスナーを追加
+    document.querySelectorAll('.edit-post-button').forEach(function(button) {
+      button.addEventListener('click', function() {
+        var postId = this.dataset.postId;
+        $('#postModal' + postId).modal('hide'); // 詳細モーダルを閉じる
+        setTimeout(function() { // 少し遅延させてから編集モーダルを開く
+          $('#editPostModal' + postId).modal('show'); // 編集モーダルを開く
+        }, 500);
+      });
+    });
+  });
+</script>

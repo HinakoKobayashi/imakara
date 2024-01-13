@@ -72,6 +72,16 @@
   padding: 1rem; /* パディングの調整 */
 }
 
+.edit-modal .modal-dialog {
+  max-width: 900px; /* 詳細モーダルと同じ最大幅 */
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100% - 1rem); /* 画面の高さに合わせて調整 */
+}
+
+
 @media (max-width: 767px) {
   .card {
     height: auto; /* 小さいデバイスでは高さを自動に */

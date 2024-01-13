@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  enum post_status: { publicized: 0, draft: 1, unpublicized: 2 }
+  enum post_status: { publicized: 0, draft: 1 }
 
   validates :post_status, presence: true
 

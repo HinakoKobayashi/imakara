@@ -20,5 +20,4 @@ ActiveStorage.start()
 import "./header.js";
 import "./user.js";
 import "./user_post.js";
-import "./post_status.js";
 import "./tag.js";

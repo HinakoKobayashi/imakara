@@ -54,10 +54,10 @@ class User::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     # 投稿ステータスを commit の値で分類
-    if params[:commit] == "投稿"
-      @post.post_status = 0
+    if params[:commit] == "投稿" || params[:commit] == "更新"
+      @post.post_status = 'publicized'
     else
-      @post.post_status = 1
+      @post.post_status = 'draft'
     end
     # フラッシュメッセージとリダイレクト先を指定(後述メソッド使用)
     if @post.update(post_params)

@@ -3,7 +3,7 @@
     <div class="row">
       <div class='post-tabs mt-3'>
         <div class='post-tab-buttons'>
-          <span class='post-content1 post-active'>投稿</span>
+          <span class='post-content1 post-active'>公開中</span>
           <span class='post-content2'>下書き</span>
           <div id='post-lamp' class='post-content1'></div>
         </div>
@@ -50,12 +50,6 @@
 
 <% if draft_posts.present? %>
   <% draft_posts.each do |post| %>
-    <%= render 'user/posts/post_modal', post: post %>
-  <% end %>
-<% end %>
-
-<% if unpublicized_posts.present? %>
-  <% unpublicized_posts.each do |post| %>
     <%= render 'user/posts/post_modal', post: post %>
   <% end %>
 <% end %>

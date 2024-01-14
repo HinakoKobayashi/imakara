@@ -1,51 +1,50 @@
 ja:
-  enums:
-    post:
-      post_status:
-        draft: "下書き"
-        publicized: "公開"
-        unpublicized: "非公開"
-        edit: "更新"
-  views:
-    title:
-      request_title: "タイトル"
-      request_body: "リクエスト内容"
-    placeholder:
-      request_title: "リクエストタイトルを入力してください"
-      request_body: "リクエスト内容を入力してください"
   activerecord:
+    model:
+      user: ユーザー
+      post: 投稿
+      request: リクエスト
     attributes:
+      user:
+        email: メールアドレス
+        password: パスワード
+        name: ユーザー名
       post:
-        prefecture: "都道府県"
+        content: 本文
+        image: 画像
+        prefecture_id: 都道府県
+        tag_list: タグ
+      request:
+        title: タイトル
+        body: 本文
     errors:
+      format: "%{message}"
       messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: "%{record}が存在しているので削除できません"
-          has_many: "%{record}が存在しているので削除できません"
-      models:
-        user:
-          attributes:
-            email:
-              blank: "メールアドレスを入力してください"
-            password:
-              blank: "パスワードを入力してください"
-            name:
-              blank: "ユーザー名を入力してください"
-        post:
-          attributes:
-            content:
-              blank: "本文を入力してください"
-            prefecture:
-              blank: "都道府県を選択してください"
-            tag_id:
-              blank: "タグを追加してください"
-        request:
-          attributes:
-            title:
-              blank: "タイトルを入力してください"
-            body:
-              blank: "本文を入力してください"
+        accepted: を受諾してください
+        blank: を入力してください
+        confirmation: "パスワードとパスワード(確認用)の入力が一致しません"
+        equal_to: は%{count}にしてください
+        even: は偶数にしてください
+        exclusion: は予約されています
+        greater_than: は%{count}より大きい値にしてください
+        greater_than_or_equal_to: は%{count}以上の値にしてください
+        in: は%{count}の範囲に含めてください
+        inclusion: は一覧にありません
+        invalid: は不正な値です
+        less_than: は%{count}より小さい値にしてください
+        less_than_or_equal_to: は%{count}以下の値にしてください
+        model_invalid: 'バリデーションに失敗しました: %{errors}'
+        not_a_number: は数値で入力してください
+        not_an_integer: は整数で入力してください
+        odd: は奇数にしてください
+        other_than: は%{count}以外の値にしてください
+        present: "%{attribute}は入力しないでください"
+        record_invalid: "バリデーションに失敗しました"
+        required: "%{attribute}を入力してください"
+        taken: "入力されたメールアドレスはすでに存在します"
+        too_long: は%{count}文字以内で入力してください
+        too_short: "は%{count}文字以上で入力してください"
+        wrong_length: は%{count}文字で入力してください
 
 
   date:
@@ -123,33 +122,7 @@ ja:
       day: 日
       month: 月
       year: 年
-  errors:
-    format: "%{message}"
-    messages:
-      accepted: を受諾してください
-      confirmation: "パスワードとパスワード(確認用)の入力が一致しません"
-      empty: を入力してください
-      equal_to: は%{count}にしてください
-      even: は偶数にしてください
-      exclusion: は予約されています
-      greater_than: は%{count}より大きい値にしてください
-      greater_than_or_equal_to: は%{count}以上の値にしてください
-      in: は%{count}の範囲に含めてください
-      inclusion: は一覧にありません
-      invalid: は不正な値です
-      less_than: は%{count}より小さい値にしてください
-      less_than_or_equal_to: は%{count}以下の値にしてください
-      model_invalid: 'バリデーションに失敗しました: %{errors}'
-      not_a_number: は数値で入力してください
-      not_an_integer: は整数で入力してください
-      odd: は奇数にしてください
-      other_than: は%{count}以外の値にしてください
-      present: "%{attribute}は入力しないでください"
-      required: "%{attribute}を入力してください"
-      taken: "入力されたメールアドレスはすでに存在します"
-      too_long: は%{count}文字以内で入力してください
-      too_short: "%{attribute}は%{count}文字以上で入力してください"
-      wrong_length: は%{count}文字で入力してください
+
     template:
       body: 次の項目を確認してください
       header: "%{model}に%{count}個のエラーが発生しました"

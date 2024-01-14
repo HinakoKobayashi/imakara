@@ -13,7 +13,7 @@
   width:33.3%;
   float:left;
   text-align:center;
-  height:40px;
+  height:45px;
   line-height:40px;
 }
 .main-tab-buttons span.main-active {
@@ -60,7 +60,7 @@
   color:#333;
   background:#fffff9;
   cursor:pointer;
-  border-bottom:2px solid #93b881;
+  border-bottom:2px solid #7a9970;
   display:block;
   width:50%;
   float:left;
@@ -69,12 +69,12 @@
   line-height:40px;
 }
 .post-tab-buttons span.post-active {
-  background: #93b881; /* アクティブなタブの背景色を緑色に設定 */
+  background: #7a9970; /* アクティブなタブの背景色を緑色に設定 */
   color: #fff; /* アクティブなタブのテキスト色を白色に設定（必要に応じて） */
 }
 .post-tab-content {
   min-height: 700px;
-  border-bottom:3px solid #93b881;
+  border-bottom:3px solid #7a9970;
   padding:15px;
   background:#fffff9;
   display:block;

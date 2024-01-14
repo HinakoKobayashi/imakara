@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   # @post.skill_list などが使用可能になる
   acts_as_taggable_on :skills, :interests
 
-  belongs_to :user
+  belongs_to :user, optional: true
   # prefectureモデルに従属するが、例外的に空欄を許可
   belongs_to :prefecture, optional: true
 
@@ -24,6 +24,10 @@ class Post < ApplicationRecord
     validates :tag_list
     validates :prefecture_id
   end
+
+  # validates :content, presence: true
+  #validate :image
+  #validate :prefecture_id#, presence: true
 
   has_one_attached :image
 

@@ -16,8 +16,6 @@ class User::PostsController < ApplicationController
   def create
     @user = guest_user? ? User.guest_user : current_user
     @post = @user.posts.build(post_params)
-    #@post = Post.new(post_params)
-    #@post.user_id = @user.id
     # 投稿ステータスを commit の値で分類
     if params[:commit] == "公開"
       @post.post_status = 0
@@ -26,14 +24,13 @@ class User::PostsController < ApplicationController
       @post.post_status = 1
       context = ""
     end
-    #byebug
+
     # フラッシュメッセージとリダイレクト先を指定(後述メソッド使用)
     if @post.save(context: context)
       flash[:notice] = message_for_post_status(params[:commit])
       redirect_to appropriate_redirect_path_for(@post)
     else
       @posts = Post.where(post_status: :publicized).includes(:tags).order(created_at: :desc).page(params[:page]).per(2)
-      pp "@post----------------------------#{@post.errors.inspect}"
       render 'index'
     end
   end
@@ -100,7 +97,6 @@ class User::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:image, :prefecture_id, :tag_list, :content, :post_status)
-     #params.permit(:image, :prefecture_id, :tag_list, :content, :post_status)
   end
 
   # 処理成功後のフラッシュメッセージ設定

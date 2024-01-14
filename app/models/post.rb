@@ -25,10 +25,6 @@ class Post < ApplicationRecord
     validates :prefecture_id
   end
 
-  # validates :content, presence: true
-  #validate :image
-  #validate :prefecture_id#, presence: true
-
   has_one_attached :image
 
   def get_image(width, height)

@@ -6,6 +6,7 @@
       </div>
 
       <%= render "layouts/error_messages", obj: @post %>
+
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
         <% if @posts.present? %>
           <%= render partial: 'user/posts/post', collection: @posts %>

@@ -2,28 +2,32 @@
   <div class="row main-row">
     <div class="col-md-12 mx-auto">
       <div class="row title">
-        <h4 class="col-md-6 offset-3">新規ユーザー登録</h4>
+        <h4 class="col-md-6 mx-auto">新規ユーザー登録</h4>
       </div>
 
       <%= form_with model: @user, url: user_registration_path do |f| %>
-        <%= render "user/shared/error_messages", resource: @user %>
+      <div class="row">
+        <div class="col-md-6 col-10 mx-auto mx-auto">
+          <%= render "user/shared/error_messages", resource: @user %>
+        </div>
+      </div>
 
           <div class="form-row pt-4">
-            <div class="form-group col-md-6 offset-3">
+            <div class="form-group col-md-6 col-10 mx-auto">
               <label for="name">ユーザー名</label><br />
               <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control mt-2" %>
             </div>
           </div>
 
           <div class="form-row pt-4">
-            <div class="form-group col-6 offset-3">
+            <div class="form-group col-md-6 col-10 mx-auto">
               <label for="email">メールアドレス</label><br />
               <%= f.email_field :email, autocomplete: "email", class: "form-control mt-2" %>
             </div>
           </div>
 
           <div class="form-row pt-4">
-            <div class="form-group col-6 offset-3">
+            <div class="form-group col-md-6 col-10 mx-auto">
               <label for="password">パスワード</label>
               <% if @minimum_password_length %>
               <span>(英数字<%= @minimum_password_length %>文字以上)</span>
@@ -33,14 +37,14 @@
           </div>
 
           <div class="form-row pt-4">
-            <div class="form-group col-6 offset-3">
+            <div class="form-group col-md-6 col-10 mx-auto">
               <label for="password_confirmation">パスワード(確認用)</label><br />
               <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control mt-2" %>
             </div>
           </div>
 
           <div class="form-row pt-4">
-            <div class="actions form-group col-6 offset-3 justify-content:center; d-flex">
+            <div class="actions form-group col-md-6 col-10 mx-auto justify-content:center; d-flex">
               <%= f.submit "新規登録",class: "btn btn-primary d-grid gap-2 mx-auto m-3" %>
             </div>
           </div>
@@ -48,7 +52,7 @@
       <% end %>
 
       <div class="row mx-auto text-center">
-        <p class="col-6 offset-3">ユーザー登録がお済みの方は<br>
+        <p class="col-md-6 col-10 mx-auto">ユーザー登録がお済みの方は<br>
           <%= link_to "こちら", user_session_path %>からログインを行ってください
         </p>
       </div>

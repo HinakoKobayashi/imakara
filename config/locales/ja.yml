@@ -21,7 +21,7 @@ ja:
       format: "%{message}"
       messages:
         blank: を入力してください
-        confirmation: "パスワードとパスワード(確認用)の入力が一致しません"
+        confirmation: とパスワード(確認用)の入力が一致しません
         invalid: は不正な値です
         less_than: は%{count}より小さい値にしてください
         less_than_or_equal_to: は%{count}以下の値にしてください
@@ -31,7 +31,7 @@ ja:
         present: "%{attribute}は入力しないでください"
         record_invalid: "バリデーションに失敗しました"
         required: "%{attribute}を入力してください"
-        taken: "入力されたメールアドレスはすでに存在します"
+        taken: 入力されたメールアドレスはすでに存在します
         too_long: は%{count}文字以内で入力してください
         too_short: "は%{count}文字以上で入力してください"
         wrong_length: は%{count}文字で入力してください

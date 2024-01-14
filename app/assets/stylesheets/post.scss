@@ -28,7 +28,7 @@
   white-space: nowrap; /* 改行を無視する */
   overflow: hidden; /* コンテンツがオーバーフローした場合に隠す */
   text-overflow: ellipsis; /* オーバーフローしたテキストを省略記号で表示する */
-  color: #383838;
+  color: #543f32;
 }
 
 /*post/indexページcardのいいね・コメント数表示部分*/
@@ -40,13 +40,13 @@
 /*下線消去関連*/
 .user-link a, .user-link a:hover, .user-link a:active, .user-link a:visited {
     text-decoration: none;
-    color: #383838;
+    color: #543f32;
 }
 
 .prefecture-link a, .prefecture-link a:hover, .prefecture-link a:active, .prefecture-link a:visited,
 .tag-link a, .tag-link a:hover, .tag-link a:active, .tag-link a:visited {
     text-decoration: none;
-    color: #383838; /* またはデフォルトの色コードに設定 */
+    color: #543f32;
 }
 
 .text-muted, .text-muted * {

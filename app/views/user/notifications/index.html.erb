@@ -1,11 +1,12 @@
 <div class="notification-container">
   <div class="row main-row">
     <div class="col-12 mx-auto">
-      <h5>通知一覧</h5>
+      <h4>通知一覧</h4>
       <% if @notifications.any? %>
         <!--全通知既読用ボタン-->
         <div class="mb-3 text-right">
-          <%= link_to '全て既読にする', mark_all_as_read_notifications_path, method: :patch, class: 'btn btn-primary' %>
+          <%= link_to '全て既読にする', mark_all_as_read_notifications_path, method: :patch,
+              class: 'btn btn-outline-success' %>
         </div>
         <!--通知一覧-->
         <ul class="notification-list">
@@ -35,7 +36,7 @@
               <!--既読にするボタン-->
               <% if notification.unread? %>
                 <div class="notification-action">
-                  <%= link_to '既読にする', notification_path(notification), method: :patch, class: 'btn btn-secondary btn-sm' %>
+                  <%= link_to '既読にする', notification_path(notification), method: :patch, class: 'btn btn-outline-secondary btn-sm' %>
                 </div>
               <% else %>
                 <div class="notification-action hidden">

@@ -22,13 +22,13 @@ module NotificationsHelper
       case notification.notifiable_type
       when 'Comment'
         if user
-          link_to(user.name, user_path(user)) + "がコメントしました: \n\n #{notification.notifiable.comment}"
+          link_to(user.name, user_path(user), class: "notification-link") + "がコメントしました: \n\n #{notification.notifiable.comment}"
         else
           "未知のユーザーがコメントしました: #{notification.notifiable.comment}"
         end
       when 'Favorite'
         if user
-          link_to(user.name, user_path(user)) + "があなたの投稿をいいねしました"
+          link_to(user.name, user_path(user), class: "notification-link") + "があなたの投稿をいいねしました"
         else
           "未知のユーザーがあなたの投稿をいいねしました"
         end

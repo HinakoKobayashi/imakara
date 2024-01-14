@@ -6,7 +6,7 @@
       <% if @notifications.any? %>
         <div class="mb-3 text-right">
           <%= link_to '全て対応済みにする', mark_all_as_read_admin_notifications_path, method: :patch,
-              class: 'btn btn-primary' %>
+              class: 'btn btn-outline-success' %>
         </div>
         <!--通知一覧-->
         <ul class="notification-list">
@@ -26,7 +26,7 @@
               <% if notification.unread? %>
                 <div class="notification-action">
                   <%= link_to '対応済み', admin_notification_path(notification), method: :patch,
-                      class: 'btn btn-secondary btn-sm' %>
+                      class: 'btn btn-outline-secondary btn-sm' %>
                 </div>
               <% else %>
                 <div class="notification-action hidden">

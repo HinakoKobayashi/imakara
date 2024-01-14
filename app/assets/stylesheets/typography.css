@@ -26,9 +26,18 @@ footer {
 
 body {
   background-color: #F9F3E9 !important;
+  color: #543f32 !important;
   margin: 0;
   padding: 0;
   height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover, a:active, a:visited {
+  text-decoration: none;
 }
 
 

@@ -2,21 +2,21 @@
   <div class="row main-row">
     <div class="col-md-12 mx-auto">
       <div class="row title">
-        <h4 class="col-md-6 offset-3">ログイン</h4>
+        <h4 class="col-md-6">ログイン</h4>
       </div>
 
       <%= form_with model: User.new, url: user_session_path do |f| %>
         <%= render "user/shared/error_messages", resource: resource %>
 
         <div class="form-row pt-4">
-          <div class="form-group col-6 offset-3">
+          <div class="form-group col-md-6 col-10 mx-auto">
             <label for="email">メールアドレス</label><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mt-2" %>
           </div>
         </div>
 
         <div class="form-row pt-4">
-          <div class="form-group col-6 offset-3">
+          <div class="form-group col-md-6 col-10 mx-auto">
             <label for="password">パスワード</label>
             <%= f.password_field :password, autocomplete: "password", class: "form-control mt-2" %>
           </div>
@@ -24,7 +24,7 @@
 
 
         <div class="form-row pt-4">
-          <div class="form-group col-6 offset-3">
+          <div class="form-group col-md-6 col-10 mx-auto">
             <% if devise_mapping.rememberable? %>
               <div class="field">
                 <%= f.check_box :remember_me %>
@@ -35,14 +35,14 @@
         </div>
 
         <div class="form-row pt-4">
-          <div class="actions form-group col-6 offset-3 justify-content:center; d-flex">
+          <div class="actions form-group col-md-6 col-10 mx-auto justify-content:center; d-flex">
             <%= f.submit "ログイン",class: "btn btn-success d-grid gap-2 mx-auto m-3" %>
           </div>
         </div>
       <% end %>
 
       <div class="row mx-auto text-center">
-        <p class="col-6 offset-3">ユーザー登録がお済みでない方は<br>
+        <p class="col-md-6 col-10 mx-auto">ユーザー登録がお済みでない方は<br>
           <%= link_to "こちら", user_registration_path %>から新規登録を行ってください
         </p>
       </div>

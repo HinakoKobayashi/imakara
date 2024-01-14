@@ -47,8 +47,7 @@
 
 
 .notification-text {
-  color: #95949a;
-  text-decoration: none; /* 下線を消す */
+  text-decoration: none;
   margin-top: 8px;
   overflow: hidden;
   text-overflow: ellipsis; /* 長すぎるテキストを省略記号で表示 */
@@ -88,4 +87,5 @@
 }
 .notification-link, .notification-link:hover, .notification-link:active, .notification-link:visited {
   text-decoration: none;
+  color: #d69090;
 }

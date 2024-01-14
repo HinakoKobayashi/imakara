@@ -39,7 +39,7 @@
 }
 
 .btn-primary:hover {
-    background-color: #245a96; /* これは #2A6BB7 より少し暗い色です */
+    background-color: #245a96;
     border-color: #245a96;
     color: #fff;
 }
@@ -86,3 +86,13 @@
     color: #fff;
 }
 
+.btn-outline-success {
+    border-color: #92B880;
+    color: #7da364;
+}
+
+.btn-outline-success:hover {
+    border-color: #7da364;
+    color: #fff;
+    background-color: #7da364;
+}

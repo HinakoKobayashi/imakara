@@ -11,15 +11,17 @@
       <div class="modal-body">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-12 mx-auto">
+            <div class="col-md-12 mx-auto user-link">
               <!-- ユーザー情報 -->
               <div class="row mb-3">
-                <div class="col-md-2">
-                  <%= image_tag post.user.get_profile_image(50, 50), class: "rounded-circle mb-2" %>
-                </div>
-                <div class="col-md-10">
-                  <span><%= post.user.name %></span>
-                </div>
+                <%= link_to user_path(post.user) do %>
+                  <!--<div class="col-md-2">-->
+                    <%= image_tag post.user.get_profile_image(50, 50), class: "rounded-circle mb-2" %>
+                  <!--</div>-->
+                  <!--<div class="col-md-10">-->
+                    <span><%= post.user.name %></span>
+                  <!--</div>-->
+                <% end %>
               </div>
               <!-- 投稿内容 -->
               <div class="row mb-2">
@@ -74,29 +76,14 @@
           <% if post.user == current_user %>
             <div class="row">
               <div class="col-md-12 d-flex justify-content-between">
-                <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger" %>
-                <%= link_to "編集", edit_post_path(post), class: "btn btn-outline-success ml-2 edit-post-button", "data-toggle": "modal", "data-target": "#editPostModal#{post.id}" %>
+                <%= link_to "削除", post_path(post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+                <%= link_to "編集", edit_post_path(post), class: "btn btn-success ml-2 edit-post-button", "data-toggle": "modal", "data-target": "#editPostModal#{post.id}" %>
                 <%= render 'user/posts/edit_post_modal', user: current_user, post: post %>
               </div>
             </div>
           <% end %>
         </div>
-      </div>"
+      </div>
     </div>
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // 編集ボタンにイベントリスナーを追加
-    document.querySelectorAll('.edit-post-button').forEach(function(button) {
-      button.addEventListener('click', function() {
-        var postId = this.dataset.postId;
-        $('#postModal' + postId).modal('hide'); // 詳細モーダルを閉じる
-        setTimeout(function() { // 少し遅延させてから編集モーダルを開く
-          $('#editPostModal' + postId).modal('show'); // 編集モーダルを開く
-        }, 500);
-      });
-    });
-  });
-</script>

@@ -1,6 +1,6 @@
 <div class="col-md-4 mb-4">
   <div class="card square-card">
-    <div class="card-header">
+    <div class="card-header user-link">
       <!-- ユーザー情報 -->
       <%= link_to user_path(post.user) do %>
         <%= image_tag post.user.get_profile_image(50,50), class: "rounded-circle", style: "width: 50px; height: 50px;" %>
@@ -13,13 +13,13 @@
       <p class="card-text"><%= post.content %></p>
       <!-- 都道府県 -->
       <% if post.prefecture %>
-        <p>
+        <p class="prefecture-link">
           <i class="fa-solid fa-location-dot"></i>
           <%= link_to post.prefecture.name, search_path(keyword: post.prefecture.name) %>
         </p>
       <% end %>
       <!-- タグ -->
-      <p><%= render "user/posts/tag", post: post %></p>
+      <p class="tag-link"><%= render "user/posts/tag", post: post %></p>
     </div>
 
     <div class="card-footer d-flex justify-content-between align-items-center">

@@ -23,7 +23,6 @@ $light: #F8F9FA;
 $dark: #41474A;
 
 @import 'typography';
-@import 'custom';
 @import 'header';
 @import 'post';
 @import 'user';
@@ -31,3 +30,4 @@ $dark: #41474A;
 @import 'notifications';
 @import 'requests';
 @import 'pages';
+@import 'btn';

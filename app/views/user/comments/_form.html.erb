@@ -3,7 +3,7 @@
     <%= form_with model: [post, comment || Comment.new], local: false do |f| %>
       <%= f.text_area :comment, rows: '5', placeholder: "コメントを送る", class: "w-100 comment_textarea_#{post.id}" %>
       <div class="d-flex justify-content-end mt-2 mb-2">
-        <%= f.submit "送信", class: "btn btn-outline-primary" %>
+        <%= f.submit "送信", class: "btn btn-primary" %>
       </div>
     <% end %>
   <% else %>

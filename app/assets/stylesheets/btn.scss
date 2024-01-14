@@ -1,0 +1,88 @@
+.btn-primary {
+    background-color: #2A6BB7;
+    border-color: #2A6BB7;
+}
+
+.btn-secondary {
+    background-color: #6C757D;
+    border-color: #6C757D;
+}
+
+.btn-success {
+    background-color: #92B880;
+    border-color: #92B880;
+}
+
+.btn-danger {
+    background-color: #B1373C;
+    border-color: #B1373C;
+}
+
+.btn-warning {
+    background-color: #FFDB4F;
+    border-color: #FFDB4F;
+}
+
+.btn-info {
+    background-color: #83D4E4;
+    border-color: #83D4E4;
+}
+
+.btn-light {
+    background-color: #F8F9FA;
+    border-color: #F8F9FA;
+}
+
+.btn-dark {
+    background-color: #41474A;
+    border-color: #41474A;
+}
+
+.btn-primary:hover {
+    background-color: #245a96; /* これは #2A6BB7 より少し暗い色です */
+    border-color: #245a96;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #545c64;
+    border-color: #545c64;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #7da364;
+    border-color: #7da364;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #9f2f34;
+    border-color: #9f2f34;
+    color: #fff;
+}
+
+.btn-warning:hover {
+    background-color: #e6c44d;
+    border-color: #e6c44d;
+    color: #333;
+}
+
+.btn-info:hover {
+    background-color: #71bccf;
+    border-color: #71bccf;
+    color: #fff;
+}
+
+.btn-light:hover {
+    background-color: #e2e6ea;
+    border-color: #e2e6ea;
+    color: #333;
+}
+
+.btn-dark:hover {
+    background-color: #353a3f;
+    border-color: #353a3f;
+    color: #fff;
+}
+

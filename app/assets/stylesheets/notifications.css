@@ -86,3 +86,6 @@
 .notification-action.hidden {
   visibility: hidden; /* ボタンが消えてもスペースを維持 */
 }
+.notification-link, .notification-link:hover, .notification-link:active, .notification-link:visited {
+  text-decoration: none;
+}

@@ -1,7 +1,7 @@
 <% if post.tags.present? %>
-  <div class="d-flex flex-wrap">
+  <div class="d-flex flex-wrap tag-link">
     <% post.tags.each do |tag| %>
-    	<span class="badge mr-2 mb-2" style="text-decoration: none;">
+    	<span class="badge mr-2 mb-2">
     	  <i class="fa-solid fa-tag" style="color: #a988bf;"></i> <%= link_to "#{tag.name}(#{tag.taggings_count})", search_path(keyword: tag.name, search_type: 'tag') %>
     	</span>
     <% end %>

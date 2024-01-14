@@ -1,7 +1,0 @@
-<% if post.persisted? %>
-  <%= f.submit '下書き保存', id: 'draftButton', name: 'draft', class: "draft-btn d-none" %> <!-- 初期状態では非表示 -->
-  <%= f.submit '公開する', id: 'publishButton', name: 'published', class: "submit-btn" %> <!-- 初期状態では表示 -->
-<% else %>
-  <%= f.submit '下書き保存', id: 'draftButton', name: 'draft', class: "draft-btn d-none" %> <!-- 初期状態では非表示 -->
-  <%= f.submit '公開する', id: 'postButton', name: 'post', class: "submit-btn" %> <!-- 初期状態では表示 -->
-<% end %>

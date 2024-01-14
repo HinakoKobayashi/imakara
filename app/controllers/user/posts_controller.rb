@@ -27,7 +27,6 @@ class User::PostsController < ApplicationController
       flash[:notice] = message_for_post_status(params[:commit])
       redirect_to appropriate_redirect_path_for(@post)
     else
-      flash.now[:alert] = "投稿の作成に失敗しました"
       render :new
     end
   end

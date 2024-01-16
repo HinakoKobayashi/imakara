@@ -19,7 +19,7 @@ class Post < ApplicationRecord
 
   # 下書きの際は条件を満たしていなくても保存できるようにバリデーション設定
   with_options presence: true, on: :publicized do
-    validates :content, length: { maximum: 400 }
+    validates :content, length: { maximum: 1400 }
     validates :image
     validates :tag_list
     validates :prefecture_id

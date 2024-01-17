@@ -41,8 +41,14 @@ class User < ApplicationRecord
     end
   end
 
+  # guestユーザーか確認
   def guest_user?
     email == GUEST_USER_EMAIL
+  end
+
+  # ユーザーがよく使うタグを収集
+  def frequently_used_tags
+    posts.joins(:tags).group('tags.name').order('count_tags_id DESC').count('tags.id')
   end
 
 end

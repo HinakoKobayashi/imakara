@@ -2,29 +2,35 @@
   <div class="col-md-12 text-center" style="margin-top: 20px;">
     <div class="mt-3"><%= image_tag user.get_profile_image(200, 200), class: "img-fluid rounded-circle" %></div>
     <h3 class="mt-3"><%= user.name %></h3>
-    <p><%= user.introduction %></p>
   </div>
 </div>
 
 <div class="row mt-4">
-  <div class="col-md-6 mx-auto">
-    <table class="table table-bordered">
+  <div class="col-md-8 mx-auto">
+    <table class="table table-bordered mx-auto" style="table-layout: fixed; width: 100%;">
       <tbody>
         <tr>
-          <th>ユーザー名</th>
-          <td><%= user.name %></td>
-        </tr>
-        <tr>
-          <th>自己紹介</th>
+          <th style="width: 25%;">自己紹介</th>
           <td><%= user.introduction %></td>
         </tr>
         <tr>
-          <th>メールアドレス</th>
+          <th style="width: 25%;">よく使うタグ</th>
+          <td class="d-flex flex-wrap tag-link">
+            <% @frequently_used_tags.each do |tag_name, count| %>
+              <span class="badge mr-2 mb-2">
+                <i class="fa-solid fa-tag" style="color: #a988bf;"></i>
+                <%= link_to "#{tag_name}(#{count})", search_path(keyword: tag_name, user_id: user.id, search_type: 'tag') %>
+              </span>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th style="width: 25%;">メールアドレス</th>
           <td><%= user.email %></td>
         </tr>
         <% if admin_signed_in? %>
           <tr>
-            <th>ステータス</th>
+            <th style="width: 25%;">ステータス</th>
             <td>
               <% if user.is_active == true %>
                 <span style="color: #1a8066;">有効</span>

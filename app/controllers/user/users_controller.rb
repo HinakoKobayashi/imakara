@@ -9,6 +9,7 @@ class User::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @frequently_used_tags = @user.frequently_used_tags
     @posts = @user.posts
     @publicized_posts = @user.posts.publicized.order(created_at: :desc)
     @draft_posts = @user.posts.draft

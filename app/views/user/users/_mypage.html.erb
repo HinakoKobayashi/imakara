@@ -14,13 +14,17 @@
           <td><%= user.introduction %></td>
         </tr>
         <tr>
-          <th style="width: 25%;">よく使うタグ</th>
+          <th style="width: 25%;">使用タグ</th>
           <td class="d-flex flex-wrap tag-link">
-            <% @frequently_used_tags.each do |tag_name, count| %>
-              <span class="badge mr-2 mb-2">
-                <i class="fa-solid fa-tag" style="color: #a988bf;"></i>
-                <%= link_to "#{tag_name}(#{count})", search_path(keyword: tag_name, user_id: user.id, search_type: 'tag') %>
-              </span>
+            <% if @frequently_used_tags.any? %>
+              <% @frequently_used_tags.each do |tag_name, count| %>
+                <span class="badge mr-2 mb-2">
+                  <i class="fa-solid fa-tag" style="color: #a988bf;"></i>
+                  <%= link_to "#{tag_name}(#{count})", search_path(keyword: tag_name, search_type: 'tag') %>
+                </span>
+              <% end %>
+            <% else %>
+              <span>使用しているタグはありません</span>
             <% end %>
           </td>
         </tr>

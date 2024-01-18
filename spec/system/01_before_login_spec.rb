@@ -2,15 +2,19 @@ require 'rails_helper'
 
 describe '[STEP1] ユーザログイン前のテスト' do
   describe 'トップ画面のテスト' do
+    # テスト開始前にroot_pathを開いておく
     before do
       visit root_path
     end
 
+    # root_pathの表示内容のテスト
     context '表示内容の確認' do
       it 'URLが正しい' do
         expect(current_path).to eq '/'
       end
-      it 'Log inリンクが表示される: 青色のボタンの表示が「Log in」である' do
+      it 'ログインボタンがある' do
+        # top ページにある aタグを全て取得し、配列を確認
+        # find_allメソッド要検索
         log_in_link = find_all('a')[5].native.inner_text
         expect(log_in_link).to match(/Log in/)
       end
@@ -68,7 +72,7 @@ describe '[STEP1] ユーザログイン前のテスト' do
         expect(login_link).to match(/Log in/)
       end
     end
-
+    # 優先↓
     context 'リンクの内容を確認' do
       subject { current_path }
       
@@ -135,7 +139,7 @@ describe '[STEP1] ユーザログイン前のテスト' do
         expect(page).to have_button 'Sign up'
       end
     end
-
+    
     context '新規登録成功のテスト' do
       before do
         fill_in 'user[name]', with: Faker::Lorem.characters(number: 10)
@@ -143,10 +147,11 @@ describe '[STEP1] ユーザログイン前のテスト' do
         fill_in 'user[password]', with: 'password'
         fill_in 'user[password_confirmation]', with: 'password'
       end
-
+      # ユーザー数の増減が正しく反映されるか
       it '正しく新規登録される' do
         expect { click_button 'Sign up' }.to change(User.all, :count).by(1)
       end
+      # 画面遷移が正しくできているか
       it '新規登録後のリダイレクト先が、新規登録できたユーザの詳細画面になっている' do
         click_button 'Sign up'
         expect(current_path).to eq '/users/' + User.last.id.to_s
@@ -217,7 +222,7 @@ describe '[STEP1] ユーザログイン前のテスト' do
       click_button 'Log in'
     end
 
-    context 'ヘッダーの表示を確認' do
+    context 'ハンバーガーの表示を確認' do
       it 'Bookersリンクが表示される: 左上から1番目のリンクが「Bookers」である' do
         home_link = find_all('a')[0].native.inner_text
         expect(home_link).to match(/Bookers/)

@@ -113,6 +113,18 @@
 }
 
 
+/*ユーザー情報テーブルborder*/
+.badge {
+  border: 1px solid transparent; /* ボーダーを透明にする */
+}
+
+.table-bordered .badge {
+  border: none; /* ボーダーを削除 */
+}
+
+.table-bordered th, .table-bordered td {
+  border-width: 1px; /* ボーダーの太さを統一する */
+}
 
 @media (max-width: 768px) {
   .tab-content {

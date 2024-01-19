@@ -13,7 +13,7 @@
           <!-- 公開済み投稿 -->
           <div class='post-content1'>
             <% if publicized_posts.present? %>
-              <div class="row">
+              <div class="row pt-3">
                 <%= render partial: 'user/posts/post', collection: publicized_posts, as: :post %>
               </div>
             <% else %>
@@ -26,7 +26,7 @@
           <!-- 下書き投稿 -->
           <div class='post-content2' style="display: none;">
             <% if draft_posts.present? %>
-              <div class="row">
+              <div class="row pt-3">
                 <%= render partial: 'user/posts/post', collection: draft_posts, as: :post %>
               </div>
             <% else %>

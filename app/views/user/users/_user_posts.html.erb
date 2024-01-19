@@ -1,8 +1,12 @@
 <div class="row main-row">
   <div class="col-12 mx-auto">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
-      <%= render partial: 'user/posts/post', collection: posts, as: :post %>
-    </div>
+    <% if posts.any? %>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 pt-3">
+        <%= render partial: 'user/posts/post', collection: posts, as: :post %>
+      </div>
+    <% else %>
+      <p class="text-center">投稿はありません</p>
+    <% end %>
   </div>
 </div>
 <% posts.each do |post| %>

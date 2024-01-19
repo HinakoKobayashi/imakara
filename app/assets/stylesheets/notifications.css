@@ -39,7 +39,6 @@
 
 .notification-content {
   flex-grow: 1;
-  color: black; /* 文字色を黒に */
   word-wrap: break-word; /* 長い単語でも折り返す */
   max-width: 70%;
   margin-right: 20px;

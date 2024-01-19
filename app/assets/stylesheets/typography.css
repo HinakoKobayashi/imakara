@@ -55,14 +55,14 @@ tr {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px; /* 幅 */
-  height: 100px; /* 高さ */
-  color: white; /* 文字色 */
-  font-size: 18px; /* 文字サイズ */
-  background-color: #C53D43; /* 背景色、必要に応じて調整 */
+  width: 100px;
+  height: 100px;
+  color: white;
+  font-size: 18px;
+  background-color: #C53D43;
   border-radius: 50%; /* 正円にする */
-  text-decoration: none; /* 下線を消す */
-  position: fixed; /* 固定位置 */
+  text-decoration: none;
+  position: fixed;
   right: 30px; /* 右から20pxの位置に */
   bottom: 30px; /* 下から20pxの位置に */
 }
@@ -102,6 +102,14 @@ tr {
   transform: scale(1, 1);
 }
 
+.custom-height {
+  min-height: 100px; /* 初期の高さ */
+  height: auto;
+  overflow-y: hidden; /* 縦方向のスクロールバーを隠す */
+  vertical-align: top;
+}
+
+
 @media (max-width: 768px) {
   .button-text {
     display: none; /* スマホのビューポートでテキストを非表示にする */
@@ -110,5 +118,27 @@ tr {
   .button a {
     width: 50px; /* スマホ用の幅 */
     height: 50px; /* スマホ用の高さ */
+  }
+}
+
+/*新規投稿画面ボタン幅固定*/
+@media (min-width: 992px) { /* 大画面デバイス向け */
+  .responsive-btn {
+    width: 32%; /* 3つのボタンが等間隔になるように設定 */
+    margin: 0 1%; /* 左右のマージン */
+  }
+}
+
+@media (max-width: 991px) { /* タブレットサイズ向け */
+  .responsive-btn {
+    width: 32%;
+    margin: 0 1%; /* 左右のマージン */
+  }
+}
+
+@media (max-width: 767px) { /* スマートフォンサイズ向け */
+  .responsive-btn {
+    width: 32%; /* 1つのボタンが全幅を占めるように設定 */
+    margin: 10px 0; /* 上下のマージン */
   }
 }

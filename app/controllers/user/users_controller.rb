@@ -4,7 +4,7 @@ class User::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def index
-    @users = User.page(params[:page]).per(10)
+    @users = User.where.not(name: 'guestuser').page(params[:page]).per(10)
   end
 
   def show

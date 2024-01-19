@@ -1,5 +1,5 @@
 <%= form_with url: search_path, method: :get, class: "search_container" do |f| %>
-  <%= f.text_field :keyword, placeholder: "キーワード検索", class: "input_text" %>
+  <%= f.text_field :keyword, placeholder: " キーワード検索", class: "input_text" %>
   <%= f.hidden_field :search_type, value: 'keyword' %>
   <%= button_tag(type: 'submit', class: "input_submit") do %>
     <i class="fa-solid fa-magnifying-glass"></i>

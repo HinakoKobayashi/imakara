@@ -2,7 +2,8 @@
 .card {
   display: flex;
   flex-direction: column;
-  height: 300px; /* カードの高さを固定 */
+  height: 300px;
+  max-width: 100%;
 }
 
 /*cardを正方形にする*/
@@ -120,6 +121,9 @@
     padding: .5rem 1rem; /* ボタンの内側の余白を調整 */
     font-size: 1rem; /* ボタンのフォントサイズを調整 */
   }
+  .modal-dialog {
+    width: auto; /* 幅を自動に設定 */
+  }
 }
 
 /* 小さなデバイス用のスタイル */
@@ -151,24 +155,3 @@
   }
 }
 
-/*新規投稿画面ボタン幅固定*/
-@media (min-width: 992px) { /* 大画面デバイス向け */
-  .responsive-btn {
-    width: 32%; /* 3つのボタンが等間隔になるように設定 */
-    margin: 0 1%; /* 左右のマージン */
-  }
-}
-
-@media (max-width: 991px) { /* タブレットサイズ向け */
-  .responsive-btn {
-    width: 32%;
-    margin: 0 1%; /* 左右のマージン */
-  }
-}
-
-@media (max-width: 767px) { /* スマートフォンサイズ向け */
-  .responsive-btn {
-    width: 32%; /* 1つのボタンが全幅を占めるように設定 */
-    margin: 10px 0; /* 上下のマージン */
-  }
-}

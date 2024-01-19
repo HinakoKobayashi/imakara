@@ -1,3 +1,16 @@
+/*ユーザー詳細ページでのプロフィール画像サイズ*/
+.img-profile {
+  width: 200px;
+  height: 200px;
+  object-fit: cover; /* 画像の比率を保ちつつ、領域に合わせてトリミング */
+}
+/*ユーザー一覧ページでのプロフィール画像サイズ*/
+.img-profile-index {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+/*ユーザー詳細ページタブメニュー*/
 .main-tabs {
   width:100%;
   margin:10px auto;
@@ -5,7 +18,6 @@
 }
 .main-tab-buttons span {
   flex: 1;
-  color:#333;
   background:#fffff9;
   cursor:pointer;
   border-bottom:2px solid #93b881;
@@ -16,16 +28,16 @@
   height:45px;
   line-height:40px;
 }
+/* アクティブなタブの背景色・文字色設定 */
 .main-tab-buttons span.main-active {
-  background: #93b881; /* アクティブなタブの背景色を緑色に設定 */
-  color: #fff; /* アクティブなタブのテキスト色を白色に設定（必要に応じて） */
+  background: #93b881;
+  color: #fff;
 }
 .main-tab-content {
   min-height: 700px;
   padding:15px;
   background:#fffff9;
   display:block;
-  color:#333;
 }
 #lamp {
   width:33.3%;
@@ -46,6 +58,7 @@
   left:0;
 }
 
+/*ユーザー詳細ページ投稿タブメニュー*/
 .posts-section {
   margin-bottom: 20px;
 }
@@ -57,7 +70,6 @@
 }
 .post-tab-buttons span {
   flex: 1;
-  color:#333;
   background:#fffff9;
   cursor:pointer;
   border-bottom:2px solid #7a9970;
@@ -78,7 +90,6 @@
   padding:15px;
   background:#fffff9;
   display:block;
-  color:#333;
 }
 #post-lamp {
   width:50%;
@@ -106,6 +117,15 @@
   max-width: 100%;
 }
 
+/*テーブル設定*/
+.table {
+  color: #543f32 !important;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
 /* admin 側ユーザー一覧 */
 .table.table-hover td.table-cell-middle,
 .table.table-hover th.table-cell-middle {
@@ -115,15 +135,15 @@
 
 /*ユーザー情報テーブルborder*/
 .badge {
-  border: 1px solid transparent; /* ボーダーを透明にする */
+  border: 1px solid transparent;
 }
 
 .table-bordered .badge {
-  border: none; /* ボーダーを削除 */
+  /*border: none;*/
 }
 
 .table-bordered th, .table-bordered td {
-  border-width: 1px; /* ボーダーの太さを統一する */
+  /*border-width: 1px; */
 }
 
 @media (max-width: 768px) {

@@ -2,7 +2,7 @@
   <div class="row main-row">
     <div class="col-md-12 mx-auto">
       <div class="row title">
-        <h4 class="col-md-6">ログイン</h4>
+        <h4 class="col-md-6 mx-auto">ログイン</h4>
       </div>
 
       <%= form_with model: User.new, url: user_session_path do |f| %>
@@ -43,7 +43,7 @@
 
       <div class="row mx-auto text-center">
         <p class="col-md-6 col-10 mx-auto">ユーザー登録がお済みでない方は<br>
-          <%= link_to "こちら", user_registration_path %>から新規登録を行ってください
+          <%= link_to "こちら", new_user_registration_path %>から新規登録を行ってください
         </p>
       </div>
     </div>

@@ -3,7 +3,7 @@ class User::PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.where(post_status: :publicized).includes(:tags).order(created_at: :desc).page(params[:page]).per(2)
+    @posts = Post.where(post_status: :publicized).includes(:tags).order(created_at: :desc).page(params[:page]).per(12)
     @users = User.all
     @comment = Comment.new
   end

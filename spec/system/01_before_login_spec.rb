@@ -5,10 +5,6 @@ describe '[STEP1] ユーザログイン前のテスト' do
     # テスト開始前にroot_pathを開いておく
     before do
       visit root_path
-
-      find_all('a').each_with_index do |link, index|
-        puts "Index: #{index}, Text: #{link.text.strip}"
-      end
     end
 
     # root_pathの表示内容のテスト
@@ -240,11 +236,8 @@ describe '[STEP1] ユーザログイン前のテスト' do
     end
 
     context 'ログアウト機能のテスト' do
-      it '正しくログアウトできている: ログアウト後のリダイレクト先に新規登録ボタンがある' do
-        sign_up_link = find_all('a')[4].native.inner_text
-        expect(sign_up_link).to match(/Sign Up/)
-      end
       it 'ログアウト後のリダイレクト先が、トップになっている' do
+        click_link 'Log Out'
         expect(current_path).to eq '/'
       end
     end

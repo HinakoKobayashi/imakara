@@ -7,28 +7,28 @@ RSpec.describe 'Postモデルのテスト', type: :model do
       let(:post) { build(:post, post_status: :publicized) }
 
       it 'contentが空欄の場合、無効である' do
-        post.content = ''
-        expect(post.valid?).to eq false
+        post.content = nil
+        expect(post.save(context: :publicized)).to eq false
       end
 
       it 'contentが1400文字以内であること' do
         post.content = Faker::Lorem.characters(number: 1401)
-        expect(post.valid?).to eq false
+        expect(post.save(context: :publicized)).to eq false
       end
 
       it 'imageが空欄の場合、無効である' do
         post.image = nil
-        expect(post.valid?).to eq false
+        expect(post.save(context: :publicized)).to eq false
       end
 
       it 'tag_listが空欄の場合、無効である' do
         post.tag_list = nil
-        expect(post.valid?).to eq false
+        expect(post.save(context: :publicized)).to eq false
       end
 
       it 'prefecture_idが空欄の場合、無効である' do
         post.prefecture_id = nil
-        expect(post.valid?).to eq false
+        expect(post.save(context: :publicized)).to eq false
       end
     end
 

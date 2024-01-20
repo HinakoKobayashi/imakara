@@ -5,7 +5,7 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(resource)
    flash[:notice] = "ようこそ！Matsuricationへ！"
-      root_path
+      user_path(current_user)
   end
 
   protected

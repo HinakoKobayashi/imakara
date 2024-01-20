@@ -16,6 +16,7 @@ class Post < ApplicationRecord
   enum post_status: { publicized: 0, draft: 1 }
 
   validates :post_status, presence: true
+  #validates :content, presence: true
 
   # 下書きの際は条件を満たしていなくても保存できるようにバリデーション設定
   with_options presence: true, on: :publicized do

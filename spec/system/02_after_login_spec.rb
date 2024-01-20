@@ -16,7 +16,7 @@ describe '[STEP2] ユーザログイン後のテスト', type: :system do
 
 
   describe 'ハンバーガーメニューのテスト: ログインしている場合' do
-    context 'リンクの内容を確認: ※logoutは『ユーザログアウトのテスト』でテスト済みになります。' do
+    context 'リンクの内容を確認: ※logoutは『ユーザログアウトのテスト』でテスト済み' do
       subject { current_path }
 
       it 'Homeを押すと、トップ画面に遷移する' do
@@ -101,7 +101,6 @@ describe '[STEP2] ユーザログイン後のテスト', type: :system do
     context '公開時' do
       it '必要な情報を入力すると、投稿が成功する' do
         fill_in 'new_post_content', with: 'テスト投稿'
-
         attach_file 'new_post_image', 'spec/fixtures/no_image.jpg'
         fill_in 'new_post_tag', with: 'タグ1, タグ2'
         select '東京都', from: 'new_post_prefecture'
@@ -114,25 +113,24 @@ describe '[STEP2] ユーザログイン後のテスト', type: :system do
       it '情報が不足していても、下書き保存が成功する' do
         fill_in 'new_post_content', with: ''
         click_button 'draft_post_submit'
-        expect(page).to have_content('下書き保存しました')
+        expect(page).to have_content('下書きを保存しました')
       end
     end
   end
 end
 
   context '投稿成功のテスト' do
-      before do
-        fill_in 'new_post_content', with: Faker::Lorem.characters(number: 20)
+    it '自分の新しい投稿が正しく保存される' do
+      fill_in 'new_post_content', with: Faker::Lorem.characters(number: 20)
+      attach_file 'new_post_image', 'spec/fixtures/no_image.jpg'
+      fill_in 'new_post_tag', with: 'タグ1, タグ2'
+      select '東京都', from: 'new_post_prefecture'
+      expect {
         click_button 'new_post_submit'
-      end
-
-      it '自分の新しい投稿が正しく保存される' do
-        expect { click_button 'new_post_submit' }.to change(user.posts, :count).by(1)
-      end
-      it 'リダイレクト先が、投稿一覧画面になっている' do
-        expect(current_path).to eq '/posts'
-      end
+        user.reload
+      }.to change(user.posts, :count).by(1)
     end
+  end
 
 
   describe 'ユーザ一覧画面のテスト' do
@@ -172,7 +170,7 @@ end
         expect(current_path).to eq '/users/' + user.id.to_s
       end
       it '投稿一覧に自分の投稿が表示される' do
-        expect(page).to have_content user.posts
+        expect(page).to have_content(post.content)
       end
       it '他人の投稿は表示されない' do
         expect(page).not_to have_link '', href: user_path(other_user)

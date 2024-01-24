@@ -22,7 +22,7 @@
 - 食事時にどこのお店が開いているか知りたいとき
 ​
 ## 設計書
-- ER図 ![matsurication](https://github.com/HinakoKobayashi/imakara/assets/144582159/69db4d63-749a-4043-acf1-bf538cb78581)
+- ER図 ![matsurication](https://github.com/HinakoKobayashi/matsurication/assets/144582159/45b49b1f-2ae4-411d-b0b3-3927f2ef7401)
 - テーブル定義書 https://tinyurl.com/ymvkebvx
 - 詳細設計書　https://tinyurl.com/ylefmdzq
 ​
